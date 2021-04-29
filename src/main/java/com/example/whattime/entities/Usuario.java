@@ -47,4 +47,7 @@ public class Usuario
             fetch = FetchType.LAZY
     )
     private List<Nota> notes=new ArrayList<>();
+
+    @OneToOne(mappedBy = "usuario")
+    private Calendario calendario;
 }

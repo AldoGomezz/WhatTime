@@ -1,4 +1,4 @@
-package com.example.whattime.repositories;
+/*package com.example.whattime.repositories;
 
 import com.example.whattime.entities.Usuario;
 import org.springframework.data.domain.Example;
@@ -14,4 +14,4 @@ public interface UsuarioRepository extends JpaRepository<Usuario,Long>
 {
     Optional<Usuario> findByNombre(String nombre);
     List<Usuario> findAllByNombre(Iterable<String> iterable);
-}
+}*/
