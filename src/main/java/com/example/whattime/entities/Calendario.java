@@ -26,6 +26,8 @@ public class Calendario {
     @Column(name="id", updatable = false)
     private Long id;
 
+    @Column(name="name_calendario",nullable = false,columnDefinition = "TEXT")
+    private String name_calendario;
     @OneToOne
     @JoinColumn(
             name = "usuario-id",
