@@ -13,6 +13,7 @@ public class NotFoundException extends WhatTimeExceptions{
 
     public NotFoundException(String code, String message, ErrorDto data)
     {
-        super(code, HttpStatus.NOT_FOUND.value(), message, Arrays.asList(data));
+        super(code, HttpStatus.NOT_FOUND.value(),message, Arrays.asList(data));
     }
+
 }
