@@ -1,6 +1,8 @@
 package com.example.whattime.entities;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -11,16 +13,13 @@ import java.time.LocalDateTime;
                 @UniqueConstraint(name="nota_name_unique",columnNames="name_nota")
         })
 @Data
-@Builder
-@Setter
-@Getter
 @AllArgsConstructor
 @NoArgsConstructor
 public class Nota
 {
     @Id
     @SequenceGenerator(name="nota_sequence",sequenceName = "nota_sequence",
-    allocationSize = 1)
+            allocationSize = 1)
 
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "nota_sequence")
 
