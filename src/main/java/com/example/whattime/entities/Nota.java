@@ -43,12 +43,12 @@ public class Nota
             columnDefinition = "TEXT"
     )
     private String contenido;
-    @Column(
+    /*@Column(
             name = "fecha_creacion",
             nullable = false,
             columnDefinition = "TIMESTAMP WITHOUT TIME ZONE"
     )
-    private LocalDateTime fecha_creacion;
+    private LocalDateTime fecha_creacion;*/
     @ManyToOne
     @JoinColumn(
             name="usuario_id",

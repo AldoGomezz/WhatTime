@@ -2,12 +2,15 @@ package com.example.whattime.controllers;
 
 import com.example.whattime.DTO.CreateNotaDto;
 import com.example.whattime.DTO.NotaDto;
+import com.example.whattime.DTO.UsuarioDto;
 import com.example.whattime.exceptions.WhatTimeExceptions;
 import com.example.whattime.responses.WhatTimeResponse;
 import com.example.whattime.services.impl.NotaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(path = "/AqueHoraNota")
@@ -17,9 +20,9 @@ public class NotaController {
 
     @ResponseStatus(HttpStatus.OK)
     @PostMapping("/notas")
-    public WhatTimeResponse<NotaDto> createNota(@RequestBody CreateNotaDto createNotaDto, String nombre) throws WhatTimeExceptions {
+    public WhatTimeResponse<NotaDto> createNota(@RequestBody CreateNotaDto createNotaDto, Long userId) throws WhatTimeExceptions {
         return new WhatTimeResponse<>("Succes to create Nota",String.valueOf(HttpStatus.OK),"Ok",
-                notaService.createNota(createNotaDto,nombre));
+                notaService.createNota(createNotaDto,userId));
     }
 
     @ResponseStatus(HttpStatus.OK)
@@ -29,13 +32,34 @@ public class NotaController {
                 notaService.updateNota(notaDto));
     }
 
-    /*
-        @ResponseStatus(HttpStatus.OK)
-    @PostMapping("/usuarios")
-    public AqueHoraResponse<UsuarioDto> createUsuario(@RequestBody CreateUsuarioDto createUsuarioDto)
-            throws AqueHoraExceptions{
-        return new AqueHoraResponse<>("Succes",String.valueOf(HttpStatus.OK),"OK",
-                usuarioService.createUsuario(createUsuarioDto));
+    @ResponseStatus(HttpStatus.OK)
+    @PutMapping("/updNotaName")
+    public int updateNotaName(@RequestBody String name_nota, Long noteId) {
+        try {
+            return notaService.setUpdateNameNota(name_nota, noteId);
+        } catch (WhatTimeExceptions whatTimeExceptions) {
+            whatTimeExceptions.printStackTrace();
+        }
+        return 0;
     }
-     */
+
+    @ResponseStatus(HttpStatus.OK)
+    @PutMapping("/updNotaDescrip")
+    public int updateNotaDescription(@RequestBody String contenido, Long noteId) {
+        try {
+            return notaService.setUpdateDescriptionNota(contenido, noteId);
+        } catch (WhatTimeExceptions whatTimeExceptions) {
+            whatTimeExceptions.printStackTrace();
+        }
+        return 0;
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping("/notaUser")
+    public WhatTimeResponse<List<NotaDto>> getNotesByUserID(Long usuarioId)
+            throws WhatTimeExceptions {
+        return new WhatTimeResponse<>("Succes",String.valueOf(HttpStatus.OK),"OK",
+                notaService.getNotesUser(usuarioId));
+    }
+
 }

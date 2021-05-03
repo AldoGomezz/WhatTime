@@ -63,11 +63,10 @@ public class UsuarioServiceImpl implements UsuarioService
     @Override
     public UsuarioDto LoginAcess(String usuario, String contrasena) throws WhatTimeExceptions
     {
-
         return modelMapper.map(usuarioRepository.findByNombreEqualsAndContrasenaEquals(usuario,contrasena),UsuarioDto.class);
     }
 
-    private Usuario getUsuarioEntity(Long usuarioId) throws WhatTimeExceptions
+    public Usuario getUsuarioEntity(Long usuarioId) throws WhatTimeExceptions
     {
         return usuarioRepository.findById(usuarioId).orElseThrow(()->new NotFoundException("NOTFOUND-4040","USUARIO-NOTFOUND-404"));
     }
