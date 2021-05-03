@@ -17,10 +17,10 @@ public class CalendarioController {
 
     @ResponseStatus(HttpStatus.OK)
     @PostMapping("/calendarios")
-    public WhatTimeResponse<CalendarioDto> createCalendario(@RequestBody CreateCalendarioDto createCalendarioDto)
+    public WhatTimeResponse<CalendarioDto> createCalendario(@RequestBody CreateCalendarioDto createCalendarioDto,String name)
             throws WhatTimeExceptions{
         return new WhatTimeResponse<>("Success to create Calendario",String.valueOf(HttpStatus.OK),"Ok",
-                calendarioService.createCalendario(createCalendarioDto));
+                calendarioService.createCalendario(createCalendarioDto,name));
     }
 
     @ResponseStatus(HttpStatus.OK)
