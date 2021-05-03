@@ -1,4 +1,4 @@
-package com.example.whattime.services.impl;
+package com.example.whattime.services.impl.impl;
 
 import com.example.whattime.DTO.CreateUsuarioDto;
 import com.example.whattime.DTO.UsuarioDto;
@@ -7,6 +7,7 @@ import com.example.whattime.exceptions.InternalServerErrorException;
 import com.example.whattime.exceptions.NotFoundException;
 import com.example.whattime.exceptions.WhatTimeExceptions;
 import com.example.whattime.repositories.UsuarioRepository;
+import com.example.whattime.services.impl.UsuarioService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -66,11 +67,20 @@ public class UsuarioServiceImpl implements UsuarioService
         return modelMapper.map(usuarioRepository.findByNombreEqualsAndContrasenaEquals(usuario,contrasena),UsuarioDto.class);
     }
 
-    private Usuario getUsuarioEntity(Long usuarioId) throws WhatTimeExceptions
+    /*@Override
+    public UsuarioDto returnID(String nombre) throws WhatTimeExceptions {
+        return modelMapper.map(returnID(nombre),UsuarioDto.class);
+    }*/
+
+    public Usuario getUsuarioEntity(Long usuarioId) throws WhatTimeExceptions
     {
         return usuarioRepository.findById(usuarioId).orElseThrow(()->new NotFoundException("NOTFOUND-4040","USUARIO-NOTFOUND-404"));
     }
     public Usuario getUsuarioEntityName(String name) throws WhatTimeExceptions
+    {
+        return usuarioRepository.findByNombre(name).orElseThrow(()->new NotFoundException("NOTFOUND-4040","USUARIO-NOTFOUND-404"));
+    }
+    public Usuario getUsuarioID(String name) throws WhatTimeExceptions
     {
         return usuarioRepository.findByNombre(name).orElseThrow(()->new NotFoundException("NOTFOUND-4040","USUARIO-NOTFOUND-404"));
     }

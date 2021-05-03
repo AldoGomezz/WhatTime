@@ -14,4 +14,5 @@ public interface UsuarioService
     int setupdateUser(String contrasena,Long usuarioId) throws  WhatTimeExceptions;
     int setUpdateUserCorreo(String correo, Long usuarioId) throws WhatTimeExceptions;
     UsuarioDto LoginAcess(String usuario,String contrasena) throws  WhatTimeExceptions;
+    //UsuarioDto returnID(String nombre) throws  WhatTimeExceptions;
 }
