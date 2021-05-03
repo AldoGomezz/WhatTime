@@ -8,9 +8,9 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "calendario",
-       uniqueConstraints = {
-        @UniqueConstraint(name = "calendario_name_unique", columnNames = "name_calendario")
-       })
+        uniqueConstraints = {
+                @UniqueConstraint(name = "calendario_name_unique", columnNames = "name_calendario")
+        })
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

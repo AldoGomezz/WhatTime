@@ -1,5 +1,6 @@
 package com.example.whattime.exceptions;
 
+
 import com.example.whattime.DTO.ErrorDto;
 import lombok.Getter;
 
@@ -13,6 +14,7 @@ public class WhatTimeExceptions extends Exception
     private final String code; //codigo error
     private final int responseCode; //Codigo respuesta
     private final List<ErrorDto> errorList=new ArrayList<>();
+
     public WhatTimeExceptions(String code, int responseCode, String message)
     {
         super(message);

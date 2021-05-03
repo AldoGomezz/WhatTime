@@ -7,7 +7,6 @@ import com.example.whattime.exceptions.InternalServerErrorException;
 import com.example.whattime.exceptions.NotFoundException;
 import com.example.whattime.exceptions.WhatTimeExceptions;
 import com.example.whattime.repositories.UsuarioRepository;
-import com.example.whattime.services.UsuarioService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,8 +36,8 @@ public class UsuarioServiceImpl implements UsuarioService
     public UsuarioDto createUsuario(CreateUsuarioDto createUsuarioDto) throws WhatTimeExceptions {
         Usuario usuario=new Usuario();
         usuario.setNombre(createUsuarioDto.getName());
+        usuario.setCorreo(createUsuarioDto.getCorreo());
         usuario.setContrasena(createUsuarioDto.getPassword());
-        usuario.setFecha_nacimiento(createUsuarioDto.getFecha_nacimiento());
 
         try{
             usuario=usuarioRepository.save(usuario);
@@ -49,8 +48,30 @@ public class UsuarioServiceImpl implements UsuarioService
         return  modelMapper.map(getUsuarioEntity(usuario.getId()),UsuarioDto.class);
     }
 
+    @Override
+    public int setupdateUser(String contrasena, Long usuarioId) throws WhatTimeExceptions {
+
+        return usuarioRepository.setUpdateUser(contrasena,usuarioId);
+    }
+
+    @Override
+    public int setUpdateUserCorreo(String correo, Long usuarioId) throws WhatTimeExceptions {
+        return usuarioRepository.setUpdateUserCorreo(correo,usuarioId);
+    }
+
+    @Override
+    public UsuarioDto LoginAcess(String usuario, String contrasena) throws WhatTimeExceptions
+    {
+
+        return modelMapper.map(usuarioRepository.findByNombreEqualsAndContrasenaEquals(usuario,contrasena),UsuarioDto.class);
+    }
+
     private Usuario getUsuarioEntity(Long usuarioId) throws WhatTimeExceptions
     {
         return usuarioRepository.findById(usuarioId).orElseThrow(()->new NotFoundException("NOTFOUND-4040","USUARIO-NOTFOUND-404"));
+    }
+    public Usuario getUsuarioEntityName(String name) throws WhatTimeExceptions
+    {
+        return usuarioRepository.findByNombre(name).orElseThrow(()->new NotFoundException("NOTFOUND-4040","USUARIO-NOTFOUND-404"));
     }
 }

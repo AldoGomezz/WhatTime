@@ -5,7 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +24,7 @@ public class Usuario
             sequenceName = "usuario_sequence",
             allocationSize=1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE,
-            generator="restaurant_sequence")
+            generator="usuario_sequence")
 
     @Column(name="id",updatable = false)
     private Long id;
@@ -38,8 +38,7 @@ public class Usuario
     @Column(name="contrasena",nullable = false,columnDefinition = "TEXT")
     private String contrasena;
 
-    @Column(name="fecha_nacimiento",nullable = false,columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
-    private LocalDateTime fecha_nacimiento;
+
 
     @OneToMany(
             mappedBy = "usuario",

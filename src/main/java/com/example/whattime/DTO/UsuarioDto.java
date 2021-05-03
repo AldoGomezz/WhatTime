@@ -8,6 +8,7 @@ import lombok.Setter;
 public class UsuarioDto //Cosas que quiero obtener cuando pregunto por un usuario
 {
     private Long id;
-    private String name;
+    private String nombre;
     private String correo;
+    private String contrasena;
 }
