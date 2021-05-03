@@ -70,7 +70,7 @@ public class UsuarioServiceImpl implements UsuarioService
     {
         return usuarioRepository.findById(usuarioId).orElseThrow(()->new NotFoundException("NOTFOUND-4040","USUARIO-NOTFOUND-404"));
     }
-    public Usuario getUsuarioEntityName(String name) throws WhatTimeExceptions
+    public Usuario getUsuarioEntityName(long name) throws WhatTimeExceptions
     {
         return usuarioRepository.findByNombre(name).orElseThrow(()->new NotFoundException("NOTFOUND-4040","USUARIO-NOTFOUND-404"));
     }
