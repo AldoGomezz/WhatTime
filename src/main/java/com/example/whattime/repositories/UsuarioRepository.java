@@ -25,6 +25,9 @@ public interface UsuarioRepository extends JpaRepository<Usuario,Long>
     @Query("SELECT User FROM Usuario User")
     List<Usuario> findUsuarios();
 
+    //@Query("SELECT Usuario.id from Usuario where Usuario.nombre=?1 ")
+    //Optional<Usuario> returnID(String nombre);
+
     @Transactional
     @Modifying
     @Query("update Usuario user set user.contrasena= ?1 where user.id= ?2")
@@ -34,4 +37,6 @@ public interface UsuarioRepository extends JpaRepository<Usuario,Long>
     @Modifying
     @Query("update Usuario user set user.correo= ?1 where user.id= ?2")
     int setUpdateUserCorreo(String correo,Long userId);
+
+
 }
