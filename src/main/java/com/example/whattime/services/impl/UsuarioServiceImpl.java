@@ -1,4 +1,4 @@
-package com.example.whattime.services.impl.impl;
+package com.example.whattime.services.impl;
 
 import com.example.whattime.DTO.CreateUsuarioDto;
 import com.example.whattime.DTO.UsuarioDto;
@@ -7,7 +7,7 @@ import com.example.whattime.exceptions.InternalServerErrorException;
 import com.example.whattime.exceptions.NotFoundException;
 import com.example.whattime.exceptions.WhatTimeExceptions;
 import com.example.whattime.repositories.UsuarioRepository;
-import com.example.whattime.services.impl.UsuarioService;
+import com.example.whattime.services.UsuarioService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

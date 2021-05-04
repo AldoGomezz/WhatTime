@@ -1,22 +1,20 @@
-package com.example.whattime.services.impl.impl;
+package com.example.whattime.services.impl;
 
 
 import com.example.whattime.DTO.CreateNotaDto;
 import com.example.whattime.DTO.NotaDto;
-import com.example.whattime.DTO.UsuarioDto;
 import com.example.whattime.entities.Nota;
 import com.example.whattime.entities.Usuario;
 import com.example.whattime.exceptions.InternalServerErrorException;
 import com.example.whattime.exceptions.NotFoundException;
 import com.example.whattime.exceptions.WhatTimeExceptions;
 import com.example.whattime.repositories.NotaRepository;
-import com.example.whattime.services.impl.NotaService;
+import com.example.whattime.services.NotaService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service

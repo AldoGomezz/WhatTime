@@ -4,7 +4,7 @@ import com.example.whattime.DTO.CreateUsuarioDto;
 import com.example.whattime.DTO.UsuarioDto;
 import com.example.whattime.exceptions.WhatTimeExceptions;
 import com.example.whattime.responses.WhatTimeResponse;
-import com.example.whattime.services.impl.UsuarioService;
+import com.example.whattime.services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

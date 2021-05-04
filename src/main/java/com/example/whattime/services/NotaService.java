@@ -1,4 +1,4 @@
-package com.example.whattime.services.impl;
+package com.example.whattime.services;
 
 import com.example.whattime.DTO.CreateNotaDto;
 import com.example.whattime.DTO.NotaDto;
