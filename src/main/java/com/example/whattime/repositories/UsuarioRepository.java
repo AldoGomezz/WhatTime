@@ -28,10 +28,13 @@ public interface UsuarioRepository extends JpaRepository<Usuario,Long>
     @Transactional
     @Modifying
     @Query("update Usuario user set user.contrasena= ?1 where user.id= ?2")
-    int setUpdateUser(String contrasena,Long userId);
+    int setUpdatePassword(String contrasena,Long userId);
 
     @Transactional
     @Modifying
     @Query("update Usuario user set user.correo= ?1 where user.id= ?2")
     int setUpdateUserCorreo(String correo,Long userId);
+
+
+
 }

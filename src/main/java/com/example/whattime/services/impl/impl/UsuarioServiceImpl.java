@@ -50,9 +50,9 @@ public class UsuarioServiceImpl implements UsuarioService
     }
 
     @Override
-    public int setupdateUser(String contrasena, Long usuarioId) throws WhatTimeExceptions {
+    public int setupdateUserPassword(String contrasena, Long usuarioId) throws WhatTimeExceptions {
 
-        return usuarioRepository.setUpdateUser(contrasena,usuarioId);
+        return usuarioRepository.setUpdatePassword(contrasena,usuarioId);
     }
 
     @Override

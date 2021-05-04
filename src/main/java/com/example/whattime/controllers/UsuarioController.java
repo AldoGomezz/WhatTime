@@ -44,9 +44,9 @@ public class UsuarioController
 
     @ResponseStatus(HttpStatus.OK)
     @PutMapping("/upduser")
-    public int updateUsuario(@RequestBody String contrasena, Long usuarioId){
+    public int updateUsuarioPassword(@RequestBody String contrasena, Long usuarioId){
         try {
-            return usuarioService.setupdateUser(contrasena, usuarioId);
+            return usuarioService.setupdateUserPassword(contrasena, usuarioId);
         } catch (WhatTimeExceptions whatTimeExceptions) {
             whatTimeExceptions.printStackTrace();
         }

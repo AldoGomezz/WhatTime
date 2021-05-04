@@ -11,7 +11,7 @@ public interface UsuarioService
     UsuarioDto getUsuarioById(Long usuarioId) throws WhatTimeExceptions; // SI hay error recurre al whattimeExceptions
     List<UsuarioDto> getUsuarios() throws  WhatTimeExceptions;
     UsuarioDto createUsuario(CreateUsuarioDto createUsuarioDto) throws  WhatTimeExceptions;
-    int setupdateUser(String contrasena,Long usuarioId) throws  WhatTimeExceptions;
+    int setupdateUserPassword(String contrasena,Long usuarioId) throws  WhatTimeExceptions;
     int setUpdateUserCorreo(String correo, Long usuarioId) throws WhatTimeExceptions;
     UsuarioDto LoginAcess(String usuario,String contrasena) throws  WhatTimeExceptions;
 }
