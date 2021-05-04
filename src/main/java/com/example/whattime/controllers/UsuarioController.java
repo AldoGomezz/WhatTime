@@ -72,4 +72,14 @@ public class UsuarioController
                 usuarioService.LoginAcess(nombre,contrasena));
     }
 
+    @ResponseStatus(HttpStatus.OK)
+    @DeleteMapping("/deleteuser")
+    public void deleteUser(Long userId)
+    {
+        try {
+            usuarioService.deleteUser(userId);
+        } catch (WhatTimeExceptions whatTimeExceptions) {
+            whatTimeExceptions.printStackTrace();
+        }
+    }
 }

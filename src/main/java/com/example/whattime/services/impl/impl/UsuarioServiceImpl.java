@@ -66,6 +66,12 @@ public class UsuarioServiceImpl implements UsuarioService
         return modelMapper.map(usuarioRepository.findByNombreEqualsAndContrasenaEquals(usuario,contrasena),UsuarioDto.class);
     }
 
+    @Override
+    public void deleteUser(Long userid) throws WhatTimeExceptions
+    {
+        usuarioRepository.deleteUser(userid);
+    }
+
     public Usuario getUsuarioEntity(Long usuarioId) throws WhatTimeExceptions
     {
         return usuarioRepository.findById(usuarioId).orElseThrow(()->new NotFoundException("NOTFOUND-4040","USUARIO-NOTFOUND-404"));

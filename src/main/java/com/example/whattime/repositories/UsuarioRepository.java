@@ -35,6 +35,9 @@ public interface UsuarioRepository extends JpaRepository<Usuario,Long>
     @Query("update Usuario user set user.correo= ?1 where user.id= ?2")
     int setUpdateUserCorreo(String correo,Long userId);
 
-
+    @Transactional
+    @Modifying
+    @Query("delete from Usuario user where user.id = ?1")
+    void deleteUser(Long user_id);
 
 }

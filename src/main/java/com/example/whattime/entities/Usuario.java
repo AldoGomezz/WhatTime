@@ -3,6 +3,8 @@ package com.example.whattime.entities;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 
@@ -39,7 +41,7 @@ public class Usuario
     private String contrasena;
 
 
-
+    //@OnDelete(action = OnDeleteAction.CASCADE)
     @OneToMany(
             mappedBy = "usuario",
             cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
