@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -75,6 +76,22 @@ public class NotaServiceImpl implements NotaService
         List<Nota> noteEntity=notaRepository.findNotas(username);
         return noteEntity.stream().map(nota->modelMapper.map(nota, NotaDto.class)).collect(Collectors.toList());
     }
+
+    @Override
+    public void DeleteNote(Long noteId) throws WhatTimeExceptions
+    {
+        notaRepository.deleteNote(noteId);
+    }
+
+    /*@Override
+    public NotaDto borrarNota(Long noteId) throws WhatTimeExceptions
+    {
+        notaRepository.deleteNote(noteId);
+        return modelMapper.map(getNotaEntity(noteId),NotaDto.class);
+    }*/
+
+
+
 
     public Nota getNotaEntity(Long notaId) throws WhatTimeExceptions {
         return notaRepository.findById(notaId).orElseThrow(() -> new NotFoundException("NotFound-4040", "Nota-NotFound-404"));

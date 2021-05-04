@@ -14,5 +14,6 @@ public interface NotaService {
     int setUpdateNameNota(String name_nota,Long note_id) throws  WhatTimeExceptions;
     int setUpdateDescriptionNota(String contenido,Long note_id) throws  WhatTimeExceptions;
     List<NotaDto> getNotesUser(Long username) throws  WhatTimeExceptions;
-
+    void DeleteNote(Long noteId) throws WhatTimeExceptions;
+    /*NotaDto borrarNota(Long noteId) throws  WhatTimeExceptions;*/
 }

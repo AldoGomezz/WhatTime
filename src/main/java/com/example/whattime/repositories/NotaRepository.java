@@ -28,4 +28,15 @@ public interface NotaRepository extends JpaRepository<Nota,Long>
     @Modifying
     @Query("update Nota note set note.contenido= ?1 where note.id= ?2")
     int updateDescriptionNota(String contenido,Long noteid);
+
+    @Transactional
+    @Modifying
+    @Query("delete from Nota note where note.id = ?1")
+    void deleteNote(Long note_id);
+
+    /*@Transactional
+    @Modifying
+    @Query("delete from Nota note where note.id = ?1")
+    Optional<Nota> borrarNote(Long note_id);*/
+
 }

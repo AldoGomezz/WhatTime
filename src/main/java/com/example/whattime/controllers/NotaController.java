@@ -6,6 +6,7 @@ import com.example.whattime.DTO.UsuarioDto;
 import com.example.whattime.exceptions.WhatTimeExceptions;
 import com.example.whattime.responses.WhatTimeResponse;
 import com.example.whattime.services.impl.NotaService;
+import org.aspectj.weaver.ast.Not;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -61,5 +62,23 @@ public class NotaController {
         return new WhatTimeResponse<>("Succes",String.valueOf(HttpStatus.OK),"OK",
                 notaService.getNotesUser(usuarioId));
     }
+    @ResponseStatus(HttpStatus.OK)
+    @DeleteMapping("/deletenote")
+    public void deleteNote(Long noteId)
+    {
+        try {
+            notaService.DeleteNote(noteId);
+        } catch (WhatTimeExceptions whatTimeExceptions) {
+            whatTimeExceptions.printStackTrace();
+        }
+
+    }
+
+    /*@ResponseStatus(HttpStatus.OK)
+    @DeleteMapping("borrarnota")
+    public WhatTimeResponse<NotaDto> borrarNota(Long nota_id)throws
+            WhatTimeExceptions{
+        return new WhatTimeResponse<>("Se elimno de forma correcta",String.valueOf(HttpStatus.OK),"OK",notaService.borrarNota(nota_id));
+    }*/
 
 }
