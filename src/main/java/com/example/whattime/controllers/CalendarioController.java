@@ -4,7 +4,7 @@ import com.example.whattime.DTO.CreateCalendarioDto;
 import com.example.whattime.DTO.CalendarioDto;
 import com.example.whattime.exceptions.WhatTimeExceptions;
 import com.example.whattime.responses.WhatTimeResponse;
-import com.example.whattime.services.impl.CalendarioService;
+import com.example.whattime.services.CalendarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

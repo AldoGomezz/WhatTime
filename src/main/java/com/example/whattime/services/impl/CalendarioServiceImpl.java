@@ -1,4 +1,4 @@
-package com.example.whattime.services.impl.impl;
+package com.example.whattime.services.impl;
 
 import com.example.whattime.DTO.CalendarioDto;
 import com.example.whattime.DTO.CreateCalendarioDto;
@@ -7,7 +7,7 @@ import com.example.whattime.entities.Usuario;
 import com.example.whattime.exceptions.WhatTimeExceptions;
 import com.example.whattime.exceptions.NotFoundException;
 import com.example.whattime.exceptions.InternalServerErrorException;
-import com.example.whattime.services.impl.CalendarioService;
+import com.example.whattime.services.CalendarioService;
 import com.example.whattime.repositories.CalendarioRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
