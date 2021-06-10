@@ -11,7 +11,6 @@ import java.time.LocalDateTime;
                 @UniqueConstraint(name="nota_name_unique",columnNames="name_nota")
         })
 @Data
-@Builder
 @Setter
 @Getter
 @AllArgsConstructor

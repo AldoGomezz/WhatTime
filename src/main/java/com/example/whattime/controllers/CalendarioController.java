@@ -1,7 +1,7 @@
 package com.example.whattime.controllers;
 
-import com.example.whattime.DTO.CreateCalendarioDto;
 import com.example.whattime.DTO.CalendarioDto;
+import com.example.whattime.DTO.CreateCalendarioDto;
 import com.example.whattime.exceptions.WhatTimeExceptions;
 import com.example.whattime.responses.WhatTimeResponse;
 import com.example.whattime.services.CalendarioService;
@@ -17,7 +17,7 @@ public class CalendarioController {
 
     @ResponseStatus(HttpStatus.OK)
     @PostMapping("/calendarios")
-    public WhatTimeResponse<CalendarioDto> createCalendario(@RequestBody CreateCalendarioDto createCalendarioDto,String name)
+    public WhatTimeResponse<CalendarioDto> createCalendario(@RequestBody CreateCalendarioDto createCalendarioDto, String name)
             throws WhatTimeExceptions{
         return new WhatTimeResponse<>("Success to create Calendario",String.valueOf(HttpStatus.OK),"Ok",
                 calendarioService.createCalendario(createCalendarioDto,name));

@@ -1,6 +1,6 @@
-/*package com.example.whattime.converters;
+package com.example.whattime.converters;
 
-import com.example.whattime.DTO.NotaDto;
+/*import com.example.whattime.DTO.NotaDto;
 import com.example.whattime.entities.Nota;
 
 public class NotaConverter extends AbstractConverter<Nota, NotaDto> {
@@ -14,7 +14,7 @@ public class NotaConverter extends AbstractConverter<Nota, NotaDto> {
                 .name_nota(entity.getName_nota())
                 .importancia(entity.getImportancia())
                 .contenido(entity.getContenido())
-                /*.fecha_creacion(entity.getFecha_creacion())*/
+        /*.fecha_creacion(entity.getFecha_creacion())*/
               /*.build();
     }
 

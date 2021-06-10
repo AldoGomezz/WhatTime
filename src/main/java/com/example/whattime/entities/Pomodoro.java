@@ -15,18 +15,17 @@ import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Pomodoro
-{
+public class Pomodoro {
     @Id
-    @SequenceGenerator(name="pomodoro_sequence",sequenceName = "pomodoro_sequence",
+    @SequenceGenerator(name = "pomodoro_sequence", sequenceName = "pomodoro_sequence",
             allocationSize = 1)
 
-    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "pomodoro_sequence")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "pomodoro_sequence")
 
-    @Column(name="id",updatable = false)
+    @Column(name = "id", updatable = false)
     private Long id;
 
-    @Column(name="name_pomodoro",nullable = false,columnDefinition = "TEXT")
+    @Column(name = "name_pomodoro", nullable = false, columnDefinition = "TEXT")
     private String name_pomodoro;
 
     @Column(
@@ -44,12 +43,13 @@ public class Pomodoro
     private LocalDateTime fecha_creacion;*/
     @ManyToOne
     @JoinColumn(
-            name="pomodoro_id",
+            name = "pomodoro_id",
             nullable = false,
             referencedColumnName = "id",
             foreignKey = @ForeignKey(
-                    name="pomodoro_note_fk"
+                    name = "pomodoro_note_fk"
             )
     )
     private Nota nota;
 }
+

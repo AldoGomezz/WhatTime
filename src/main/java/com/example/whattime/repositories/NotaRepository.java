@@ -1,8 +1,6 @@
 package com.example.whattime.repositories;
 
 import com.example.whattime.entities.Nota;
-import com.example.whattime.entities.Usuario;
-import org.aspectj.weaver.ast.Not;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;

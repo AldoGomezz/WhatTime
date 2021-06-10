@@ -8,7 +8,7 @@ import lombok.Setter;
 
 public class CreateAlarmaDto
 {
+    private String name_alarma;
+    private String contenido_alarma;
 
-        private String name_alarma;
-        private String contenido_alarma;
 }

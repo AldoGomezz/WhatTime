@@ -10,26 +10,25 @@ import javax.persistence.*;
                 @UniqueConstraint(name="alarma_name_unique",columnNames="name_alarma")
         })
 @Data
-@Builder
 @Setter
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
 public class Alarma {
-        @Id
-        @SequenceGenerator(name = "alarma_sequence", sequenceName = "alarma_sequence",
-                allocationSize = 1)
+    @Id
+    @SequenceGenerator(name = "alarma_sequence", sequenceName = "alarma_sequence",
+            allocationSize = 1)
 
-        @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "alarma_sequence")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "alarma_sequence")
 
-        @Column(name="id", updatable = false)
-        private long id;
+    @Column(name="id", updatable = false)
+    private long id;
 
-        @Column(name ="name_alarma", nullable = false, columnDefinition = "TEXT")
-        private String name_alarma;
+    @Column(name ="name_alarma", nullable = false, columnDefinition = "TEXT")
+    private String name_alarma;
 
-        @Column(name ="contenido_alarma", nullable = false, columnDefinition = "TEXT")
-        private String contenido_alarma;
+    @Column(name ="contenido_alarma", nullable = false, columnDefinition = "TEXT")
+    private String contenido_alarma;
 
     @OneToOne
     @JoinColumn(
@@ -41,5 +40,5 @@ public class Alarma {
             )
     )
 
-        private Calendario calendario;
+    private Calendario calendario;
 }

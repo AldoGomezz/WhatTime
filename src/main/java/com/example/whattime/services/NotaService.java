@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface NotaService {
 
-    NotaDto createNota(CreateNotaDto createNotaDto,Long userId) throws WhatTimeExceptions;
+    NotaDto createNota(CreateNotaDto createNotaDto, Long userId) throws WhatTimeExceptions;
     NotaDto updateNota(NotaDto notaDto) throws WhatTimeExceptions;
     int setUpdateNameNota(String name_nota,Long note_id) throws  WhatTimeExceptions;
     int setUpdateDescriptionNota(String contenido,Long note_id) throws  WhatTimeExceptions;

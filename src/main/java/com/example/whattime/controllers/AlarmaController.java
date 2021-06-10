@@ -17,9 +17,9 @@ public class AlarmaController {
 
     @ResponseStatus(HttpStatus.OK)
     @PostMapping("/alarmas")
-    public WhatTimeResponse<AlarmaDto> createAlarma(@RequestBody CreateAlarmaDto createAlarmaDto, Long name) throws WhatTimeExceptions{
+    public WhatTimeResponse<AlarmaDto> createAlarma(@RequestBody CreateAlarmaDto createAlarmaDto, Long id_Calendar) throws WhatTimeExceptions{
         return new WhatTimeResponse<>("Sucess to create Alarma", String.valueOf(HttpStatus.OK), "Ok",
-                alarmaService.createAlarma(createAlarmaDto, name));
+                alarmaService.createAlarma(createAlarmaDto, id_Calendar));
     }
     @ResponseStatus(HttpStatus.OK)
     @PutMapping

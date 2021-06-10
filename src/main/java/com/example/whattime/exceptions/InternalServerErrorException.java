@@ -1,11 +1,9 @@
 package com.example.whattime.exceptions;
 
-//import com.example.whattime.DTO.ErrorDto;
 import com.example.whattime.DTO.ErrorDto;
 import org.springframework.http.HttpStatus;
 
 import java.util.Arrays;
-import java.util.List;
 
 public class InternalServerErrorException extends WhatTimeExceptions
 {

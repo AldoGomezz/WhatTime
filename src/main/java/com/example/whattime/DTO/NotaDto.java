@@ -1,6 +1,5 @@
 package com.example.whattime.DTO;
 
-
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;

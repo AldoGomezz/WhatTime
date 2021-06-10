@@ -1,12 +1,9 @@
 package com.example.whattime.services.impl;
 
 import com.example.whattime.DTO.AlarmaDto;
-import com.example.whattime.DTO.CalendarioDto;
 import com.example.whattime.DTO.CreateAlarmaDto;
-import com.example.whattime.DTO.CreateCalendarioDto;
 import com.example.whattime.entities.Alarma;
 import com.example.whattime.entities.Calendario;
-import com.example.whattime.entities.Usuario;
 import com.example.whattime.exceptions.InternalServerErrorException;
 import com.example.whattime.exceptions.NotFoundException;
 import com.example.whattime.exceptions.WhatTimeExceptions;
@@ -64,6 +61,7 @@ public class AlarmaServiceImpl implements AlarmaService {
             throw new InternalServerErrorException("INTERNAL_SERVER_ERROR Usuario","INTERNAL_SERVER_ERROR Usuario");
         }
         alarma.setCalendario(calendario);
+
         try{
             alarma = alarmaRepository.save(alarma);
         } catch (Exception ex) {

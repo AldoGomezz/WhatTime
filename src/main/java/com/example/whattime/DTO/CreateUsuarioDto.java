@@ -1,4 +1,5 @@
 package com.example.whattime.DTO;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,4 +14,3 @@ public class CreateUsuarioDto
     private String correo;
     private String password;
 }
-

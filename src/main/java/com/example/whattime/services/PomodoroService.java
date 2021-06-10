@@ -5,6 +5,6 @@ import com.example.whattime.DTO.PomodoroDto;
 import com.example.whattime.exceptions.WhatTimeExceptions;
 
 public interface PomodoroService {
-    PomodoroDto createPomodoro(CreatePomodoroDto createPomodoroDto,Long notaId) throws WhatTimeExceptions;
+    PomodoroDto createPomodoro(CreatePomodoroDto createPomodoroDto, Long notaId) throws WhatTimeExceptions;
 
 }
