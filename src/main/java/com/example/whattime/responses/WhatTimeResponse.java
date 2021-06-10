@@ -22,4 +22,5 @@ public class WhatTimeResponse<T>
         this.message=message;
     }
 
+
 }

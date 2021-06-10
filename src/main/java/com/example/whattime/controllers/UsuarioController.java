@@ -16,7 +16,9 @@ import java.util.List;
 public class UsuarioController
 {
     @Autowired
-    private UsuarioService usuarioService;
+    private UsuarioService usuarioService;;
+    private Object WhatTimeResponse;
+
     //1
     @ResponseStatus(HttpStatus.OK)
     @PostMapping("/usuarios")
@@ -45,7 +47,7 @@ public class UsuarioController
 
     @ResponseStatus(HttpStatus.OK)
     @PutMapping("/upduser")
-    public int updateUsuarioPassword(@RequestBody String contrasena, Long usuarioId){
+    public int updateUsuarioPassword(String contrasena, Long usuarioId){
         try {
             return usuarioService.setupdateUserPassword(contrasena, usuarioId);
         } catch (WhatTimeExceptions whatTimeExceptions) {
@@ -56,7 +58,7 @@ public class UsuarioController
 
     @ResponseStatus(HttpStatus.OK)
     @PutMapping("/updusercorreo")
-    public int updateUsuarioCorreo(@RequestBody String correo, Long usuarioId){
+    public int updateUsuarioCorreo(String correo, Long usuarioId){
         try {
             return usuarioService.setUpdateUserCorreo(correo, usuarioId);
         } catch (WhatTimeExceptions whatTimeExceptions) {
@@ -73,14 +75,21 @@ public class UsuarioController
                 usuarioService.getUsuarioById(usuarioId));
     }
 
-    @ResponseStatus(HttpStatus.OK)
+   /* @ResponseStatus(HttpStatus.OK)
     @DeleteMapping("/deleteuser")
-    public void deleteUser(Long userId)
-    {
+    public void deleteUser(Long userId) throws WhatTimeExceptions {
         try {
-            usuarioService.deleteUser(userId);
+
+            usuarioService.existsById(userId);
         } catch (WhatTimeExceptions whatTimeExceptions) {
             whatTimeExceptions.printStackTrace();
         }
+    }*/
+    @ResponseStatus(HttpStatus.OK)
+    @DeleteMapping("/delUser")
+    public void deleteById(Long id)
+    {
+        usuarioService.deleteById(id);
     }
+
 }

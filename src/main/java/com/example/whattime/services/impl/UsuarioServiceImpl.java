@@ -50,8 +50,8 @@ public class UsuarioServiceImpl implements UsuarioService
     }
 
     @Override
-    public int setupdateUserPassword(String contrasena, Long usuarioId) throws WhatTimeExceptions {
-
+    public int setupdateUserPassword(String contrasena, Long usuarioId) throws WhatTimeExceptions
+    {
         return usuarioRepository.setUpdatePassword(contrasena,usuarioId);
     }
 
@@ -61,9 +61,15 @@ public class UsuarioServiceImpl implements UsuarioService
     }
 
     @Override
-    public void deleteUser(Long userid) throws WhatTimeExceptions
+    public void deleteById(Long id)
     {
-        usuarioRepository.deleteUser(userid);
+        usuarioRepository.deleteById(id);
+    }
+
+    @Override
+    public boolean existsById(Long userid) throws WhatTimeExceptions
+    {
+       return usuarioRepository.existsById(userid);
     }
 
     @Override
@@ -84,5 +90,6 @@ public class UsuarioServiceImpl implements UsuarioService
     {
         return usuarioRepository.findByNombreAndContrasena(name,pass).orElseThrow(()->new NotFoundException("NOTFOUND-4040","USUARIO-NOTFOUND-404"));
     }
+
 
 }

@@ -20,6 +20,11 @@ public interface UsuarioRepository extends JpaRepository<Usuario,Long>
     Optional<Usuario> findByNombre(String nombre);
     Optional<Usuario> findByNombreAndContrasena(String nombre, String pass);
 
+    @Override
+    boolean existsById(Long userId);
+    @Override
+    void deleteById(Long id);
+
     @Transactional
     @Modifying
     @Query("update Usuario user set user.contrasena= ?1 where user.id= ?2")
@@ -30,9 +35,9 @@ public interface UsuarioRepository extends JpaRepository<Usuario,Long>
     @Query("update Usuario user set user.correo= ?1 where user.id= ?2")
     int setUpdateUserCorreo(String correo,Long userId);
 
-    @Transactional
+   /* @Transactional
     @Modifying
     @Query("delete from Usuario user where user.id = ?1")
     void deleteUser(Long user_id);
-
+*/
 }
