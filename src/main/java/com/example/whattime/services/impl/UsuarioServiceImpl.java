@@ -25,7 +25,7 @@ public class UsuarioServiceImpl implements UsuarioService
 
     @Override
     public UsuarioDto getUsuarioById(Long usuarioId) throws WhatTimeExceptions {
-        return modelMapper.map(getUsuarioById(usuarioId),UsuarioDto.class);
+        return modelMapper.map(getUsuarioEntity(usuarioId),UsuarioDto.class);
     }
 
     @Override
@@ -61,15 +61,15 @@ public class UsuarioServiceImpl implements UsuarioService
     }
 
     @Override
-    public UsuarioDto LoginAcess(String usuario, String contrasena) throws WhatTimeExceptions
-    {
-        return modelMapper.map(usuarioRepository.findByNombreEqualsAndContrasenaEquals(usuario,contrasena),UsuarioDto.class);
-    }
-
-    @Override
     public void deleteUser(Long userid) throws WhatTimeExceptions
     {
         usuarioRepository.deleteUser(userid);
+    }
+
+    @Override
+    public UsuarioDto findByNombreAndContrasena(String nombre, String pass) throws WhatTimeExceptions
+    {
+        return modelMapper.map(getUsuarioAcces(nombre, pass), UsuarioDto.class);
     }
 
     public Usuario getUsuarioEntity(Long usuarioId) throws WhatTimeExceptions
@@ -80,8 +80,9 @@ public class UsuarioServiceImpl implements UsuarioService
     {
         return usuarioRepository.findByNombre(name).orElseThrow(()->new NotFoundException("NOTFOUND-4040","USUARIO-NOTFOUND-404"));
     }
-    public Usuario getUsuarioID(String name) throws WhatTimeExceptions
+    public Usuario getUsuarioAcces(String name,String pass) throws WhatTimeExceptions
     {
-        return usuarioRepository.findByNombre(name).orElseThrow(()->new NotFoundException("NOTFOUND-4040","USUARIO-NOTFOUND-404"));
+        return usuarioRepository.findByNombreAndContrasena(name,pass).orElseThrow(()->new NotFoundException("NOTFOUND-4040","USUARIO-NOTFOUND-404"));
     }
+
 }

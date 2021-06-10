@@ -13,6 +13,6 @@ public interface UsuarioService
     UsuarioDto createUsuario(CreateUsuarioDto createUsuarioDto) throws  WhatTimeExceptions;
     int setupdateUserPassword(String contrasena,Long usuarioId) throws  WhatTimeExceptions;
     int setUpdateUserCorreo(String correo, Long usuarioId) throws WhatTimeExceptions;
-    UsuarioDto LoginAcess(String usuario,String contrasena) throws  WhatTimeExceptions;
     void deleteUser(Long userid) throws  WhatTimeExceptions;
+    UsuarioDto findByNombreAndContrasena(String nombre,String pass)throws WhatTimeExceptions;
 }

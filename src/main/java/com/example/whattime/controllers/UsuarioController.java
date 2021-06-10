@@ -17,15 +17,23 @@ public class UsuarioController
 {
     @Autowired
     private UsuarioService usuarioService;
-
+    //1
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/usuarios/{usuarioId}")
-    public WhatTimeResponse<UsuarioDto> getUsuarioById(@PathVariable Long usuarioId)
-            throws WhatTimeExceptions {
+    @PostMapping("/usuarios")
+    public WhatTimeResponse<UsuarioDto> createUsuario(@RequestBody CreateUsuarioDto createUsuarioDto)
+            throws WhatTimeExceptions{
         return new WhatTimeResponse<>("Succes",String.valueOf(HttpStatus.OK),"OK",
-                usuarioService.getUsuarioById(usuarioId));
+                usuarioService.createUsuario(createUsuarioDto));
     }
-
+    //2
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping("/LoginUser")
+    public WhatTimeResponse<UsuarioDto> LoginAcces(String nombre, String contrasena)
+            throws WhatTimeExceptions{
+        return new WhatTimeResponse<>("Succes Login",String.valueOf(HttpStatus.OK),"OK",
+                usuarioService.findByNombreAndContrasena(nombre,contrasena));
+    }
+//3
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/allusuarios")
     public WhatTimeResponse<List<UsuarioDto>> getUsuarios()
@@ -34,13 +42,6 @@ public class UsuarioController
                 usuarioService.getUsuarios());
     }
 
-    @ResponseStatus(HttpStatus.OK)
-    @PostMapping("/usuarios")
-    public WhatTimeResponse<UsuarioDto> createUsuario(@RequestBody CreateUsuarioDto createUsuarioDto)
-            throws WhatTimeExceptions{
-        return new WhatTimeResponse<>("Succes",String.valueOf(HttpStatus.OK),"OK",
-                usuarioService.createUsuario(createUsuarioDto));
-    }
 
     @ResponseStatus(HttpStatus.OK)
     @PutMapping("/upduser")
@@ -65,11 +66,11 @@ public class UsuarioController
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/LoginUser")
-    public WhatTimeResponse<UsuarioDto> LoginAcces(String nombre, String contrasena)
-            throws WhatTimeExceptions{
-        return new WhatTimeResponse<>("Succes Login",String.valueOf(HttpStatus.OK),"OK",
-                usuarioService.LoginAcess(nombre,contrasena));
+    @GetMapping("/usuarios/{usuarioId}")
+    public WhatTimeResponse<UsuarioDto> getUsuarioById(@PathVariable Long usuarioId)
+            throws WhatTimeExceptions {
+        return new WhatTimeResponse<>("Succes",String.valueOf(HttpStatus.OK),"OK",
+                usuarioService.getUsuarioById(usuarioId));
     }
 
     @ResponseStatus(HttpStatus.OK)
