@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Usuario } from '../../models/usuario';
-import { User } from '../../models/mock-Usuario';
 import {UsuarioService} from "../../services/usuario.service";
 import {MessageService} from "../../services/message.service";
 @Component({

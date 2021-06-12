@@ -3,14 +3,27 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import {DashboardComponent} from "./component/dashboard/dashboard.component";
+import {MessageComponent} from "./component/message/message.component";
+import {UsuariodetailComponent} from "./component/usuariodetail/usuariodetail.component";
+import {UsuarioGestorComponent} from "./component/usuario-gestor/usuario-gestor.component";
+import {HttpClientModule} from "@angular/common/http";
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    DashboardComponent,
+    MessageComponent,
+    UsuariodetailComponent,
+    UsuarioGestorComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

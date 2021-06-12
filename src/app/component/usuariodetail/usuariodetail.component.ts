@@ -10,7 +10,6 @@ import { Location } from '@angular/common';
   styleUrls: ['./usuariodetail.component.css']
 })
 export class UsuariodetailComponent implements OnInit {
-  /*@Input() usuarios?:Usuario;*/
   usuario?:Usuario;
   constructor(private route: ActivatedRoute,private usuarioService:UsuarioService,private location:Location) { }
 
