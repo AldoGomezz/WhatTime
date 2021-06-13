@@ -9,6 +9,9 @@ import {UsuariodetailComponent} from "./component/usuariodetail/usuariodetail.co
 import {UsuarioGestorComponent} from "./component/usuario-gestor/usuario-gestor.component";
 import {HttpClientModule} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
+import {HttpClientInMemoryWebApiModule} from "angular-in-memory-web-api";
+import {InMemoryDataService} from "./services/in-memory-data.service";
+
 
 @NgModule({
   declarations: [
@@ -22,7 +25,9 @@ import {FormsModule} from "@angular/forms";
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    HttpClientInMemoryWebApiModule.forRoot(
+      InMemoryDataService, { dataEncapsulation: false })
 
   ],
   providers: [],
