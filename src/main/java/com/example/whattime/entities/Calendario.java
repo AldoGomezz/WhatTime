@@ -1,10 +1,8 @@
 package com.example.whattime.entities;
-
-import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-
+import com.example.whattime.util.CalendarioStatus;
+import lombok.*;
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "calendarios",uniqueConstraints = {@UniqueConstraint(name = "calendario_name_unique",
@@ -27,15 +25,16 @@ public class Calendario {
     @Column(name = "name_calendario", nullable = false, columnDefinition = "TEXT")
     private String name_calendario;
 
-    @OneToOne
-    @JoinColumn(
-            name = "usuario_id",
-            nullable = false,
-            referencedColumnName = "id",
-            foreignKey = @ForeignKey(
-                    name = "usuario_calendario_fk"
-            )
-    )
+    @Column(name = "status")
+    @Enumerated(value = EnumType.STRING)
+    private CalendarioStatus status;
+    
+    @OneToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name = "usuario_id",nullable = false, referencedColumnName = "id", foreignKey = @ForeignKey( name = "usuario_calendario_fk"))
     private Usuario usuario;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "nota_id", nullable = false, referencedColumnName = "id", foreignKey = @ForeignKey(name = "nota_calendario_fk"))
+    private Nota nota;
     
 }

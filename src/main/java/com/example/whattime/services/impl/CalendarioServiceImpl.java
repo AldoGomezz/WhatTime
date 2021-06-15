@@ -12,6 +12,9 @@ import com.example.whattime.repositories.CalendarioRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.example.whattime.util.CalendarioStatus;
+
+import java.util.Collections;
 
 @Service
 public class CalendarioServiceImpl implements CalendarioService {
@@ -26,7 +29,7 @@ public class CalendarioServiceImpl implements CalendarioService {
     public CalendarioDto createCalendario(CreateCalendarioDto createCalendarioDto, String nombre) throws WhatTimeExceptions{
         Calendario calendario = new Calendario();
         calendario.setName_calendario(createCalendarioDto.getName_calendario());
-
+        calendario.setStatus(CalendarioStatus.ACTIVE);
         //Por ahora usuario Fijo para testear
         Usuario currentUsuario = new Usuario();
         try{
@@ -50,6 +53,7 @@ public class CalendarioServiceImpl implements CalendarioService {
     public CalendarioDto updateCalendario(CalendarioDto calendarioDto) throws WhatTimeExceptions {
         return null;
     }
+    @Override
     public Calendario getCalendarioEntity(Long CalendarioId) throws WhatTimeExceptions{
         return calendarioRepository.findById(CalendarioId).orElseThrow(()->new NotFoundException("NotFound-4040", "Calendario-NotFound-404"));
     }
