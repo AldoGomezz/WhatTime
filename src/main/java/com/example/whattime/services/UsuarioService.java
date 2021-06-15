@@ -9,7 +9,7 @@ import java.util.List;
 public interface UsuarioService
 {
     UsuarioDto getUsuarioById(Long usuarioId) throws WhatTimeExceptions; // SI hay error recurre al whattimeExceptions
-    List<UsuarioDto> getUsuarios() throws  WhatTimeExceptions;
+    List<UsuarioDto> getUsuarios();
     UsuarioDto createUsuario(CreateUsuarioDto createUsuarioDto) throws  WhatTimeExceptions;
     int setupdateUserPassword(String contrasena,Long usuarioId) throws  WhatTimeExceptions;
     int setUpdateUserCorreo(String correo, Long usuarioId) throws WhatTimeExceptions;

@@ -29,7 +29,7 @@ public class UsuarioServiceImpl implements UsuarioService
     }
 
     @Override
-    public List<UsuarioDto> getUsuarios() throws WhatTimeExceptions {
+    public List<UsuarioDto> getUsuarios() {
         List<Usuario> usuariosEntity=usuarioRepository.findAll();
         return usuariosEntity.stream().map(usuario->modelMapper.map(usuario,UsuarioDto.class)).collect(Collectors.toList());
     }
@@ -64,12 +64,6 @@ public class UsuarioServiceImpl implements UsuarioService
     public void deleteById(Long id)
     {
         usuarioRepository.deleteById(id);
-    }
-
-    @Override
-    public boolean existsById(Long userid) throws WhatTimeExceptions
-    {
-       return usuarioRepository.existsById(userid);
     }
 
     @Override
