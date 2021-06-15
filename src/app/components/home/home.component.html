@@ -1,0 +1,21 @@
+<div class="create_User">
+  <h1>Creacion de Cuenta</h1>
+    <!--<div class="Create" *="let usuario of usuarios">
+      <input type="string" class="mat-form-field" [useMap]="usuario.nombre"  placeholder="Nombre">-->
+  <form>
+    <label for="nombre">Ingrese Nombre </label>
+    <input type="text" id="nombre" name="nombre" required
+           minlength="4" maxlength="15" size="15" value="{{this.usuarios.nombre}}"><br/>
+    <label for="correo">Ingrese Correo </label>
+    <input type="text" id="correo" name="correo" value="{{this.usuarios.correo}}" ><br/>
+
+    <label for="password">Ingrese Password </label>
+    <input type="text" id="password" name="password" required
+           minlength="4" maxlength="15" size="15" value="{{this.usuarios.password}}">
+
+    <button (click)="createUsuario()">Crear Cuenta</button>
+  </form>
+
+    <!--<button (click)="createUsuario()">Crear Cuenta</button>-->
+</div>
+

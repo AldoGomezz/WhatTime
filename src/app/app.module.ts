@@ -3,32 +3,25 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {DashboardComponent} from "./component/dashboard/dashboard.component";
-import {MessageComponent} from "./component/message/message.component";
-import {UsuariodetailComponent} from "./component/usuariodetail/usuariodetail.component";
-import {UsuarioGestorComponent} from "./component/usuario-gestor/usuario-gestor.component";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {ComponentModule} from "./components/home/component.module";
 import {HttpClientModule} from "@angular/common/http";
-import {FormsModule} from "@angular/forms";
-import {HttpClientInMemoryWebApiModule} from "angular-in-memory-web-api";
-import {InMemoryDataService} from "./services/in-memory-data.service";
-
-
+import { AddComponent } from './components/task/add/add.component';
+import { NavigationComponent } from './navigation/navigation.component';
+import {MatInputModule} from '@angular/material/input';
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent,
-    MessageComponent,
-    UsuariodetailComponent,
-    UsuarioGestorComponent
+    AddComponent,
+    NavigationComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
+    ComponentModule,
     HttpClientModule,
-    FormsModule,
-    HttpClientInMemoryWebApiModule.forRoot(
-      InMemoryDataService, { dataEncapsulation: false })
-
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]
