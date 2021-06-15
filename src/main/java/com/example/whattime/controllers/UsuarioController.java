@@ -21,7 +21,7 @@ public class UsuarioController
 
     //1
     @ResponseStatus(HttpStatus.OK)
-    @PostMapping("/usuarios")
+    @PostMapping("/user/create")
     public WhatTimeResponse<UsuarioDto> createUsuario(@RequestBody CreateUsuarioDto createUsuarioDto)
             throws WhatTimeExceptions{
         return new WhatTimeResponse<>("Succes",String.valueOf(HttpStatus.OK),"OK",
@@ -29,7 +29,7 @@ public class UsuarioController
     }
     //2
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/LoginUser")
+    @GetMapping("/user/LoginUser")
     public WhatTimeResponse<UsuarioDto> LoginAcces(String nombre, String contrasena)
             throws WhatTimeExceptions{
         return new WhatTimeResponse<>("Succes Login",String.valueOf(HttpStatus.OK),"OK",
@@ -37,7 +37,7 @@ public class UsuarioController
     }
 //3
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/allusuarios")
+    @GetMapping("/user/getusers")
     public WhatTimeResponse<List<UsuarioDto>> getUsuarios()
             throws WhatTimeExceptions{
         return new WhatTimeResponse<>("Succes",String.valueOf(HttpStatus.OK),"OK",
@@ -46,7 +46,7 @@ public class UsuarioController
 
 
     @ResponseStatus(HttpStatus.OK)
-    @PutMapping("/upduser")
+    @PutMapping("/user/updatepassword")
     public int updateUsuarioPassword(String contrasena, Long usuarioId){
         try {
             return usuarioService.setupdateUserPassword(contrasena, usuarioId);
@@ -57,7 +57,7 @@ public class UsuarioController
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @PutMapping("/updusercorreo")
+    @PutMapping("/user/updateemail")
     public int updateUsuarioCorreo(String correo, Long usuarioId){
         try {
             return usuarioService.setUpdateUserCorreo(correo, usuarioId);
@@ -68,7 +68,7 @@ public class UsuarioController
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/usuarios/{usuarioId}")
+    @GetMapping("/user/{usuarioId}")
     public WhatTimeResponse<UsuarioDto> getUsuarioById(@PathVariable Long usuarioId)
             throws WhatTimeExceptions {
         return new WhatTimeResponse<>("Succes",String.valueOf(HttpStatus.OK),"OK",
@@ -86,7 +86,7 @@ public class UsuarioController
         }
     }*/
     @ResponseStatus(HttpStatus.OK)
-    @DeleteMapping("/delUser")
+    @DeleteMapping("/user/deleteuser")
     public void deleteById(Long id)
     {
         usuarioService.deleteById(id);

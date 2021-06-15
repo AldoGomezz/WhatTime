@@ -18,7 +18,7 @@ public interface UsuarioRepository extends JpaRepository<Usuario,Long>
 {
     Optional<Usuario> findById(Long id);
     Optional<Usuario> findByNombre(String nombre);
-    Optional<Usuario> findByNombreAndContrasena(String nombre, String pass);
+    Optional<Usuario> findByNombreAndContrasena(String nombre, String pass); //Log In
 
     @Override
     boolean existsById(Long userId);
@@ -35,9 +35,5 @@ public interface UsuarioRepository extends JpaRepository<Usuario,Long>
     @Query("update Usuario user set user.correo= ?1 where user.id= ?2")
     int setUpdateUserCorreo(String correo,Long userId);
 
-   /* @Transactional
-    @Modifying
-    @Query("delete from Usuario user where user.id = ?1")
-    void deleteUser(Long user_id);
-*/
+
 }

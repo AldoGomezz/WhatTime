@@ -78,6 +78,8 @@ public class UsuarioServiceImpl implements UsuarioService
         return modelMapper.map(getUsuarioAcces(nombre, pass), UsuarioDto.class);
     }
 
+
+
     public Usuario getUsuarioEntity(Long usuarioId) throws WhatTimeExceptions
     {
         return usuarioRepository.findById(usuarioId).orElseThrow(()->new NotFoundException("NOTFOUND-4040","USUARIO-NOTFOUND-404"));
@@ -90,6 +92,7 @@ public class UsuarioServiceImpl implements UsuarioService
     {
         return usuarioRepository.findByNombreAndContrasena(name,pass).orElseThrow(()->new NotFoundException("NOTFOUND-4040","USUARIO-NOTFOUND-404"));
     }
+
 
 
 }

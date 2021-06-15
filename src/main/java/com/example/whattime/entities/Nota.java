@@ -1,9 +1,11 @@
 package com.example.whattime.entities;
 
+import com.example.whattime.util.NotaStatus;
 import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
 @Table(name="notas",
@@ -11,8 +13,6 @@ import java.time.LocalDateTime;
                 @UniqueConstraint(name="nota_name_unique",columnNames="name_nota")
         })
 @Data
-@Setter
-@Getter
 @AllArgsConstructor
 @NoArgsConstructor
 public class Nota
@@ -29,33 +29,25 @@ public class Nota
     @Column(name="name_nota",nullable = false,columnDefinition = "TEXT")
     private String name_nota;
 
-    @Column(
-            name = "importancia",
-            nullable = false,
-            columnDefinition = "INTEGER"
-    )
+    @Column(name = "importancia", nullable = false, columnDefinition = "INTEGER")
     private Integer importancia;
 
-    @Column(
-            name = "contenido",
-            nullable = false,
-            columnDefinition = "TEXT"
-    )
+    @Column(name = "contenido", nullable = false, columnDefinition = "TEXT")
     private String contenido;
-    /*@Column(
-            name = "fecha_creacion",
-            nullable = false,
-            columnDefinition = "TIMESTAMP WITHOUT TIME ZONE"
-    )
-    private LocalDateTime fecha_creacion;*/
-    @ManyToOne
-    @JoinColumn(
-            name="usuario_id",
-            nullable = false,
-            referencedColumnName = "id",
-            foreignKey = @ForeignKey(
-                    name="usuario_note_fk"
-            )
-    )
+
+    @Column(name = "STATUS")
+    @Enumerated(value = EnumType.STRING)
+    private NotaStatus status;
+
+    @Column(name = "fecha_creacion", nullable = false,columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date fecha_creacion;
+
+    @Column(name = "fecha_culminacion", nullable = false,columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date fecha_culminacion;
+
+    @ManyToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name="usuario_id", nullable = false, referencedColumnName = "id", foreignKey = @ForeignKey(name="usuario_note_fk"))
     private Usuario usuario;
 }

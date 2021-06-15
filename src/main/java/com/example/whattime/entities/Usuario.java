@@ -44,7 +44,7 @@ public class Usuario
     //@OnDelete(action = OnDeleteAction.CASCADE)
     @OneToMany(
             mappedBy = "usuario",
-            cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
+            cascade = {CascadeType.PERSIST, CascadeType.ALL},
             fetch = FetchType.LAZY
     )
     private List<Nota> notes=new ArrayList<>();

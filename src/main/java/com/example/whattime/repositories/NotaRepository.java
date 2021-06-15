@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,8 +15,22 @@ import java.util.Optional;
 public interface NotaRepository extends JpaRepository<Nota,Long>
 {
     Optional<Nota> findById(Long id);
+
     @Query("SELECT Note FROM Nota Note where Note.usuario.id=?1")
-    List<Nota> findNotas(Long user_name);
+    List<Nota> findNotas(Long usuarioID);
+
+    @Query("SELECT Note FROM Nota Note where Note.importancia=?1 and Note.usuario.id=?2")
+    List<Nota> findTodasNotasImportancia(Integer importancia,Long usuarioID);
+
+    @Query("SELECT Note FROM Nota Note where Note.fecha_creacion=?1")
+    List<Nota> findNotasFechaCreacion(Date fecha_creacion);
+
+    @Query("SELECT Note FROM Nota Note where Note.fecha_creacion between ?1 and ?2")
+    List<Nota> findNotasEntreFCYFCulmi(Date fecha_creacion,Date fecha_culminacion);
+
+    @Query("SELECT Note FROM Nota Note where Note.name_nota like %?1%  and Note.usuario.id=?2")
+    List<Nota> findNotaContainName(String name_nota,Long usuarioID);
+
 
     @Transactional
     @Modifying

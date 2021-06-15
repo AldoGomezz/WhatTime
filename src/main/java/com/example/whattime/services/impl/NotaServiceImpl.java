@@ -10,11 +10,16 @@ import com.example.whattime.exceptions.NotFoundException;
 import com.example.whattime.exceptions.WhatTimeExceptions;
 import com.example.whattime.repositories.NotaRepository;
 import com.example.whattime.services.NotaService;
+import com.example.whattime.util.NotaStatus;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
+import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -35,7 +40,9 @@ public class NotaServiceImpl implements NotaService
         nota.setName_nota(createNotaDto.getName_nota());
         nota.setImportancia(createNotaDto.getImportancia());
         nota.setContenido(createNotaDto.getContenido());
-        /*nota.setFecha_creacion(createNotaDto.getFecha_creacion());*/
+        nota.setFecha_creacion(createNotaDto.getFecha_creacion());
+        nota.setFecha_culminacion(createNotaDto.getFecha_culminacion());
+        nota.setStatus(NotaStatus.ACTIVE);
 
         Usuario currentoUsuario=new Usuario();
         try{
@@ -44,7 +51,9 @@ public class NotaServiceImpl implements NotaService
         catch (Exception ex){
             throw new InternalServerErrorException("INTERNAL_SERVER_ERROR Usuario","INTERNAL_SERVER_ERROR Usuario");
         }
+
         nota.setUsuario(currentoUsuario);
+
         try{
             nota = notaRepository.save(nota);
         } catch (Exception ex) {
@@ -53,11 +62,6 @@ public class NotaServiceImpl implements NotaService
         return modelMapper.map(getNotaEntity(nota.getId()), NotaDto.class);
     }
 
-
-    @Override
-    public NotaDto updateNota(NotaDto notaDto) throws WhatTimeExceptions {
-        return null;
-    }
 
     @Override
     public int setUpdateNameNota(String name_nota, Long noteId) throws WhatTimeExceptions {
@@ -81,17 +85,44 @@ public class NotaServiceImpl implements NotaService
         notaRepository.deleteNote(noteId);
     }
 
-    /*@Override
-    public NotaDto borrarNota(Long noteId) throws WhatTimeExceptions
+    @Override
+    public List<NotaDto> getAllNotes() throws WhatTimeExceptions {
+        List<Nota> notaEntity=notaRepository.findAll();
+        return notaEntity.stream().map(nota -> modelMapper.map(nota,NotaDto.class)).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<NotaDto> getNotaByNombreNotaContaining(String nombre_nota,Long usuarioID) throws WhatTimeExceptions {
+        List<Nota> noteEntity= notaRepository.findNotaContainName(nombre_nota,usuarioID);
+        return noteEntity.stream().map(nota->modelMapper.map(nota, NotaDto.class)).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<NotaDto> getNotasByImportancia(Integer importancia,Long usuarioID) throws WhatTimeExceptions
     {
-        notaRepository.deleteNote(noteId);
-        return modelMapper.map(getNotaEntity(noteId),NotaDto.class);
-    }*/
+        List<Nota> noteEntity= notaRepository.findTodasNotasImportancia(importancia,usuarioID);
+        return noteEntity.stream().map(nota->modelMapper.map(nota, NotaDto.class)).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<NotaDto> getNotasByFechaCreacion(Date fecha_Creacion) throws WhatTimeExceptions {
+        List<Nota> noteEntity= notaRepository.findNotasFechaCreacion(fecha_Creacion);
+        return noteEntity.stream().map(nota->modelMapper.map(nota, NotaDto.class)).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<NotaDto> getNotasByFechaBetween(Date fecha_Creacion,Date fecha_culminacion) throws WhatTimeExceptions {
+        List<Nota> noteEntity= notaRepository.findNotasEntreFCYFCulmi(fecha_Creacion,fecha_culminacion);
+        return noteEntity.stream().map(nota->modelMapper.map(nota, NotaDto.class)).collect(Collectors.toList());
+    }
 
 
 
-
-    public Nota getNotaEntity(Long notaId) throws WhatTimeExceptions {
+    public Nota getNotaEntity(Long notaId) throws WhatTimeExceptions
+    {
         return notaRepository.findById(notaId).orElseThrow(() -> new NotFoundException("NotFound-4040", "Nota-NotFound-404"));
     }
+
+
+
 }

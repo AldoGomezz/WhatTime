@@ -10,5 +10,5 @@ public class UsuarioDto //Cosas que quiero obtener cuando pregunto por un usuari
     private Long id;
     private String nombre;
     private String correo;
-    private String contrasena;
+//   private String contrasena;
 }
