@@ -7,4 +7,5 @@ import com.example.whattime.exceptions.WhatTimeExceptions;
 public interface CalendarioService {
     CalendarioDto createCalendario(CreateCalendarioDto createCalendarioDto, String nombre) throws WhatTimeExceptions;
     CalendarioDto updateCalendario(CalendarioDto calendarioDto) throws WhatTimeExceptions;
+    
 }
