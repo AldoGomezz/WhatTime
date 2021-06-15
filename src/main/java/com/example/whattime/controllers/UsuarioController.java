@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping(path = "/WhatTimeUsuario")
 public class UsuarioController
 {
@@ -38,10 +39,9 @@ public class UsuarioController
 //3
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/user/getusers")
-    public WhatTimeResponse<List<UsuarioDto>> getUsuarios()
-            throws WhatTimeExceptions{
-        return new WhatTimeResponse<>("Succes",String.valueOf(HttpStatus.OK),"OK",
-                usuarioService.getUsuarios());
+    public List<UsuarioDto> getUsuarios()
+    {
+        return usuarioService.getUsuarios();
     }
 
 

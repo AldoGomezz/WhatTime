@@ -13,7 +13,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 import java.util.Collections;
 
 //Dirección para ver swagger
-//http://localhost:8080/swagger-ui.html
+//http://localhost:8081/swagger-ui.html
 
 @Configuration
 @EnableSwagger2
