@@ -5,8 +5,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "calendarios",uniqueConstraints = {@UniqueConstraint(name = "calendario_name_unique",
-        columnNames = "name_calendario")})
+@Table(name = "calendarios",uniqueConstraints = {@UniqueConstraint(name = "usuario_id_unique", columnNames = "usuario_id")})
 
 @Data
 @AllArgsConstructor
@@ -33,8 +32,8 @@ public class Calendario {
     @JoinColumn(name = "usuario_id",nullable = false, referencedColumnName = "id", foreignKey = @ForeignKey( name = "usuario_calendario_fk"))
     private Usuario usuario;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    /*@OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "nota_id", nullable = false, referencedColumnName = "id", foreignKey = @ForeignKey(name = "nota_calendario_fk"))
-    private Nota nota;
+    private Nota nota;*/
     
 }
