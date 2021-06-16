@@ -10,6 +10,6 @@ import java.util.List;
 
 public interface CalendarioService {
     CalendarioDto createCalendario(CreateCalendarioDto createCalendarioDto, String nombre) throws WhatTimeExceptions;
-    CalendarioDto updateCalendario(CalendarioDto calendarioDto) throws WhatTimeExceptions;
     List<NotaDto> getNotesFromUser(Long UserID) throws WhatTimeExceptions;
+    void deleteNota(Long NotaID) throws WhatTimeExceptions;
 }
