@@ -2,6 +2,7 @@ package com.example.whattime.repositories;
 
 import com.example.whattime.entities.Calendario;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
@@ -10,4 +11,8 @@ import java.util.Optional;
 public interface CalendarioRepository extends JpaRepository<Calendario, Long>
 {
     Optional<Calendario> findById(Long id);
+    /*@Query("SELECT Calendar from Calendario Calendar where Calendar.usuario.notes")/*
+     */
+
+    
 }

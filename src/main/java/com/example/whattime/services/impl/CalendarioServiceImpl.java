@@ -2,6 +2,7 @@ package com.example.whattime.services.impl;
 
 import com.example.whattime.DTO.CalendarioDto;
 import com.example.whattime.DTO.CreateCalendarioDto;
+import com.example.whattime.DTO.NotaDto;
 import com.example.whattime.entities.Calendario;
 import com.example.whattime.entities.Usuario;
 import com.example.whattime.exceptions.WhatTimeExceptions;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Service;
 import com.example.whattime.util.CalendarioStatus;
 
 import java.util.Collections;
+import java.util.List;
 
 @Service
 public class CalendarioServiceImpl implements CalendarioService {
@@ -24,6 +26,9 @@ public class CalendarioServiceImpl implements CalendarioService {
     @Autowired
     private CalendarioRepository calendarioRepository;
     private static final ModelMapper modelMapper = new ModelMapper();
+
+    @Autowired
+    private NotaServiceImpl notaService;
 
     @Override
     public CalendarioDto createCalendario(CreateCalendarioDto createCalendarioDto, String nombre) throws WhatTimeExceptions{
@@ -53,7 +58,13 @@ public class CalendarioServiceImpl implements CalendarioService {
     public CalendarioDto updateCalendario(CalendarioDto calendarioDto) throws WhatTimeExceptions {
         return null;
     }
+
     @Override
+    public List<NotaDto> getNotesFromUser(Long UserID) throws WhatTimeExceptions {
+        return notaService.getNotesUser(UserID);
+    }
+
+
     public Calendario getCalendarioEntity(Long CalendarioId) throws WhatTimeExceptions{
         return calendarioRepository.findById(CalendarioId).orElseThrow(()->new NotFoundException("NotFound-4040", "Calendario-NotFound-404"));
     }
