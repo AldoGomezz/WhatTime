@@ -54,14 +54,16 @@ public class CalendarioServiceImpl implements CalendarioService {
 
         return modelMapper.map(getCalendarioEntity(calendario.getId()), CalendarioDto.class);
     }
-    @Override
-    public CalendarioDto updateCalendario(CalendarioDto calendarioDto) throws WhatTimeExceptions {
-        return null;
-    }
+
 
     @Override
     public List<NotaDto> getNotesFromUser(Long UserID) throws WhatTimeExceptions {
         return notaService.getNotesUser(UserID);
+    }
+
+    @Override
+    public void deleteNota(Long NotaID) throws WhatTimeExceptions {
+        notaService.DeleteNote(NotaID);
     }
 
 
