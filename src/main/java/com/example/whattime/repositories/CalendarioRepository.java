@@ -11,5 +11,12 @@ import java.util.Optional;
 public interface CalendarioRepository extends JpaRepository<Calendario, Long>
 {
     Optional<Calendario> findById(Long id);
+<<<<<<< HEAD
     //@Query("select  Calendar FROM  Calendario  calendar where  calendar.usuario.")
+=======
+    /*@Query("SELECT Calendar from Calendario Calendar where Calendar.usuario.notes")/*
+     */
+
+    
+>>>>>>> 7be38cd6b3cc969c3cf106695215ab6cb4d7c352
 }

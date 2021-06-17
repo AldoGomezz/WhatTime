@@ -26,13 +26,23 @@ public class CalendarioController {
         return new WhatTimeResponse<>("Success to create Calendario",String.valueOf(HttpStatus.OK),"Ok",
                 calendarioService.createCalendario(createCalendarioDto,name));
     }
-
     @ResponseStatus(HttpStatus.OK)
-    @PutMapping
-    public WhatTimeResponse<CalendarioDto> updateCalendario(@RequestBody CalendarioDto calendarioDto)
+    @GetMapping("/nota/getnotebyuser")
+    public WhatTimeResponse<List<NotaDto>> getNotesByUserID(Long usuarioId)
             throws WhatTimeExceptions {
-        return new WhatTimeResponse<>("Success to update Calendario",String.valueOf(HttpStatus.OK),"Ok",
-                calendarioService.updateCalendario(calendarioDto));
+        return new WhatTimeResponse<>("Succes",String.valueOf(HttpStatus.OK),"OK",
+                calendarioService.getNotesFromUser(usuarioId));
+    }
+    @ResponseStatus(HttpStatus.OK)
+    @DeleteMapping("/nota/deletenote")
+    public void deleteNote(Long noteId)
+    {
+        try {
+            calendarioService.deleteNota(noteId);
+        } catch (WhatTimeExceptions whatTimeExceptions) {
+            whatTimeExceptions.printStackTrace();
+        }
+
     }
 
     @ResponseStatus(HttpStatus.OK)

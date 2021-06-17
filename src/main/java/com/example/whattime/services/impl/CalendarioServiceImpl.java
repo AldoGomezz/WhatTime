@@ -13,6 +13,10 @@ import com.example.whattime.repositories.CalendarioRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.example.whattime.util.CalendarioStatus;
+
+import java.util.Collections;
+import java.util.List;
 
 import java.util.List;
 
@@ -27,11 +31,14 @@ public class CalendarioServiceImpl implements CalendarioService {
     private CalendarioRepository calendarioRepository;
     private static final ModelMapper modelMapper = new ModelMapper();
 
+    @Autowired
+    private NotaServiceImpl notaService;
+
     @Override
     public CalendarioDto createCalendario(CreateCalendarioDto createCalendarioDto, String nombre) throws WhatTimeExceptions{
         Calendario calendario = new Calendario();
         calendario.setName_calendario(createCalendarioDto.getName_calendario());
-
+        calendario.setStatus(CalendarioStatus.ACTIVE);
         //Por ahora usuario Fijo para testear
         Usuario currentUsuario = new Usuario();
         try{
@@ -51,17 +58,27 @@ public class CalendarioServiceImpl implements CalendarioService {
 
         return modelMapper.map(getCalendarioEntity(calendario.getId()), CalendarioDto.class);
     }
+
+
     @Override
-    public CalendarioDto updateCalendario(CalendarioDto calendarioDto) throws WhatTimeExceptions {
-        return null;
+    public List<NotaDto> getNotesFromUser(Long UserID) throws WhatTimeExceptions {
+        return notaService.getNotesUser(UserID);
     }
 
     @Override
+<<<<<<< HEAD
     public List<NotaDto> getNotasFromUsuario(Long userID) throws WhatTimeExceptions
     {
         return notaServicel.getNotesUser(userID);
     }
 
+=======
+    public void deleteNota(Long NotaID) throws WhatTimeExceptions {
+        notaService.DeleteNote(NotaID);
+    }
+
+
+>>>>>>> 7be38cd6b3cc969c3cf106695215ab6cb4d7c352
     public Calendario getCalendarioEntity(Long CalendarioId) throws WhatTimeExceptions{
         return calendarioRepository.findById(CalendarioId).orElseThrow(()->new NotFoundException("NotFound-4040", "Calendario-NotFound-404"));
     }
