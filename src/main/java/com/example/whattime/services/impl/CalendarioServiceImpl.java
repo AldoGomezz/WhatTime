@@ -65,20 +65,11 @@ public class CalendarioServiceImpl implements CalendarioService {
         return notaService.getNotesUser(UserID);
     }
 
-    @Override
-<<<<<<< HEAD
-    public List<NotaDto> getNotasFromUsuario(Long userID) throws WhatTimeExceptions
-    {
-        return notaServicel.getNotesUser(userID);
-    }
 
-=======
     public void deleteNota(Long NotaID) throws WhatTimeExceptions {
         notaService.DeleteNote(NotaID);
     }
 
-
->>>>>>> 7be38cd6b3cc969c3cf106695215ab6cb4d7c352
     public Calendario getCalendarioEntity(Long CalendarioId) throws WhatTimeExceptions{
         return calendarioRepository.findById(CalendarioId).orElseThrow(()->new NotFoundException("NotFound-4040", "Calendario-NotFound-404"));
     }

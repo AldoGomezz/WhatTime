@@ -45,11 +45,4 @@ public class CalendarioController {
 
     }
 
-    @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/nota/getnotebyuser")
-    public WhatTimeResponse<List<NotaDto>> getNotesByUserID(Long usuarioId)
-            throws WhatTimeExceptions {
-        return new WhatTimeResponse<>("Succes",String.valueOf(HttpStatus.OK),"OK",
-                calendarioService.getNotasFromUsuario(usuarioId));
-    }
 }

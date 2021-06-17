@@ -5,11 +5,8 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-<<<<<<< HEAD
-@Table(name = "calendarios",uniqueConstraints = {@UniqueConstraint(name="usuario_id_unique",columnNames = "usuario_id")})
-=======
+
 @Table(name = "calendarios",uniqueConstraints = {@UniqueConstraint(name = "usuario_id_unique", columnNames = "usuario_id")})
->>>>>>> 7be38cd6b3cc969c3cf106695215ab6cb4d7c352
 
 @Data
 @AllArgsConstructor
