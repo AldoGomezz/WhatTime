@@ -4,8 +4,9 @@
 
 export const environment = {
   production: false,
-  apiUrl:"http://localhost:8081/WhatTimeUsuario/",
-  apiUsuarioUrl:"http://localhost:8081/WhatTimeUsuario/user"
+  apiUsuarioUrl:"http://localhost:8081/WhatTimeUsuario/user",
+  apiNotaURL:"http://localhost:8081/AqueHoraNota/nota"
+  //http://localhost:8081/WhatTimeUsuario/user/LoginUser?contrasena=oms2021&nombre=OMS
 };
 
 /*

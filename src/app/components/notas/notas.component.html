@@ -1,0 +1,64 @@
+<div class="list">
+  <h1>Notas</h1>
+  <mat-selection-list [multiple]="false">
+    <div class="mat-list-option-cover">
+      <button (click)="getNotas()">Obtener Notas:</button>
+      <mat-list-option *ngFor="let nota of this.notas">
+        <div class="d-flex justify-content-between">
+
+                    <span class="nota-name">
+                        {{ nota.name_nota }}
+                    </span>
+          <span class="nota-importancia">
+                        {{ nota.importancia }}
+                    </span>
+          <span class="nota-fecha-creacion">
+                        {{ nota.fecha_creacion }}
+                    </span>
+          <span class="nota-fecha-culminacion">
+                        {{ nota.fecha_culminacion }}
+                    </span>
+        </div>
+        <span class="nota-contenido">
+                    {{ nota.contenido.substring(0, 40) }}
+          {{ nota.contenido.length > 30 ? "..." : "" }}
+                </span>
+      </mat-list-option>
+    </div>
+  </mat-selection-list>
+</div>
+  <!--<mat-selection-list [multiple]="false">
+    <div class="mat-list-option-cover">
+      <button (click)="getNotasByID()">Obtener Notas por Usuario ID:</button>
+      <div class="example-container">
+        <mat-form-field appearance="fill">
+          <mat-label>Ingresa tu ID de Usuario</mat-label>
+          <input matInput placeholder="pat@example.com" [formControl]="id_user" required>
+        </mat-form-field>
+      </div>
+
+      <mat-list-option *ngFor="let nota of this.notas">
+        <div class="d-flex justify-content-between">
+
+                    <span class="nota-name">
+                        {{ nota.name_nota }}
+                    </span>
+          <span class="nota-importancia">
+                        {{ nota.importancia }}
+                    </span>
+          <span class="nota-fecha-creacion">
+                        {{ nota.fecha_creacion }}
+                    </span>
+          <span class="nota-fecha-culminacion">
+                        {{ nota.fecha_culminacion }}
+                    </span>
+        </div>
+        <span class="nota-contenido">
+                    {{ nota.contenido.substring(0, 40) }}
+          {{ nota.contenido.length > 30 ? "..." : "" }}
+                </span>
+      </mat-list-option>
+    </div>
+  </mat-selection-list>
+</div> -->
+

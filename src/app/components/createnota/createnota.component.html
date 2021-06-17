@@ -1,0 +1,45 @@
+<h1>Creacion de Notas</h1>
+<div class="col-sm-12 col-md-6 pTop50">
+  <mat-card>
+    <form class="usuarioForm" [formGroup]="notaForm" (ngSubmit)="createNota()">
+      <div>
+        <mat-form-field class="ancho" appearance="fill">
+          <mat-label>ID Usuario:</mat-label>
+          <input type="string"  formControlName="id_user" matInput>
+        </mat-form-field>
+
+        <mat-form-field class="ancho" appearance="fill">
+          <mat-label>Nombre de la Nota:</mat-label>
+          <input type="string"  formControlName="name_nota" matInput>
+        </mat-form-field>
+
+        <br/>
+        <mat-form-field class="ancho" appearance="fill">
+          <mat-label>Importancia:</mat-label>
+          <input type="number" formControlName="importancia" matInput>
+        </mat-form-field>
+
+        <br/>
+        <mat-form-field class="ancho" appearance="fill">
+          <mat-label>Contenido:</mat-label>
+          <input type="string" formControlName="contenido" matInput>
+        </mat-form-field>
+
+        <mat-form-field class="ancho" appearance="fill">
+          <mat-label>Fecha Creacion:</mat-label>
+          <input type="string" formControlName="fecha_creacion" matInput>
+        </mat-form-field>
+
+        <mat-form-field class="ancho" appearance="fill">
+          <mat-label>Fecha Culminacion:</mat-label>
+          <input type="string" formControlName="fecha_culminacion" matInput>
+        </mat-form-field>
+
+      </div>
+    </form>
+    <div class="text-right">
+      <button (click)="createNota()" type="submit" mat-button color="primary">Crear Nota</button>
+    </div>
+  </mat-card>
+
+</div>

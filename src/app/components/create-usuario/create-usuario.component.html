@@ -1,0 +1,29 @@
+<h1>Creacion de Cuenta</h1>
+<div class="col-sm-12 col-md-6 pTop50">
+  <mat-card>
+    <form class="usuarioForm" [formGroup]="userForm" (ngSubmit)="createUsuario()">
+      <div>
+        <mat-form-field class="ancho" appearance="fill">
+          <mat-label>Nombre:</mat-label>
+          <input type="string"  formControlName="nombre" matInput>
+        </mat-form-field>
+
+        <br/>
+        <mat-form-field class="ancho" appearance="fill">
+          <mat-label>Correo:</mat-label>
+          <input type="string" formControlName="correo" matInput>
+        </mat-form-field>
+
+        <br/>
+        <mat-form-field class="ancho" appearance="fill">
+          <mat-label>Contraseña:</mat-label>
+          <input type="string" formControlName="contrasena" matInput>
+        </mat-form-field>
+      </div>
+    </form>
+    <div class="text-right">
+      <button (click)="createUsuario()" type="submit" mat-button color="primary">Crear Cuenta</button>
+    </div>
+  </mat-card>
+
+</div>
