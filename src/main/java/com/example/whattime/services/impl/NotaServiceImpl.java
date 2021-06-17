@@ -86,7 +86,7 @@ public class NotaServiceImpl implements NotaService
     }
 
     @Override
-    public List<NotaDto> getAllNotes() throws WhatTimeExceptions {
+    public List<NotaDto> getAllNotes() {
         List<Nota> notaEntity=notaRepository.findAll();
         return notaEntity.stream().map(nota -> modelMapper.map(nota,NotaDto.class)).collect(Collectors.toList());
     }
@@ -103,6 +103,13 @@ public class NotaServiceImpl implements NotaService
         List<Nota> noteEntity= notaRepository.findTodasNotasImportancia(importancia,usuarioID);
         return noteEntity.stream().map(nota->modelMapper.map(nota, NotaDto.class)).collect(Collectors.toList());
     }
+
+    /*@Override
+    public List<NotaDto> getNotasFechasCreacion() throws WhatTimeExceptions
+    {
+        List<Nota> noteEntity= notaRepository.findNotasByFecha_creacion();
+        return noteEntity.stream().map(nota->modelMapper.map(nota, NotaDto.class)).collect(Collectors.toList());
+    }*/
 
     @Override
     public List<NotaDto> getNotasByFechaCreacion(Date fecha_Creacion) throws WhatTimeExceptions {

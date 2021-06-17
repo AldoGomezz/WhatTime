@@ -7,8 +7,7 @@ import lombok.Data;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "calendarios",uniqueConstraints = {@UniqueConstraint(name = "calendario_name_unique",
-        columnNames = "name_calendario")})
+@Table(name = "calendarios",uniqueConstraints = {@UniqueConstraint(name="usuario_id_unique",columnNames = "usuario_id")})
 
 @Data
 @AllArgsConstructor

@@ -14,6 +14,7 @@ import java.util.Date;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping(path = "/AqueHoraNota")
 public class NotaController {
     @Autowired
@@ -28,10 +29,8 @@ public class NotaController {
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/nota/getnotes")
-    public WhatTimeResponse<List<NotaDto>> getNotes()
-            throws WhatTimeExceptions{
-        return new WhatTimeResponse<>("Succes",String.valueOf(HttpStatus.OK),"OK",
-                notaService.getAllNotes());
+    public List<NotaDto> getNotes(){
+        return notaService.getAllNotes();
     }
 
     @ResponseStatus(HttpStatus.OK)
@@ -99,6 +98,12 @@ public class NotaController {
         return  new WhatTimeResponse<>("Succes",String.valueOf(HttpStatus.OK),"OK",notaService.getNotasByFechaCreacion(fecha_Creacion));
     }
 
+    /*@ResponseStatus(HttpStatus.OK)
+    @GetMapping("/nota/OrderFC")
+    public WhatTimeResponse<List<NotaDto>> getNotaOrderByFC()throws
+            WhatTimeExceptions {
+        return  new WhatTimeResponse<>("Succes",String.valueOf(HttpStatus.OK),"OK",notaService.getNotasFechasCreacion());
+    }*/
 
 
     @ResponseStatus(HttpStatus.OK)

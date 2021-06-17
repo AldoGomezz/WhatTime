@@ -15,9 +15,10 @@ public interface NotaService {
     int setUpdateDescriptionNota(String contenido,Long note_id) throws  WhatTimeExceptions;
     List<NotaDto> getNotesUser(Long username) throws  WhatTimeExceptions;
     void DeleteNote(Long noteId) throws WhatTimeExceptions;
-    List<NotaDto> getAllNotes()throws WhatTimeExceptions;
+    List<NotaDto> getAllNotes();
     List<NotaDto> getNotaByNombreNotaContaining(String nombre_nota,Long usuarioID) throws  WhatTimeExceptions;
     List<NotaDto> getNotasByImportancia(Integer importancia,Long usuarioID) throws  WhatTimeExceptions;
+    //List<NotaDto> getNotasFechasCreacion() throws  WhatTimeExceptions;
 
     List<NotaDto> getNotasByFechaCreacion(Date fecha_Creacion) throws  WhatTimeExceptions;
     List<NotaDto> getNotasByFechaBetween(Date fecha_Creacion,Date fecha_culminacion) throws  WhatTimeExceptions;

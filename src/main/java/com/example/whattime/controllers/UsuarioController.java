@@ -7,8 +7,11 @@ import com.example.whattime.responses.WhatTimeResponse;
 import com.example.whattime.services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -28,6 +31,16 @@ public class UsuarioController
         return new WhatTimeResponse<>("Succes",String.valueOf(HttpStatus.OK),"OK",
                 usuarioService.createUsuario(createUsuarioDto));
     }
+/*
+    @ResponseStatus(HttpStatus.OK)
+    @RequestMapping(value="/user/createUser",method = RequestMethod.POST,produces = MediaType.APPLICATION_JSON_VALUE)
+    public WhatTimeResponse<UsuarioDto> createUsuario(@RequestBody CreateUsuarioDto createUsuarioDto)
+            throws WhatTimeExceptions{
+        return new WhatTimeResponse<>("Succes",String.valueOf(HttpStatus.OK),"OK",
+                usuarioService.createUsuario(createUsuarioDto));
+    }
+    */
+
     //2
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/user/LoginUser")

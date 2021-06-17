@@ -2,6 +2,7 @@ package com.example.whattime.controllers;
 
 import com.example.whattime.DTO.CalendarioDto;
 import com.example.whattime.DTO.CreateCalendarioDto;
+import com.example.whattime.DTO.NotaDto;
 import com.example.whattime.exceptions.WhatTimeExceptions;
 import com.example.whattime.responses.WhatTimeResponse;
 import com.example.whattime.services.CalendarioService;
@@ -9,7 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping(path = "/AqueHoraCalendario")
 public class CalendarioController {
     @Autowired
@@ -29,5 +33,13 @@ public class CalendarioController {
             throws WhatTimeExceptions {
         return new WhatTimeResponse<>("Success to update Calendario",String.valueOf(HttpStatus.OK),"Ok",
                 calendarioService.updateCalendario(calendarioDto));
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping("/nota/getnotebyuser")
+    public WhatTimeResponse<List<NotaDto>> getNotesByUserID(Long usuarioId)
+            throws WhatTimeExceptions {
+        return new WhatTimeResponse<>("Succes",String.valueOf(HttpStatus.OK),"OK",
+                calendarioService.getNotasFromUsuario(usuarioId));
     }
 }
