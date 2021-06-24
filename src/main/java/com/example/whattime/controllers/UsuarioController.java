@@ -5,6 +5,7 @@ import com.example.whattime.DTO.UsuarioDto;
 import com.example.whattime.exceptions.WhatTimeExceptions;
 import com.example.whattime.responses.WhatTimeResponse;
 import com.example.whattime.services.UsuarioService;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -21,10 +22,11 @@ public class UsuarioController
 {
     @Autowired
     private UsuarioService usuarioService;;
-    private Object WhatTimeResponse;
+
 
     //1
     @ResponseStatus(HttpStatus.OK)
+    @ApiOperation("Recibe un CreateUsuario y retorno un successfull como verificador de que la cuenta fue creado con éxito")
     @PostMapping("/user/create")
     public WhatTimeResponse<UsuarioDto> createUsuario(@RequestBody CreateUsuarioDto createUsuarioDto)
             throws WhatTimeExceptions{
@@ -43,6 +45,7 @@ public class UsuarioController
 
     //2
     @ResponseStatus(HttpStatus.OK)
+    @ApiOperation("Verifica si el usuario ya existe en la base de datos y retorna un succesfull si es asi.")
     @GetMapping("/user/LoginUser")
     public WhatTimeResponse<UsuarioDto> LoginAcces(String nombre, String contrasena)
             throws WhatTimeExceptions{
@@ -51,6 +54,7 @@ public class UsuarioController
     }
 //3
     @ResponseStatus(HttpStatus.OK)
+    @ApiOperation("Devuelve la lista de todos los usuarios registrados.")
     @GetMapping("/user/getusers")
     public List<UsuarioDto> getUsuarios()
     {
@@ -59,6 +63,7 @@ public class UsuarioController
 
 
     @ResponseStatus(HttpStatus.OK)
+    @ApiOperation("Actualiza los valores de la contraseña de un Usuario.")
     @PutMapping("/user/updatepassword")
     public int updateUsuarioPassword(String contrasena, Long usuarioId){
         try {
@@ -70,6 +75,7 @@ public class UsuarioController
     }
 
     @ResponseStatus(HttpStatus.OK)
+    @ApiOperation("Actualiza los valores del correo de un Usuario.")
     @PutMapping("/user/updateemail")
     public int updateUsuarioCorreo(String correo, Long usuarioId){
         try {
@@ -81,6 +87,7 @@ public class UsuarioController
     }
 
     @ResponseStatus(HttpStatus.OK)
+    @ApiOperation("Devuelve la información de un Usuario, atraves de su identificador.")
     @GetMapping("/user/{usuarioId}")
     public WhatTimeResponse<UsuarioDto> getUsuarioById(@PathVariable Long usuarioId)
             throws WhatTimeExceptions {
@@ -99,6 +106,7 @@ public class UsuarioController
         }
     }*/
     @ResponseStatus(HttpStatus.OK)
+    @ApiOperation("Elimina a un Usuario de la base de datos.")
     @DeleteMapping("/user/deleteuser")
     public void deleteById(Long id)
     {
