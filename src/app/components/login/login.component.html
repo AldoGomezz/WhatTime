@@ -7,15 +7,18 @@
           <div>
             <mat-form-field class="ancho" appearance="fill">
               <mat-label>Nombre:</mat-label>
-              <input matInput type="string"  formControlName="nombre_user" >
+              <input matInput type="string"  formControlName="nombre_user" required="required" pattern="[A-Za-z0-9]{1,20}">
             </mat-form-field>
             <br/>
             <mat-form-field class="ancho" appearance="fill">
               <mat-label>Contraseña:</mat-label>
-              <input matInput type="string" formControlName="password">
+              <input matInput type="string" formControlName="password" required="required"pattern="[A-Za-z0-9]{1,20}">
             </mat-form-field>
           </div>
-          <button (click)="login()" class="ancho" mat-raised-button mat-button color="primary" >Ingresar</button>
+          <button (click)="login()" class="ancho" mat-raised-button mat-button color="primary">Ingresar</button>
+          <br/>
+          <br/>
+          <button (click)="crearUsuario()" class="ancho" mat-raised-button mat-button color="primary"  >Crear Cuenta</button>
         </form>
 
       </mat-card>

@@ -24,7 +24,7 @@ export class CreatenotasService {
 
   createNota(nota:Nota,id:string)
   {
-    return this.http.post(`${environment.apiNotaURL}/create?userId=${id}`,nota);
+    return this.http.post(`${environment.apiNotaURL}/create?id=${id}`,nota);
   }
 
 

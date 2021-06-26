@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import {LoginComponent} from "../login/login.component";
 
 @Component({
   selector: 'app-navbar',
@@ -10,11 +11,14 @@ export class NavbarComponent implements OnInit {
 
   constructor(private router: Router) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void
+  {}
 
-  ingresar() {
+  ingresar()
+  {
     this.router.navigateByUrl('/login');
   }
+
+
 
 }
