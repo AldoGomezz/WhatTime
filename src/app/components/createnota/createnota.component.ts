@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {CreatenotasService} from "../../service/createnotas.service";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Nota} from "../../models/nota.model";
 import {LoginService} from "../../service/login.service";
 
@@ -14,10 +14,17 @@ export class CreatenotaComponent implements OnInit {
   public nota=new Nota();
   constructor(private notaService:CreatenotasService,private fb:FormBuilder, private loginService:LoginService) { }
   public data:any;
+
+  range = new FormGroup({
+    start: new FormControl(),
+    end: new FormControl()
+  });
+
+
   ngOnInit(): void
   {
-    this.initForm(),
-    this.loginService.disparadorUserData.subscribe(data=>{console.log('Recibiendo data...',data),this.data==data});
+    this.initForm()
+    //this.loginService.disparadorUserData.subscribe(data=>{console.log('Recibiendo data...',data),this.data==data});
   }
   initForm()
   {
@@ -29,6 +36,7 @@ export class CreatenotaComponent implements OnInit {
       fecha_culminacion:['',Validators.required],
       id:['',Validators.required]
     })
+
   }
 
   setNota()
@@ -36,10 +44,13 @@ export class CreatenotaComponent implements OnInit {
     this.nota.name_nota=this.notaForm.get('name_nota')?.value,
       this.nota.importancia=this.notaForm.get('importancia')?.value,
       this.nota.contenido=this.notaForm.get('contenido')?.value,
-      this.nota.fecha_creacion=this.notaForm.get('fecha_creacion')?.value,
-      this.nota.fecha_culminacion=this.notaForm.get('fecha_culminacion')?.value
+      //this.nota.fecha_creacion=this.notaForm.get('fecha_creacion')?.value,
+      this.nota.fecha_creacion=this.range.get("start")?.value,
+      //this.nota.fecha_culminacion=this.notaForm.get('fecha_culminacion')?.value
+      this.nota.fecha_culminacion=this.range.get("end")?.value
 
   }
+
 
   createNota()
   {

@@ -15,7 +15,7 @@ export class CreateUsuarioComponent implements OnInit {
   public userForm:FormGroup;
   public usuario=new Usuario();
 
-  constructor(public dialog: MatDialog,private fb:FormBuilder,private crearusuario: CrearusuarioService) { }
+  constructor(public dialog: MatDialog,private fb:FormBuilder,private crearusuario: CrearusuarioService,private router: Router) { }
 
   ngOnInit(): void
   {
@@ -64,5 +64,9 @@ export class CreateUsuarioComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
     });
+  }
+  regresar()
+  {
+    this.router.navigateByUrl('/login');
   }
 }

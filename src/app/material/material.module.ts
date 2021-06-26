@@ -14,6 +14,7 @@ import { MatCardModule } from '@angular/material/card';
 import { AppRoutingModule } from '../app-routing.module';
 import {MatListModule} from '@angular/material/list';
 import {MatSidenavModule} from "@angular/material/sidenav";
+import {MatTabsModule} from '@angular/material/tabs';
 
 @NgModule({
   declarations: [],
@@ -32,7 +33,8 @@ import {MatSidenavModule} from "@angular/material/sidenav";
     MatStepperModule,
     AppRoutingModule,
     MatSidenavModule,
-    MatListModule
+    MatListModule,
+    MatTabsModule
 
 
   ],
@@ -49,7 +51,8 @@ import {MatSidenavModule} from "@angular/material/sidenav";
     MatDialogModule,
     MatStepperModule,
     AppRoutingModule,
-    MatListModule
+    MatListModule,
+    MatTabsModule
   ]
 })
 export class MaterialModule { }

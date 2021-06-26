@@ -9,7 +9,8 @@ import { NgxStripeModule} from 'ngx-stripe';
 import { CreateUsuarioComponent } from './create-usuario/create-usuario.component';
 import { NotasComponent } from './notas/notas.component';
 import { CreatenotaComponent } from './createnota/createnota.component';
-import { FirstnavbarComponent } from './firstnavbar/firstnavbar.component'
+import { FirstnavbarComponent } from './firstnavbar/firstnavbar.component';
+import { DetailUserComponent } from './detail-user/detail-user.component'
 @NgModule({
   declarations: [
     LoginComponent,
@@ -18,7 +19,8 @@ import { FirstnavbarComponent } from './firstnavbar/firstnavbar.component'
     CreateUsuarioComponent,
     NotasComponent,
     CreatenotaComponent,
-    FirstnavbarComponent
+    FirstnavbarComponent,
+    DetailUserComponent
   ],
   imports: [
     CommonModule,

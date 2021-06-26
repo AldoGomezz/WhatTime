@@ -3,7 +3,15 @@
   <h1>Notas</h1>
   <mat-selection-list [multiple]="false">
     <div class="mat-list-option-cover">
-      <button (click)="getNotas()">Obtener Notas:</button>
+      <form class="notaForm" [formGroup]="notasID" (ngSubmit)="getNotasByID()">
+        <div>
+          <mat-form-field class="ancho" appearance="fill">
+            <mat-label>ID Usuario</mat-label>
+            <input type="string"  formControlName="id_usuario" matInput>
+          </mat-form-field>
+        </div>
+      </form>
+      <button (click)="getNotasByID()">Obtener Notas:</button>
       <mat-list-option *ngFor="let nota of this.notas">
         <div class="d-flex justify-content-between">
 

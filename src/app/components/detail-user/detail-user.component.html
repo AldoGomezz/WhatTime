@@ -1,0 +1,78 @@
+<app-navbar></app-navbar>
+
+<mat-tab-group>
+  <mat-tab label="Información Personal">
+    <!--<li *ngFor="let dato of infor">{{dato?.data?.name}}</li>-->
+    <form class="usuarioForm" [formGroup]="user" (ngSubmit)="informacionUsuario()">
+      <div>
+        <mat-form-field class="ancho" appearance="fill">
+          <mat-label>{{infor}}</mat-label>
+          <input type="string"  formControlName="name_user" matInput>
+        </mat-form-field>
+        </div>
+    </form>
+    <div class="mat-list-option-cover">
+      <button (click)="informacionUsuario()" type="submit" mat-button color="primary">Obtener Datos</button>
+      <div class="d-flex justify-content-between">
+
+                    <span class="nota-name">
+                        {{ usuario?.nombre }}
+
+                    </span>
+        <span class="nota-importancia">
+                        {{ usuario?.correo }}
+                    </span>
+        <span class="nota-fecha-creacion">
+                        {{ usuario?.id }}
+                    </span>
+      </div>
+    </div>
+  </mat-tab>
+  <mat-tab label="Cambiar Contraseña">
+    <form class="usuarioForm" [formGroup]="user" (ngSubmit)="actualizarContrasena()">
+      <div>
+        <mat-form-field class="ancho" appearance="fill">
+          <mat-label>Nombre de Usuario:</mat-label>
+          <input type="string"  formControlName="name_user" matInput>
+
+        </mat-form-field>
+        <br/>
+        <mat-form-field class="ancho" appearance="fill">
+          <mat-label>Nueva contraseña</mat-label>
+          <input type="string"  formControlName="contrasena" matInput>
+        </mat-form-field>
+        <button (click)="actualizarContrasena()" type="submit" mat-button color="primary">Actualizar</button>
+      </div>
+    </form>
+  </mat-tab>
+  <mat-tab label="Cambiar Correo">
+    <form class="usuarioForm" [formGroup]="user" (ngSubmit)="actualizarCorreo()">
+      <div>
+        <mat-form-field class="ancho" appearance="fill">
+          <mat-label>Nombre de Usuario:</mat-label>
+          <input type="string"  formControlName="name_user" matInput>
+
+        </mat-form-field>
+        <br/>
+        <mat-form-field class="ancho" appearance="fill">
+          <mat-label>Nueva correo</mat-label>
+          <input type="string"  formControlName="correo" matInput>
+        </mat-form-field>
+        <button (click)="actualizarCorreo()" type="submit" mat-button color="primary">Actualizar</button>
+      </div>
+    </form>
+  </mat-tab>
+  <mat-tab label="Eliminar Cuenta">
+    <form class="usuarioForm" [formGroup]="user" (ngSubmit)="eliminarCuenta()">
+      <div>
+        <mat-form-field class="ancho" appearance="fill">
+          <mat-label>Identificador de Usuario:</mat-label>
+          <input type="string"  formControlName="id_usuario" matInput>
+
+        </mat-form-field>
+
+        <button (click)="eliminarCuenta()" type="submit" mat-button color="primary">Eliminar</button>
+      </div>
+    </form>
+  </mat-tab>
+</mat-tab-group>

@@ -1,4 +1,4 @@
-import { Component, OnInit,Input } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import {LoginService} from "../../service/login.service";
 import {UserLogin} from "../../models/usuario.model";
@@ -17,7 +17,8 @@ export class LoginComponent implements OnInit {
   logo="./assets/img/logo.png"
   public usuario_log=new UserLogin();
   public usuarioForm: FormGroup;
-  @Input() dataEntrante:any;
+  @Input() dataentrante:any;
+  //@Input() dataEntrante:any;
   constructor(private router: Router,private loginService:LoginService,private fb:FormBuilder,public dialog: MatDialog) { }
 
   ngOnInit(): void
@@ -26,7 +27,7 @@ export class LoginComponent implements OnInit {
   }
 
   ingresar() {
-    this.router.navigateByUrl(`/navbar`);
+    this.router.navigateByUrl('/navbar');
   }
   crearUsuario()
   {
@@ -35,13 +36,12 @@ export class LoginComponent implements OnInit {
 
   login()
   {
-    if(this.usuarioForm.get('password')?.value=="" || this.usuarioForm.get('nombre_user')?.value=="")
+    if(this.usuarioForm.get('password')?.value=='' || this.usuarioForm.get('nombre_user')?.value=='')
     {
       const title="Fallo al Iniciar Sesion"
       const info = "Verifique si su usuario o contraseña estan correctamente escritas."
       this.openDialog(title, info)
     }else {
-
       if (this.usuarioForm.get('password')?.value =="" && this.usuarioForm.get('nombre_user')?.value == "") {
         this.router.navigateByUrl('/login');
         const title = "Fallo al Iniciar Sesion"
@@ -50,13 +50,22 @@ export class LoginComponent implements OnInit {
 
       }else
         {
+
           this.loginService.login(this.usuarioForm.get('password')?.value,this.usuarioForm.get('nombre_user')?.value).subscribe(
             (result:any)=>{
-              if(result.status=="Succes Login"){
-              //this.usuario_log=result.data,
-                this.loginService.disparadorUserData.emit(result.data),
+              if(result.status=="Succes Login")
+              {
+                this.dataentrante=result.data;
+                this.loginService.disparadorUserData.emit(this.usuarioForm.get('nombre_user')?.value);
                 this.ingresar();
-            }})
+            }else
+              {
+                const title = "Fallo al Iniciar Sesión"
+                const info = "Verifique si su usuario o contraseña estan correctamente escritas."
+                this.openDialog(title, info)
+              }
+
+            })
         }
     }
 

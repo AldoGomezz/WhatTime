@@ -8,6 +8,7 @@ import {NotasComponent} from "./components/notas/notas.component";
 import {CreatenotaComponent} from "./components/createnota/createnota.component";
 import {NavbarComponent} from "./components/navbar/navbar.component";
 import {FirstnavbarComponent} from "./components/firstnavbar/firstnavbar.component";
+import {DetailUserComponent} from "./components/detail-user/detail-user.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -16,7 +17,8 @@ const routes: Routes = [
   {path:'notes',component:NotasComponent},
   {path:'createnota',component:CreatenotaComponent},
   {path:'navbar',component:NavbarComponent},
-  {path:'firstnavbar',component:FirstnavbarComponent}
+  {path:'firstnavbar',component:FirstnavbarComponent},
+  {path:'detail',component:DetailUserComponent}
 
 ];
 
