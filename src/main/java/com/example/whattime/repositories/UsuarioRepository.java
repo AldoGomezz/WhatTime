@@ -24,6 +24,7 @@ public interface UsuarioRepository extends JpaRepository<Usuario,Long>
 
     boolean existsUsuarioByCorreo(String correo);
     boolean existsUsuarioByNombreAndContrasena(String nombre,String pass);
+    boolean existsUsuarioByNombre(String nombre);
     @Override
     boolean existsById(Long userId);
     @Override
@@ -31,13 +32,13 @@ public interface UsuarioRepository extends JpaRepository<Usuario,Long>
 
     @Transactional
     @Modifying
-    @Query("update Usuario user set user.contrasena= ?1 where user.id= ?2")
-    int setUpdatePassword(String contrasena,Long userId);
+    @Query("update Usuario user set user.contrasena= ?1 where user.nombre= ?2")
+    int setUpdatePassword(String contrasena,String nombre);
 
     @Transactional
     @Modifying
-    @Query("update Usuario user set user.correo= ?1 where user.id= ?2")
-    int setUpdateUserCorreo(String correo,Long userId);
+    @Query("update Usuario user set user.correo= ?1 where user.nombre= ?2")
+    int setUpdateUserCorreo(String correo,String nombre);
 
 
 }

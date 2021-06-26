@@ -31,7 +31,7 @@ public class Usuario
     @Column(name="id",updatable = false)
     private Long id;
 
-    @Column(name="name",nullable = false,columnDefinition = "TEXT")
+    @Column(name="name",nullable = false,columnDefinition = "TEXT",unique = true)
     private String nombre;
 
     @Column(name="correo",nullable = false,columnDefinition = "TEXT")

@@ -27,8 +27,8 @@ public class UsuarioServiceImpl implements UsuarioService
 
 
     @Override
-    public UsuarioDto getUsuarioById(Long usuarioId) throws WhatTimeExceptions {
-        return modelMapper.map(getUsuarioEntity(usuarioId),UsuarioDto.class);
+    public UsuarioDto getUsuarioByName(String usuarioName) throws WhatTimeExceptions {
+        return modelMapper.map(getUsuarioEntityName(usuarioName),UsuarioDto.class);
     }
 
     @Override
@@ -59,14 +59,14 @@ public class UsuarioServiceImpl implements UsuarioService
     }
 
     @Override
-    public int setupdateUserPassword(String contrasena, Long usuarioId) throws WhatTimeExceptions
+    public int setupdateUserPassword(String contrasena, String username) throws WhatTimeExceptions
     {
-        return usuarioRepository.setUpdatePassword(contrasena,usuarioId);
+        return usuarioRepository.setUpdatePassword(contrasena,username);
     }
 
     @Override
-    public int setUpdateUserCorreo(String correo, Long usuarioId) throws WhatTimeExceptions {
-        return usuarioRepository.setUpdateUserCorreo(correo,usuarioId);
+    public int setUpdateUserCorreo(String correo, String username) throws WhatTimeExceptions {
+        return usuarioRepository.setUpdateUserCorreo(correo,username);
     }
 
     @Override
@@ -74,6 +74,9 @@ public class UsuarioServiceImpl implements UsuarioService
     {
         usuarioRepository.deleteById(id);
     }
+
+
+
 
     @Override
     public UsuarioDto findByNombreAndContrasena(String nombre, String pass) throws WhatTimeExceptions

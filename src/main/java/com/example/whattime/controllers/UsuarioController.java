@@ -80,9 +80,9 @@ public class UsuarioController
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation("Actualiza los valores de la contraseña de un Usuario.")
     @PutMapping("/user/updatepassword")
-    public int updateUsuarioPassword(String contrasena, Long usuarioId){
+    public int updateUsuarioPassword(String contrasena, String username){
         try {
-            return usuarioService.setupdateUserPassword(contrasena, usuarioId);
+            return usuarioService.setupdateUserPassword(contrasena, username);
         } catch (WhatTimeExceptions whatTimeExceptions) {
             whatTimeExceptions.printStackTrace();
         }
@@ -92,9 +92,9 @@ public class UsuarioController
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation("Actualiza los valores del correo de un Usuario.")
     @PutMapping("/user/updateemail")
-    public int updateUsuarioCorreo(String correo, Long usuarioId){
+    public int updateUsuarioCorreo(String correo, String username){
         try {
-            return usuarioService.setUpdateUserCorreo(correo, usuarioId);
+            return usuarioService.setUpdateUserCorreo(correo, username);
         } catch (WhatTimeExceptions whatTimeExceptions) {
             whatTimeExceptions.printStackTrace();
         }
@@ -103,11 +103,18 @@ public class UsuarioController
 
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation("Devuelve la información de un Usuario, atraves de su identificador.")
-    @GetMapping("/user/{usuarioId}")
-    public WhatTimeResponse<UsuarioDto> getUsuarioById(@PathVariable Long usuarioId)
+    @GetMapping("/user/{usuarioName}")
+    public WhatTimeResponse<UsuarioDto> getUsuarioByName(@PathVariable String usuarioName)
             throws WhatTimeExceptions {
-        return new WhatTimeResponse<>("Succes",String.valueOf(HttpStatus.OK),"OK",
-                usuarioService.getUsuarioById(usuarioId));
+        if(usuarioRepository.existsUsuarioByNombre(usuarioName))
+        {
+            return new WhatTimeResponse<>("Succes",String.valueOf(HttpStatus.OK),"OK",
+                    usuarioService.getUsuarioByName(usuarioName));
+        }else
+            {
+                return new WhatTimeResponse<>("No Encontrado ",String.valueOf(HttpStatus.NOT_FOUND),"El usuario no esta registrado");
+            }
+
     }
 
    /* @ResponseStatus(HttpStatus.OK)
@@ -127,5 +134,6 @@ public class UsuarioController
     {
         usuarioService.deleteById(id);
     }
+
 
 }
