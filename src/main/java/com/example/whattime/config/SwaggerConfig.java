@@ -35,7 +35,7 @@ public class SwaggerConfig {
                 "Aplicacion para manejar los tiempos y tareas de los estudiantes para mejorar su orden",
                 "1.0",
                 "https://www.google.com",
-                new Contact("HandyWeb", "http://www.google.com", "u201820751@upc.edu.pe"),
+                new Contact("HandyWeb", "https://github.com/AldoGomezz/WhatTime", "u201820751@upc.edu.pe"),
                 "LICENSE",
                 "LICENSE URL",
                 Collections.emptyList()

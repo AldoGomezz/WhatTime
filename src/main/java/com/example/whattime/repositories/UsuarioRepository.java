@@ -2,13 +2,13 @@ package com.example.whattime.repositories;
 
 
 import com.example.whattime.entities.Usuario;
+import org.springframework.data.domain.Example;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
-import java.util.List;
 import java.util.Optional;
 
 //Solo metodo que hagan un insert select, drop to do contra la base de datos
@@ -19,7 +19,11 @@ public interface UsuarioRepository extends JpaRepository<Usuario,Long>
     Optional<Usuario> findById(Long id);
     Optional<Usuario> findByNombre(String nombre);
     Optional<Usuario> findByNombreAndContrasena(String nombre, String pass); //Log In
+    Optional<Usuario> findByCorreo(String correo);
 
+
+    boolean existsUsuarioByCorreo(String correo);
+    boolean existsUsuarioByNombreAndContrasena(String nombre,String pass);
     @Override
     boolean existsById(Long userId);
     @Override

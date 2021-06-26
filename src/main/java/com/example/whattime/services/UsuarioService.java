@@ -3,6 +3,7 @@ package com.example.whattime.services;
 import com.example.whattime.DTO.CreateUsuarioDto;
 import com.example.whattime.DTO.UsuarioDto;
 import com.example.whattime.exceptions.WhatTimeExceptions;
+import com.example.whattime.util.NotaStatus;
 
 import java.util.List;
 

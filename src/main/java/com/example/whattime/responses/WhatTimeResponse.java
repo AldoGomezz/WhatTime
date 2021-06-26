@@ -21,6 +21,4 @@ public class WhatTimeResponse<T>
         this.code=code;
         this.message=message;
     }
-
-
 }

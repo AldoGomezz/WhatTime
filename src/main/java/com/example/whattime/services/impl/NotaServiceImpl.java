@@ -35,7 +35,7 @@ public class NotaServiceImpl implements NotaService
     private static final ModelMapper modelMapper = new ModelMapper();
 
     @Override
-    public NotaDto createNota(CreateNotaDto createNotaDto, Long userId) throws WhatTimeExceptions{
+    public NotaDto createNota(CreateNotaDto createNotaDto, Long userID) throws WhatTimeExceptions{
         Nota nota = new Nota();
         nota.setName_nota(createNotaDto.getName_nota());
         nota.setImportancia(createNotaDto.getImportancia());
@@ -46,7 +46,7 @@ public class NotaServiceImpl implements NotaService
 
         Usuario currentoUsuario=new Usuario();
         try{
-            currentoUsuario = usuarioServiceIpml.getUsuarioEntity(userId);
+            currentoUsuario = usuarioServiceIpml.getUsuarioEntity(userID);
         }
         catch (Exception ex){
             throw new InternalServerErrorException("INTERNAL_SERVER_ERROR Usuario","INTERNAL_SERVER_ERROR Usuario");
@@ -65,12 +65,20 @@ public class NotaServiceImpl implements NotaService
 
     @Override
     public int setUpdateNameNota(String name_nota, Long noteId) throws WhatTimeExceptions {
-        return notaRepository.setUpdateNoteName(name_nota,noteId);
+        try{
+            return notaRepository.setUpdateNoteName(name_nota,noteId);
+        }catch (Exception ex){throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","INTERNAL_SERVER_ERROR");}
+        //return notaRepository.setUpdateNoteName(name_nota,noteId);
     }
 
     @Override
     public int setUpdateDescriptionNota(String contenido, Long note_id) throws WhatTimeExceptions {
         return notaRepository.updateDescriptionNota(contenido,note_id);
+    }
+
+    @Override
+    public int setUpdateStatus(NotaStatus status, Long notaId) throws WhatTimeExceptions {
+        return notaRepository.updateSTATUS(status, notaId);
     }
 
     @Override

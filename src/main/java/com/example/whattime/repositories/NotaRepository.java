@@ -1,6 +1,7 @@
 package com.example.whattime.repositories;
 
 import com.example.whattime.entities.Nota;
+import com.example.whattime.util.NotaStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -15,7 +16,6 @@ import java.util.Optional;
 public interface NotaRepository extends JpaRepository<Nota,Long>
 {
     Optional<Nota> findById(Long id);
-
     //@Query(nativeQuery = true,value="SELECT * FROM Nota ORDER BY Fecha_creacion DESC ")
     //List<Nota> findNotasByFecha_creacion() ;
 
@@ -44,6 +44,11 @@ public interface NotaRepository extends JpaRepository<Nota,Long>
     @Modifying
     @Query("update Nota note set note.contenido= ?1 where note.id= ?2")
     int updateDescriptionNota(String contenido,Long noteid);
+
+    @Transactional
+    @Modifying
+    @Query("update Nota note set note.status= ?1 where note.id= ?2")
+    int updateSTATUS(NotaStatus status, Long noteid);
 
     @Transactional
     @Modifying

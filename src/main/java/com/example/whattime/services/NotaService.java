@@ -4,15 +4,17 @@ import com.example.whattime.DTO.CreateNotaDto;
 import com.example.whattime.DTO.NotaDto;
 import com.example.whattime.entities.Nota;
 import com.example.whattime.exceptions.WhatTimeExceptions;
+import com.example.whattime.util.NotaStatus;
 
 import java.util.Date;
 import java.util.List;
 
 public interface NotaService {
 
-    NotaDto createNota(CreateNotaDto createNotaDto, Long userId) throws WhatTimeExceptions;
+    NotaDto createNota(CreateNotaDto createNotaDto, Long userID) throws WhatTimeExceptions;
     int setUpdateNameNota(String name_nota,Long note_id) throws  WhatTimeExceptions;
     int setUpdateDescriptionNota(String contenido,Long note_id) throws  WhatTimeExceptions;
+    int setUpdateStatus(NotaStatus status, Long notaId) throws WhatTimeExceptions;
     List<NotaDto> getNotesUser(Long username) throws  WhatTimeExceptions;
     void DeleteNote(Long noteId) throws WhatTimeExceptions;
     List<NotaDto> getAllNotes();

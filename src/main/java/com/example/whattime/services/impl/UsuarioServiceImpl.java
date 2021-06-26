@@ -11,8 +11,11 @@ import com.example.whattime.services.UsuarioService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 
+import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -35,18 +38,24 @@ public class UsuarioServiceImpl implements UsuarioService
     }
     @Override
     public UsuarioDto createUsuario(CreateUsuarioDto createUsuarioDto) throws WhatTimeExceptions {
-        Usuario usuario=new Usuario();
-        usuario.setNombre(createUsuarioDto.getName());
-        usuario.setCorreo(createUsuarioDto.getCorreo());
-        usuario.setContrasena(createUsuarioDto.getPassword());
+        Usuario existcorreo=usuarioRepository.findByCorreo(createUsuarioDto.getCorreo()).orElseThrow(null);
+        if(existcorreo!=null)
+        {
+            throw new InternalServerErrorException("CORREO YA EXISTENTE","CORREO YA EXISTENTE");
+        }else
+            {
+                Usuario usuario=new Usuario();
+                usuario.setNombre(createUsuarioDto.getName());
 
-        try{
-            usuario=usuarioRepository.save(usuario);
-        }catch (Exception ex){
-            throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","INTERNAL_SERVER_ERROR");
+                usuario.setCorreo(createUsuarioDto.getCorreo());
+                usuario.setContrasena(createUsuarioDto.getPassword());
+                try{
+                    usuario=usuarioRepository.save(usuario);
+                }catch (Exception ex){
+                    throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","INTERNAL_SERVER_ERROR",ex);
+                }
+                return  modelMapper.map(getUsuarioEntity(usuario.getId()),UsuarioDto.class);
         }
-
-        return  modelMapper.map(getUsuarioEntity(usuario.getId()),UsuarioDto.class);
     }
 
     @Override
@@ -86,7 +95,9 @@ public class UsuarioServiceImpl implements UsuarioService
     {
         return usuarioRepository.findByNombreAndContrasena(name,pass).orElseThrow(()->new NotFoundException("NOTFOUND-4040","USUARIO-NOTFOUND-404"));
     }
-
-
+    public Usuario getUsuarioEntityCorreo(String correo) throws WhatTimeExceptions
+    {
+        return usuarioRepository.findByCorreo(correo).orElseThrow(()->new NotFoundException("NOTFOUND-4040","USUARIO-NOTFOUND-404"));
+    }
 
 }

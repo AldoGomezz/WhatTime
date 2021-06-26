@@ -6,6 +6,7 @@ import com.example.whattime.DTO.UsuarioDto;
 import com.example.whattime.exceptions.WhatTimeExceptions;
 import com.example.whattime.responses.WhatTimeResponse;
 import com.example.whattime.services.NotaService;
+import com.example.whattime.util.NotaStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -15,16 +16,16 @@ import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
-@RequestMapping(path = "/AqueHoraNota")
+@RequestMapping(path = "/WhatTimeNota")
 public class NotaController {
     @Autowired
     private NotaService notaService;
 
     @ResponseStatus(HttpStatus.OK)
     @PostMapping("/nota/create")
-    public WhatTimeResponse<NotaDto> createNota(@RequestBody CreateNotaDto createNotaDto, Long userId) throws WhatTimeExceptions {
+    public WhatTimeResponse<NotaDto> createNota(@RequestBody CreateNotaDto createNotaDto, Long id) throws WhatTimeExceptions {
         return new WhatTimeResponse<>("Succes to create Nota",String.valueOf(HttpStatus.OK),"Ok",
-                notaService.createNota(createNotaDto,userId));
+                notaService.createNota(createNotaDto,id));
     }
 
     @ResponseStatus(HttpStatus.OK)
@@ -49,6 +50,16 @@ public class NotaController {
     public int updateNotaDescription(@RequestBody String contenido, Long noteId) {
         try {
             return notaService.setUpdateDescriptionNota(contenido, noteId);
+        } catch (WhatTimeExceptions whatTimeExceptions) {
+            whatTimeExceptions.printStackTrace();
+        }
+        return 0;
+    }
+    @ResponseStatus(HttpStatus.OK)
+    @PutMapping("/nota/updateStatus")
+    public int updateStatus(NotaStatus status, Long noteId) {
+        try {
+            return notaService.setUpdateStatus(status, noteId);
         } catch (WhatTimeExceptions whatTimeExceptions) {
             whatTimeExceptions.printStackTrace();
         }

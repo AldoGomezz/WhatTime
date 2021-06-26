@@ -14,6 +14,7 @@ public class WhatTimeExceptions extends Exception
     private final String code; //codigo error
     private final int responseCode; //Codigo respuesta
     private final List<ErrorDto> errorList=new ArrayList<>();
+    private Throwable cause;
 
     public WhatTimeExceptions(String code, int responseCode, String message)
     {
@@ -29,6 +30,14 @@ public class WhatTimeExceptions extends Exception
         this.responseCode=responseCode;
         this.errorList.addAll(errorList);
 
+    }
+
+    public WhatTimeExceptions(String code, int responseCode, String message,Throwable cause)
+    {
+        super(message);
+        this.code=code;
+        this.responseCode=responseCode;
+        this.cause = cause;
     }
 
 

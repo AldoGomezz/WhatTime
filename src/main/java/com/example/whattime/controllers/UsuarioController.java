@@ -2,7 +2,9 @@ package com.example.whattime.controllers;
 
 import com.example.whattime.DTO.CreateUsuarioDto;
 import com.example.whattime.DTO.UsuarioDto;
+import com.example.whattime.entities.Usuario;
 import com.example.whattime.exceptions.WhatTimeExceptions;
+import com.example.whattime.repositories.UsuarioRepository;
 import com.example.whattime.responses.WhatTimeResponse;
 import com.example.whattime.services.UsuarioService;
 import io.swagger.annotations.ApiOperation;
@@ -22,7 +24,8 @@ public class UsuarioController
 {
     @Autowired
     private UsuarioService usuarioService;;
-
+    @Autowired
+    private UsuarioRepository usuarioRepository;
 
     //1
     @ResponseStatus(HttpStatus.OK)
@@ -30,6 +33,10 @@ public class UsuarioController
     @PostMapping("/user/create")
     public WhatTimeResponse<UsuarioDto> createUsuario(@RequestBody CreateUsuarioDto createUsuarioDto)
             throws WhatTimeExceptions{
+        if (usuarioRepository.existsUsuarioByCorreo(createUsuarioDto.getCorreo()))
+        {
+            return new WhatTimeResponse<>("Fallo al Crear Usuario",String.valueOf(HttpStatus.BAD_REQUEST),"El correo ya esta registrado");
+        }
         return new WhatTimeResponse<>("Succes",String.valueOf(HttpStatus.OK),"OK",
                 usuarioService.createUsuario(createUsuarioDto));
     }
@@ -49,8 +56,16 @@ public class UsuarioController
     @GetMapping("/user/LoginUser")
     public WhatTimeResponse<UsuarioDto> LoginAcces(String nombre, String contrasena)
             throws WhatTimeExceptions{
-        return new WhatTimeResponse<>("Succes Login",String.valueOf(HttpStatus.OK),"OK",
-                usuarioService.findByNombreAndContrasena(nombre,contrasena));
+        if (usuarioRepository.existsUsuarioByNombreAndContrasena(nombre, contrasena))
+        {
+            return new WhatTimeResponse<>("Succes Login",String.valueOf(HttpStatus.OK),"OK",
+                    usuarioService.findByNombreAndContrasena(nombre,contrasena));
+        }else
+            {
+            return new WhatTimeResponse<>("Fallo al Iniciar Sesión",String.valueOf(HttpStatus.BAD_REQUEST),"Usuario o Contraseña erroneos vuelva a intentar");
+        }
+
+
     }
 //3
     @ResponseStatus(HttpStatus.OK)
