@@ -37,6 +37,7 @@ import {MatTabsModule} from '@angular/material/tabs';
     MatTabsModule
 
 
+
   ],
   exports: [
     MatInputModule,
@@ -53,6 +54,7 @@ import {MatTabsModule} from '@angular/material/tabs';
     AppRoutingModule,
     MatListModule,
     MatTabsModule
+
   ]
 })
 export class MaterialModule { }

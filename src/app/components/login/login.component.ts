@@ -50,7 +50,6 @@ export class LoginComponent implements OnInit {
 
       }else
         {
-
           this.loginService.login(this.usuarioForm.get('password')?.value,this.usuarioForm.get('nombre_user')?.value).subscribe(
             (result:any)=>{
               if(result.status=="Succes Login")
@@ -64,7 +63,6 @@ export class LoginComponent implements OnInit {
                 const info = "Verifique si su usuario o contraseña estan correctamente escritas."
                 this.openDialog(title, info)
               }
-
             })
         }
     }

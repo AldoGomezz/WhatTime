@@ -17,7 +17,8 @@
         <br/>
         <mat-form-field class="ancho" appearance="fill">
           <mat-label>Importancia:</mat-label>
-          <input type="number" formControlName="importancia" matInput>
+          <input type="number" formControlName="importancia" min="1" max="3" step="1" matInput>
+          <mat-error> Ingrese un numero valido entre 1 - 3 </mat-error>
         </mat-form-field>
 
         <br/>
@@ -60,15 +61,6 @@
           <mat-error *ngIf="range.controls.start.hasError('matStartDateInvalid')">Invalid start date</mat-error>
           <mat-error *ngIf="range.controls.end.hasError('matEndDateInvalid')">Invalid end date</mat-error>
         </mat-form-field>
-
-        <!--<p>Selected range: {{range.value | json}}</p>-->
-
-<!--        <mat-form-field class="ancho" appearance="fill">
-          <mat-label>Fecha Culminacion:</mat-label>
-          <input type="string" formControlName="fecha_culminacion" matInput>
-        </mat-form-field>-->
-
-
 
       </div>
     </form>

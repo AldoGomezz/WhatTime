@@ -2,11 +2,10 @@
 
 <mat-tab-group>
   <mat-tab label="Información Personal">
-    <!--<li *ngFor="let dato of infor">{{dato?.data?.name}}</li>-->
     <form class="usuarioForm" [formGroup]="user" (ngSubmit)="informacionUsuario()">
       <div>
         <mat-form-field class="ancho" appearance="fill">
-          <mat-label>{{infor}}</mat-label>
+          <mat-label>Nombre de Usuario</mat-label>
           <input type="string"  formControlName="name_user" matInput>
         </mat-form-field>
         </div>

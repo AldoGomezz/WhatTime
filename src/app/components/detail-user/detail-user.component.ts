@@ -17,6 +17,7 @@ export class DetailUserComponent implements OnInit
   public infor:any;
   //public name:string;
   public usuario:any;
+  public listaUsuario:Array<any>=[];
   public user:FormGroup;
   public username:any;
   public password:any;
@@ -30,7 +31,7 @@ export class DetailUserComponent implements OnInit
 
   ngOnInit(): void {
     this.loginService.disparadorUserData.subscribe((datos)=>{console.log("Recibiendo data ..",datos)//JSON.parse(datos).data //datos.data
-      this.createUsuario.InformacionUsuario(datos).subscribe((result:any)=>{console.log('Recibiendo data..',result.data),this.usuario=result.data});
+      this.createUsuario.InformacionUsuario(datos).subscribe((result:any)=>{console.log('Recibiendo data..',result.data),this.listaUsuario.push(result.data)});
     })
     this.user = this.fb.group({
       name_user: ['', Validators.required],
@@ -41,10 +42,15 @@ export class DetailUserComponent implements OnInit
   }
   informacionUsuario()
   {
-    //this.ngOnInit()
-    //this.user.get("name_user")?.value
-    //console.log(String(this.usuario.data))
-    this.createUsuario.InformacionUsuario(this.user.get("name_user")?.value).subscribe((result:any)=>{console.log('Recibiendo datods..',result.data),this.usuario=result.data});
+    if(this.user.get("name_user")?.value!='')
+    {
+      this.createUsuario.InformacionUsuario(this.user.get("name_user")?.value).subscribe((result:any)=>{console.log('Recibiendo datods..',result.data),this.usuario=result.data});
+    }else
+    {
+      const title="Fallo al Obtener Informacion"
+      const info = "Rellene todos los campos solicitados"
+      this.openDialog(title, info)
+    }
 
   }
   actualizarContrasena()

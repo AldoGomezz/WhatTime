@@ -1,41 +1,199 @@
 <div class="list">
   <app-navbar></app-navbar>
-  <h1>Notas</h1>
-  <mat-selection-list [multiple]="false">
-    <div class="mat-list-option-cover">
-      <form class="notaForm" [formGroup]="notasID" (ngSubmit)="getNotasByID()">
+  <mat-tab-group>
+    <mat-tab label="Notas">
+      <mat-selection-list [multiple]="false">
+        <div class="mat-list-option-cover">
+          <form class="notaForm" [formGroup]="notasID" (ngSubmit)="getNotasByID()">
+            <div>
+              <mat-form-field class="ancho" appearance="fill">
+                <mat-label>ID Usuario</mat-label>
+                <input type="string"  formControlName="id_usuario" matInput>
+              </mat-form-field>
+            </div>
+          </form>
+          <button (click)="getNotasByID()">Obtener Notas:</button>
+          <mat-list-option *ngFor="let nota of this.notas" >
+            <div class="d-flex justify-content-between">
+           <span class="nota-ID">
+                        {{ nota.id }}
+                    </span>
+
+              <span class="nota-name">
+                        {{ nota.name_nota }}
+                    </span>
+              <span class="nota-importancia">
+                        {{ nota.importancia }}
+                    </span>
+              <span class="nota-fecha-culminacion">
+                        {{ nota.fecha_culminacion }}
+                    </span>
+              <span class="nota_status">
+                        {{ nota.status }}
+                    </span>
+              <span class="nota-contenido">
+                    {{ nota.contenido.substring(0, 40) }}
+                {{ nota.contenido.length > 30 ? "..." : "" }}
+                </span>
+            </div>
+
+          </mat-list-option>
+        </div>
+      </mat-selection-list>
+    </mat-tab>
+
+    <mat-tab label="Filtrar por Importancia">
+
+      <mat-selection-list [multiple]="false">
+        <div class="mat-list-option-cover">
+          <form class="notaForm" [formGroup]="notasID" (ngSubmit)="getNotasByImportancia()">
+            <div>
+              <mat-form-field class="ancho" appearance="fill">
+                <mat-label>ID Usuario</mat-label>
+                <input type="string"  formControlName="id_usuario" matInput>
+              </mat-form-field>
+                <br/>
+              <mat-form-field class="ancho" appearance="fill">
+                <mat-label>Importancia</mat-label>
+                <input type="number"  formControlName="importancia" min="1" max="3" matInput>
+                <mat-error>Importancia valida entre 1-3</mat-error>
+              </mat-form-field>
+            </div>
+          </form>
+
+          <button (click)="getNotasByImportancia()">Obtener Notas:</button>
+          <mat-list-option *ngFor="let nota of this.notasimport" >
+            <div class="d-flex justify-content-between">
+           <span class="nota-ID">
+                        {{ nota.id }}
+                    </span>
+
+              <span class="nota-name">
+                        {{ nota.name_nota }}
+                    </span>
+              <span class="nota-importancia">
+                        {{ nota.importancia }}
+                    </span>
+              <span class="nota-fecha-culminacion">
+                        {{ nota.fecha_culminacion }}
+                    </span>
+              <span class="nota_status">
+                        {{ nota.status }}
+                    </span>
+              <span class="nota-contenido">
+                    {{ nota.contenido.substring(0, 40) }}
+                {{ nota.contenido.length > 30 ? "..." : "" }}
+                </span>
+            </div>
+
+          </mat-list-option>
+        </div>
+      </mat-selection-list>
+    </mat-tab>
+
+    <mat-tab label="Busqueda por Nombre">
+
+      <mat-selection-list [multiple]="false">
+        <div class="mat-list-option-cover">
+          <form class="notaForm" [formGroup]="notasID" (ngSubmit)="getNotasByNotaName()">
+            <div>
+              <mat-form-field class="ancho" appearance="fill">
+                <mat-label>ID Usuario</mat-label>
+                <input type="string"  formControlName="id_usuario" matInput>
+              </mat-form-field>
+              <br/>
+              <mat-form-field class="ancho" appearance="fill">
+                <mat-label>Nombre de la Nota</mat-label>
+                <input type="string"  formControlName="nota_nombre" matInput>
+              </mat-form-field>
+            </div>
+          </form>
+
+          <button (click)="getNotasByNotaName()">Obtener Notas:</button>
+          <br/>
+          <br/>
+          <mat-list-option *ngFor="let nota of this.notasNombre" >
+            <mat-icon matListIcon>folder</mat-icon>
+            <div class="d-flex justify-content-between">
+
+              <span class="nota-ID">
+                        {{ nota.id }}
+                    </span>
+
+              <span class="nota-name">
+                        {{ nota.name_nota }}
+                    </span>
+              <span class="nota-importancia">
+                        {{ nota.importancia }}
+                    </span>
+              <span class="nota-fecha-culminacion">
+                        {{ nota.fecha_culminacion }}
+                    </span>
+              <span class="nota_status">
+                        {{ nota.status }}
+                    </span>
+              <span class="nota-contenido">
+                    {{ nota.contenido.substring(0, 40) }}
+                {{ nota.contenido.length > 30 ? "..." : "" }}
+                </span>
+            </div>
+          </mat-list-option>
+        </div>
+      </mat-selection-list>
+
+    </mat-tab>
+    <mat-tab label="Actualizar Nombre de la Nota">
+      <form class="notaForm" [formGroup]="notasID" (ngSubmit)="actualizarNameNota()">
         <div>
           <mat-form-field class="ancho" appearance="fill">
-            <mat-label>ID Usuario</mat-label>
-            <input type="string"  formControlName="id_usuario" matInput>
+            <mat-label>Id Nota</mat-label>
+            <input type="string"  formControlName="id_nota" matInput>
+          </mat-form-field>
+          <br/>
+          <mat-form-field class="ancho" appearance="fill">
+            <mat-label>Nombre de la Nota</mat-label>
+            <input type="string"  formControlName="nota_nombre" matInput>
           </mat-form-field>
         </div>
       </form>
-      <button (click)="getNotasByID()">Obtener Notas:</button>
-      <mat-list-option *ngFor="let nota of this.notas">
-        <div class="d-flex justify-content-between">
 
-                    <span class="nota-name">
-                        {{ nota.name_nota }}
-                    </span>
-          <span class="nota-importancia">
-                        {{ nota.importancia }}
-                    </span>
-          <span class="nota-fecha-creacion">
-                        {{ nota.fecha_creacion }}
-                    </span>
-          <span class="nota-fecha-culminacion">
-                        {{ nota.fecha_culminacion }}
-                    </span>
+      <button (click)="actualizarNameNota()">Actualizar</button>
+    </mat-tab>
+
+    <mat-tab label="Actualizar Descripcion">
+      <form class="notaForm" [formGroup]="notasID" (ngSubmit)="actualizarDescriptionNota()">
+        <div>
+          <mat-form-field class="ancho" appearance="fill">
+            <mat-label>Id Nota</mat-label>
+            <input type="string"  formControlName="id_nota" matInput>
+          </mat-form-field>
+          <br/>
+          <mat-form-field class="ancho" appearance="fill">
+            <mat-label>Descripcion Actualizada</mat-label>
+            <input type="string"  formControlName="description" matInput>
+          </mat-form-field>
         </div>
-        <span class="nota-contenido">
-                    {{ nota.contenido.substring(0, 40) }}
-          {{ nota.contenido.length > 30 ? "..." : "" }}
-                </span>
-      </mat-list-option>
-    </div>
-  </mat-selection-list>
+      </form>
+
+      <button (click)="actualizarDescriptionNota()">Actualizar</button>
+    </mat-tab>
+
+    <mat-tab label="Eliminar Nota">
+      <form class="notaForm" [formGroup]="notasID" (ngSubmit)="eliminarCuenta()">
+        <div>
+          <mat-form-field class="ancho" appearance="fill">
+            <mat-label>Id Nota</mat-label>
+            <input type="string"  formControlName="id_nota" matInput>
+          </mat-form-field>
+        </div>
+      </form>
+
+      <button (click)="eliminarCuenta()">Eliminar</button>
+    </mat-tab>
+
+  </mat-tab-group>
 </div>
+
   <!--<mat-selection-list [multiple]="false">
     <div class="mat-list-option-cover">
       <button (click)="getNotasByID()">Obtener Notas por Usuario ID:</button>

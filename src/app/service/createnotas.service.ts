@@ -12,14 +12,14 @@ import {Usuario} from "../models/usuario.model";
 export class CreatenotasService {
 
   constructor(private http:HttpClient) { }
-
+  public Nota:Nota;
   getNotas()
   {
     return this.http.get(`${environment.apiNotaURL}/getnotes`);
   }
-  getNotasByID(id:string)
+  getNotasByID(id:string):Observable<Nota[]>
   {
-    return this.http.get(`${environment.apiNotaURL}/getnotebyuser?usuarioId=${id}`);
+    return this.http.get<Nota[]>(`${environment.apiNotaURL}/getnotebyuser?usuarioId=${id}`);
   }
 
   createNota(nota:Nota,id:string)
@@ -27,5 +27,30 @@ export class CreatenotasService {
     return this.http.post(`${environment.apiNotaURL}/create?id=${id}`,nota);
   }
 
+  getNotasByImportancia(importancia:string,id:string):Observable<Nota[]>
+  {
+    return this.http.get<Nota[]>(`${environment.apiNotaURL}/gnoteByImport?importancia=${importancia}&usuarioID=${id}`);
+  }
+
+  getNotasFiltroNombre(nombre_nota:string,id:string):Observable<Nota[]>
+  {
+    return this.http.get<Nota[]>(`${environment.apiNotaURL}/gnotename?nombre_nota=${nombre_nota}&usuarioID=${id}`);
+  }
+
+  updateNameNota(nombre_nota:string,id:string)
+  {
+    return this.http.put(`${environment.apiNotaURL}/updatename?name_nota=${nombre_nota}&noteId=${id}`,{nombre_nota,id});
+
+  }
+  updateDescripcionNota(descripcion:string,id:string)
+  {
+    return this.http.put(`${environment.apiNotaURL}/updatedescription?contenido=${descripcion}&noteId=${id}`,{descripcion,id});
+
+  }
+
+  eliminarNota(id:number)
+  {
+    return this.http.delete(`${environment.apiNotaURL}/deletenote?noteId=${id}`);
+  }
 
 }

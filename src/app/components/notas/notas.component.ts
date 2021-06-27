@@ -10,22 +10,30 @@ import {MatDialog} from "@angular/material/dialog";
   styleUrls: ['./notas.component.css']
 })
 export class NotasComponent implements OnInit {
-  notas:any;
+  notas:Array<any>=[];
+  notasimport:Array<any>=[];
+  notasNombre:Array<any>=[];
+  dataUpdate:any;
+  errormessage:any;
   public notasID:FormGroup;
   constructor(private notaService:CreatenotasService,private fb:FormBuilder,public dialog: MatDialog) { }
-  //typesOfShoes: string[] = ['Boots', 'Clogs', 'Loafers', 'Moccasins', 'Sneakers'];
-  id_user=new FormControl('',[Validators.required])
 
   ngOnInit(): void
   {
     this.notasID=this.fb.group({
-      id_usuario:['',Validators.required]
+      id_usuario:['',Validators.required],
+      importancia:['',Validators.required],
+      nota_nombre:['',Validators.required],
+      id_nota:['',Validators.required],
+      description:['',Validators.required],
+
+
     })
   }
 
   getNotas():void
   {
-    this.notaService.getNotas().subscribe(notas=>this.notas=notas);
+   // this.notaService.getNotas().subscribe(notas=>this.notas=notas);
   }
   getNotasByID():void
   {
@@ -38,8 +46,103 @@ export class NotasComponent implements OnInit {
         const info = "Rellene todos los campos solicitados"
         this.openDialog(title, info)
       }
-
   }
+
+  getNotasByImportancia():void
+  {
+    if(this.notasID.get("importancia")?.value!='' &&this.notasID.get("id_usuario")?.value!='')
+    {
+      this.notaService.getNotasByImportancia(this.notasID.get("importancia")?.value,this.notasID.get("id_usuario")?.value).subscribe((result:any)=>{this.notasimport=result.data})
+    }else
+      {
+        const title="Fallo al Obtener Notas"
+        const info = "Rellene todos los campos solicitados"
+        this.openDialog(title, info)
+      }
+  }
+
+  getNotasByNotaName():void
+  {
+    if(this.notasID.get("nota_nombre")?.value!='' &&this.notasID.get("id_usuario")?.value!='')
+    {
+      this.notaService.getNotasFiltroNombre(this.notasID.get("nota_nombre")?.value,this.notasID.get("id_usuario")?.value).subscribe((result:any)=>{this.notasNombre=result.data})
+    }else
+    {
+      const title="Fallo al Obtener Notas"
+      const info = "Rellene todos los campos solicitados"
+      this.openDialog(title, info)
+    }
+  }
+
+  actualizarNameNota()
+  {
+    if(this.notasID.get("nota_nombre")?.value!='' &&this.notasID.get("id_nota")?.value!='')
+    {
+      this.notaService.updateNameNota(this.notasID.get("nota_nombre")?.value,this.notasID.get("id_nota")?.value).subscribe((result:any)=>
+      {
+        if(result=='0')
+        {
+          const title="Fallo al Actualizar el Nombre de la Nota"
+          const info = "Rellene todos los campos solicitados"
+          this.openDialog(title, info)
+        }else
+        {
+          const title="Se  actualizo el Nombre de la Nota"
+          const info = "Logrado"
+          this.openDialog(title, info)
+        }
+      })
+    }else
+    {
+      const title="Fallo al Actualizar el Nombre de la Nota"
+      const info = "Rellene todos los campos solicitados"
+      this.openDialog(title, info)
+    }
+  }
+
+  actualizarDescriptionNota()
+  {
+    if(this.notasID.get("description")?.value!='' &&this.notasID.get("id_nota")?.value!='')
+    {
+      this.notaService.updateDescripcionNota(this.notasID.get("description")?.value,this.notasID.get("id_nota")?.value).subscribe((result:any)=>
+      {
+        if(result=='0')
+        {
+          const title="Fallo al Actualizar la descripción de la Nota"
+          const info = "Rellene todos los campos solicitados"
+          this.openDialog(title, info)
+        }else
+          {
+            const title="Se  actualizo la descripción de la Nota"
+            const info = "Logrado"
+            this.openDialog(title, info)
+          }
+      })
+    }else
+    {
+      const title="Fallo al Actualizar la descripción de la Nota"
+      const info = "Rellene todos los campos solicitados"
+      this.openDialog(title, info)
+    }
+  }
+
+  eliminarCuenta()
+  {
+    if(this.notasID.get("id_nota")?.value!='')
+    {
+      this.notaService.eliminarNota(this.notasID.get("id_nota")?.value).subscribe(data=>this.dataUpdate=data,error =>{this.errormessage=error;console.error('No se encontro Nota',error);
+        const title="Fallo al Eliminar Nota"
+        const info = "Usuario no existe"
+        this.openDialog(title, info)} );
+    }
+    else
+    {
+      const title="Fallo al Eliminar Usuario"
+      const info = "Rellene todos los campos solicitados"
+      this.openDialog(title, info)
+    }
+  }
+
   openDialog(title: string, info: string): void {
     const dialogRef = this.dialog.open(InfoDialogComponent, {
       width: '350px',
