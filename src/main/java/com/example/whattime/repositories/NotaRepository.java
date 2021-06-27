@@ -19,6 +19,10 @@ public interface NotaRepository extends JpaRepository<Nota,Long>
     //@Query(nativeQuery = true,value="SELECT * FROM Nota ORDER BY Fecha_creacion DESC ")
     //List<Nota> findNotasByFecha_creacion() ;
 
+
+    @Override
+    boolean existsById(Long idNota);
+
     @Query("SELECT Note FROM Nota Note where Note.usuario.id=?1")
     List<Nota> findNotas(Long usuarioID);
 

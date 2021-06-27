@@ -4,6 +4,7 @@ import com.example.whattime.DTO.CreateNotaDto;
 import com.example.whattime.DTO.NotaDto;
 import com.example.whattime.DTO.UsuarioDto;
 import com.example.whattime.exceptions.WhatTimeExceptions;
+import com.example.whattime.repositories.NotaRepository;
 import com.example.whattime.responses.WhatTimeResponse;
 import com.example.whattime.services.NotaService;
 import com.example.whattime.util.NotaStatus;
@@ -20,6 +21,8 @@ import java.util.List;
 public class NotaController {
     @Autowired
     private NotaService notaService;
+    @Autowired
+    private NotaRepository notaRepository;
 
     @ResponseStatus(HttpStatus.OK)
     @PostMapping("/nota/create")
@@ -36,9 +39,12 @@ public class NotaController {
 
     @ResponseStatus(HttpStatus.OK)
     @PutMapping("/nota/updatename")
-    public int updateNotaName(@RequestBody String name_nota, Long noteId) {
+    public int updateNotaName(String name_nota, Long noteId) {
         try {
-            return notaService.setUpdateNameNota(name_nota, noteId);
+            if(notaRepository.existsById(noteId))
+            {
+                return notaService.setUpdateNameNota(name_nota, noteId);
+            }
         } catch (WhatTimeExceptions whatTimeExceptions) {
             whatTimeExceptions.printStackTrace();
         }
@@ -47,9 +53,11 @@ public class NotaController {
 
     @ResponseStatus(HttpStatus.OK)
     @PutMapping("/nota/updatedescription")
-    public int updateNotaDescription(@RequestBody String contenido, Long noteId) {
+    public int updateNotaDescription(String contenido, Long noteId) {
         try {
-            return notaService.setUpdateDescriptionNota(contenido, noteId);
+            if(notaRepository.existsById(noteId)) {
+                return notaService.setUpdateDescriptionNota(contenido, noteId);
+            }
         } catch (WhatTimeExceptions whatTimeExceptions) {
             whatTimeExceptions.printStackTrace();
         }
@@ -59,7 +67,9 @@ public class NotaController {
     @PutMapping("/nota/updateStatus")
     public int updateStatus(NotaStatus status, Long noteId) {
         try {
-            return notaService.setUpdateStatus(status, noteId);
+            if(notaRepository.existsById(noteId)) {
+                return notaService.setUpdateStatus(status, noteId);
+            }
         } catch (WhatTimeExceptions whatTimeExceptions) {
             whatTimeExceptions.printStackTrace();
         }
@@ -79,7 +89,9 @@ public class NotaController {
     public void deleteNote(Long noteId)
     {
         try {
+            if(notaRepository.existsById(noteId)){
             notaService.DeleteNote(noteId);
+            }
         } catch (WhatTimeExceptions whatTimeExceptions) {
             whatTimeExceptions.printStackTrace();
         }
@@ -98,7 +110,14 @@ public class NotaController {
     @GetMapping("/nota/gnoteByImport")
     public WhatTimeResponse<List<NotaDto>> getNotaByImportancia(Integer importancia,Long usuarioID)throws
             WhatTimeExceptions {
-        return  new WhatTimeResponse<>("Succes",String.valueOf(HttpStatus.OK),"OK",notaService.getNotasByImportancia(importancia,usuarioID));
+        if(importancia>=1 &&importancia<=3)
+        {
+            return  new WhatTimeResponse<>("Succes",String.valueOf(HttpStatus.OK),"OK",notaService.getNotasByImportancia(importancia,usuarioID));
+        }else
+            {
+                return  new WhatTimeResponse<>("Fallo Obtener Nota",String.valueOf(HttpStatus.BAD_REQUEST),"Ingrese importancia entre 1 -3 ");
+            }
+
     }
 
 
@@ -123,6 +142,8 @@ public class NotaController {
             WhatTimeExceptions {
         return  new WhatTimeResponse<>("Succes",String.valueOf(HttpStatus.OK),"OK",notaService.getNotasByFechaBetween(fecha_Creacion,fecha_culminacion));
     }
+
+
 
 }
 

@@ -82,7 +82,8 @@ public class UsuarioController
     @PutMapping("/user/updatepassword")
     public int updateUsuarioPassword(String contrasena, String username){
         try {
-            return usuarioService.setupdateUserPassword(contrasena, username);
+            if(usuarioRepository.existsUsuarioByNombre(username)){
+            return usuarioService.setupdateUserPassword(contrasena, username);}
         } catch (WhatTimeExceptions whatTimeExceptions) {
             whatTimeExceptions.printStackTrace();
         }
@@ -94,7 +95,8 @@ public class UsuarioController
     @PutMapping("/user/updateemail")
     public int updateUsuarioCorreo(String correo, String username){
         try {
-            return usuarioService.setUpdateUserCorreo(correo, username);
+            if(usuarioRepository.existsUsuarioByNombre(username)){
+            return usuarioService.setUpdateUserCorreo(correo, username);}
         } catch (WhatTimeExceptions whatTimeExceptions) {
             whatTimeExceptions.printStackTrace();
         }

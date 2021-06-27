@@ -6,8 +6,10 @@ import com.example.whattime.entities.Nota;
 import com.example.whattime.exceptions.WhatTimeExceptions;
 import com.example.whattime.util.NotaStatus;
 
+import javax.swing.text.html.Option;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 public interface NotaService {
 
