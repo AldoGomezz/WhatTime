@@ -2,15 +2,17 @@ package com.example.whattime.controllers;
 
 import com.example.whattime.DTO.CreateNotaDto;
 import com.example.whattime.DTO.NotaDto;
-import com.example.whattime.DTO.UsuarioDto;
+
 import com.example.whattime.exceptions.WhatTimeExceptions;
 import com.example.whattime.repositories.NotaRepository;
 import com.example.whattime.responses.WhatTimeResponse;
 import com.example.whattime.services.NotaService;
 import com.example.whattime.util.NotaStatus;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
 
 import java.util.Date;
 import java.util.List;
@@ -123,22 +125,16 @@ public class NotaController {
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/nota/gnoteFC")
-    public WhatTimeResponse<List<NotaDto>> getNotaByNamebyFechaCreate(Date fecha_Creacion)throws
+
+    public WhatTimeResponse<List<NotaDto>> getNotaByNamebyFechaCreate( Date fecha_Creacion)throws
             WhatTimeExceptions {
         return  new WhatTimeResponse<>("Succes",String.valueOf(HttpStatus.OK),"OK",notaService.getNotasByFechaCreacion(fecha_Creacion));
     }
 
-    /*@ResponseStatus(HttpStatus.OK)
-    @GetMapping("/nota/OrderFC")
-    public WhatTimeResponse<List<NotaDto>> getNotaOrderByFC()throws
-            WhatTimeExceptions {
-        return  new WhatTimeResponse<>("Succes",String.valueOf(HttpStatus.OK),"OK",notaService.getNotasFechasCreacion());
-    }*/
-
-
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/nota/gnoteFCbtFC")
-    public WhatTimeResponse<List<NotaDto>> getNotaByNamebyFechaCreateBetweenFCulmina(Date fecha_Creacion,Date fecha_culminacion)throws
+    public WhatTimeResponse<List<NotaDto>> getNotaByNamebyFechaCreateBetweenFCulmina(Date fecha_Creacion,
+                                                                                     Date fecha_culminacion)throws
             WhatTimeExceptions {
         return  new WhatTimeResponse<>("Succes",String.valueOf(HttpStatus.OK),"OK",notaService.getNotasByFechaBetween(fecha_Creacion,fecha_culminacion));
     }

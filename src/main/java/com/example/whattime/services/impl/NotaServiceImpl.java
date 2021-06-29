@@ -13,13 +13,13 @@ import com.example.whattime.services.NotaService;
 import com.example.whattime.util.NotaStatus;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
+
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
+
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
+
 import java.util.stream.Collectors;
 
 @Service
@@ -42,6 +42,8 @@ public class NotaServiceImpl implements NotaService
         nota.setContenido(createNotaDto.getContenido());
         nota.setFecha_creacion(createNotaDto.getFecha_creacion());
         nota.setFecha_culminacion(createNotaDto.getFecha_culminacion());
+        //nota.setFecha_creacion(Fecha_Creacion);
+        //nota.setFecha_culminacion(Fecha_Culminacion);
         nota.setStatus(NotaStatus.ACTIVE);
 
         Usuario currentoUsuario=new Usuario();

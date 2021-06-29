@@ -38,7 +38,7 @@ public class UsuarioServiceImpl implements UsuarioService
     }
     @Override
     public UsuarioDto createUsuario(CreateUsuarioDto createUsuarioDto) throws WhatTimeExceptions {
-        Usuario existcorreo=usuarioRepository.findByCorreo(createUsuarioDto.getCorreo()).orElseThrow(null);
+        Usuario existcorreo=usuarioRepository.findByCorreo(createUsuarioDto.getCorreo()).orElse(null);
         if(existcorreo!=null)
         {
             throw new InternalServerErrorException("CORREO YA EXISTENTE","CORREO YA EXISTENTE");
@@ -46,7 +46,6 @@ public class UsuarioServiceImpl implements UsuarioService
             {
                 Usuario usuario=new Usuario();
                 usuario.setNombre(createUsuarioDto.getName());
-
                 usuario.setCorreo(createUsuarioDto.getCorreo());
                 usuario.setContrasena(createUsuarioDto.getPassword());
                 try{
