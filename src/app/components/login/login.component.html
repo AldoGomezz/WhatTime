@@ -1,7 +1,8 @@
 <div class="body">
-
     <div class="login">
-      <img [src]="logo" alt="" width="50%" height="80%">
+      <form class="logo">
+        <img [src]="logo2" alt="" width="50%" height="50%">
+      </form>
       <mat-card>
         <form class="usuarioForm" [formGroup]="usuarioForm" (ngSubmit)="login()">
           <div>
@@ -15,10 +16,10 @@
               <input matInput type="string" formControlName="password" required="required"pattern="[A-Za-z0-9]{1,20}">
             </mat-form-field>
           </div>
-          <button (click)="login()" class="ancho" mat-raised-button mat-button color="primary">Ingresar</button>
+          <a class="boton2" button (click)="login()" class="ancho" mat-raised-button mat-button color="primary">Ingresar</a>
           <br/>
           <br/>
-          <button (click)="crearUsuario()" class="ancho" mat-raised-button mat-button color="primary"  >Crear Cuenta</button>
+          <a class="boton2"button (click)="crearUsuario()" class="ancho" mat-raised-button mat-button color="primary"  >Crear Cuenta</a>
         </form>
 
       </mat-card>

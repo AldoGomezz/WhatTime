@@ -3,18 +3,26 @@
     display: flex;
     align-items: center;
     justify-content: center;
-
-    background-color: #f5f5f5;
+    background-color: #D5F7B6;
     height: 100%;
   }
   .login {
-    width: 100%;
-    max-width: 330px;
-    padding: 15px;
+    padding: 80px;
     margin: auto;
-    text-align: center;
+    text-align:center;
   }
 
   .ancho {
     width: 80%;
   }
+  .logo{
+    padding: 50px;
+  }
+  .usuarioForm
+  {
+    margin-bottom: 20px;
+  }
+
+
+
+
