@@ -26,12 +26,11 @@ public class PomodoroServiceImpl implements PomodoroService {
     private static final ModelMapper modelMapper = new ModelMapper();
 
     @Override
-    public PomodoroDto createPomodoro(CreatePomodoroDto createPomodoroDto, Long notaId) throws WhatTimeExceptions{
+    public PomodoroDto createPomodoro(Integer duracion,String name, Long notaId) throws WhatTimeExceptions{
         Pomodoro pomodoro = new Pomodoro();
-        pomodoro.setDuracion(createPomodoroDto.getDuracion());
-        pomodoro.setName_pomodoro(createPomodoroDto.getName_pomodoro());
+        pomodoro.setDuracion(duracion);
+        pomodoro.setName_pomodoro(name);
         //pomodoro.setFecha_creacion(createPomodoroDto.getFecha_creacion());
-
         //Por ahora usuario Fijo para testear
         Nota currentNota=new Nota();
         try{
@@ -47,6 +46,17 @@ public class PomodoroServiceImpl implements PomodoroService {
             throw new InternalServerErrorException("INTERNAL_SERVER_ERROR","INTERNAL_SERVER_ERROR");
         }
         return  modelMapper.map(getPomodoroEntity(pomodoro.getId()),PomodoroDto.class);
+    }
+
+    @Override
+    public int setUpdateDuracionPomodoro(Number duracion, Long pomo_id) throws WhatTimeExceptions
+    {
+        return pomodoroRepository.setUpdatePomodoroDuracion(duracion,pomo_id);
+    }
+
+    @Override
+    public PomodoroDto findPomobyID(Long pomo_id) throws WhatTimeExceptions {
+        return modelMapper.map(getPomodoroEntity(pomo_id),PomodoroDto.class);
     }
 
     public Pomodoro getPomodoroEntity(Long pomodoroId)throws WhatTimeExceptions{

@@ -14,6 +14,7 @@ import java.util.Optional;
 public interface NotaService {
 
     NotaDto createNota(CreateNotaDto createNotaDto, Long userID) throws WhatTimeExceptions;
+    NotaDto findIDNota(Long id) throws  WhatTimeExceptions;
     int setUpdateNameNota(String name_nota,Long note_id) throws  WhatTimeExceptions;
     int setUpdateDescriptionNota(String contenido,Long note_id) throws  WhatTimeExceptions;
     int setUpdateStatus(NotaStatus status, Long notaId) throws WhatTimeExceptions;

@@ -139,6 +139,21 @@ public class NotaController {
         return  new WhatTimeResponse<>("Succes",String.valueOf(HttpStatus.OK),"OK",notaService.getNotasByFechaBetween(fecha_Creacion,fecha_culminacion));
     }
 
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping("/nota/getNota")
+    public WhatTimeResponse<NotaDto> getNotaID(Long id)throws
+            WhatTimeExceptions {
+        if(notaRepository.existsById(id)){
+            return  new WhatTimeResponse<>("Succes",String.valueOf(HttpStatus.OK),"OK",notaService.findIDNota(id));
+
+        }else
+        {
+            return  new WhatTimeResponse<>("Fallo al obtener Nota",String.valueOf(HttpStatus.NOT_FOUND),"Nota no existente");
+
+        }
+    }
+
+
 
 
 }

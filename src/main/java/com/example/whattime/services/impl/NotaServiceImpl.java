@@ -64,6 +64,11 @@ public class NotaServiceImpl implements NotaService
         return modelMapper.map(getNotaEntity(nota.getId()), NotaDto.class);
     }
 
+    @Override
+    public NotaDto findIDNota(Long id) throws WhatTimeExceptions {
+        return modelMapper.map(getNotaEntity(id),NotaDto.class);
+    }
+
 
     @Override
     public int setUpdateNameNota(String name_nota, Long noteId) throws WhatTimeExceptions {
