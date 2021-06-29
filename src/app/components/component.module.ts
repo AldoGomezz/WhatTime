@@ -10,7 +10,9 @@ import { CreateUsuarioComponent } from './create-usuario/create-usuario.componen
 import { NotasComponent } from './notas/notas.component';
 import { CreatenotaComponent } from './createnota/createnota.component';
 import { FirstnavbarComponent } from './firstnavbar/firstnavbar.component';
-import { DetailUserComponent } from './detail-user/detail-user.component'
+import { DetailUserComponent } from './detail-user/detail-user.component';
+import { TimerComponent } from './timer/timer.component';
+
 @NgModule({
   declarations: [
     LoginComponent,
@@ -20,7 +22,8 @@ import { DetailUserComponent } from './detail-user/detail-user.component'
     NotasComponent,
     CreatenotaComponent,
     FirstnavbarComponent,
-    DetailUserComponent
+    DetailUserComponent,
+    TimerComponent
   ],
   imports: [
     CommonModule,
@@ -29,14 +32,16 @@ import { DetailUserComponent } from './detail-user/detail-user.component'
     FormsModule,
     NgxStripeModule.forRoot('pk_test_51Ix2oaAfbfzmGRwRHQnJLshYLzZo2RcLiM84U4g823jlPeOJ1fvrt9T0winWXnbX68lntR7WYFeHg9Mb5YNB5fim004d1uxDUx')
   ],
-    exports: [
-        LoginComponent,
-        MaterialModule,
-        NavbarComponent,
-        ReactiveFormsModule,
-        FormsModule,
-        CreateUsuarioComponent,
-        FirstnavbarComponent
-    ]
+  exports: [
+    LoginComponent,
+    MaterialModule,
+    NavbarComponent,
+    ReactiveFormsModule,
+    FormsModule,
+    CreateUsuarioComponent,
+    FirstnavbarComponent,
+    TimerComponent
+
+  ]
 })
 export class ComponentModule { }

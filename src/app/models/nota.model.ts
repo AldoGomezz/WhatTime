@@ -6,5 +6,6 @@ export class Nota
     contenido:string;
     fecha_creacion:any;
     fecha_culminacion:any;
+
 }
 

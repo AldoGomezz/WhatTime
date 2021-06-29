@@ -1,0 +1,89 @@
+<app-navbar></app-navbar>
+<mat-tab-group>
+  <!--
+  <mat-tab label="Crear Pomodoro">
+    <mat-card>
+      <form class="pomodoroForm" [formGroup]="pomoID" (ngSubmit)="crearPomodoro()">
+        <div>
+          <mat-form-field class="ancho" appearance="fill">
+            <mat-label>ID Nota</mat-label>
+            <input type="string"  formControlName="id_nota" matInput>
+          </mat-form-field>
+          <br/>
+
+          <mat-form-field class="ancho" appearance="fill">
+            <mat-label>Nombre Pomodoro</mat-label>
+            <input type="string"  formControlName="nombre_pomodoro" matInput>
+          </mat-form-field>
+          <br/>
+          <mat-form-field class="ancho" appearance="fill">
+            <mat-label>Cantidad de Pomodoros</mat-label>
+            <input type="string"  formControlName="duracion" matInput>
+          </mat-form-field>
+          <br/>
+          <button (click)="crearPomodoro()">Crear Pomodoro</button>
+        </div>
+      </form>
+    </mat-card>
+  </mat-tab>-->
+
+  <mat-tab label="Pomodoro">
+    <mat-selection-list [multiple]="false">
+      <div class="mat-list-option-cover">
+        <form class="pomodoroForm" [formGroup]="pomoID" (ngSubmit)="getNotaID()">
+          <div>
+            <mat-form-field class="ancho" appearance="fill">
+              <mat-label>ID NOTA</mat-label>
+              <input type="string"  formControlName="id_nota" matInput>
+            </mat-form-field>
+            <mat-form-field class="ancho" appearance="fill">
+              <mat-label>Cantidad de Pomodoros</mat-label>
+              <input type="string"  formControlName="duracion" matInput>
+            </mat-form-field>
+          </div>
+
+        </form>
+        <div class="mat-list-option-cover">
+          <button (click)="getNotaID()" type="submit" mat-button color="primary">Obtener Nota</button>
+          <div class="d-flex justify-content-between">
+
+                    <span class="nota-name">
+                        {{ notas?.name_nota }}
+
+                    </span>
+            <span class="nota-importancia">
+                        {{ notas?.importancia }}
+                    </span>
+            <span class="nota-fecha-creacion">
+                        {{ notas?.status }}
+                    </span>
+            <span class="nota-fecha-creacion">
+                        {{ notas?.pom }}
+                    </span>
+              <span class="data-pomo-duracion">
+                        {{ this.duracion }}
+                    </span>
+
+            </div>
+          </div>
+        </div>
+    </mat-selection-list>
+
+<div class="container">
+  <h1 class="display-1">
+    <br/><br/><br/>
+    {{value[0] < 10 ? 0 : ''}}{{value[0]}}:{{value[1] < 10 ? 0 : ''}}{{value[1]}}
+    <br/><br/><br/><br/>
+  </h1>
+  <div class="controls">
+    <br/>
+    <button type="button" class="btn btn-success" (click)="startTimer()">Start</button>
+    <br/>
+    <button type="button" class="btn btn-danger" (click)="stopTimer()">Stop</button>
+    <br/>
+    <button type="button" class="btn btn-secondary" (click)="resetTimer()">Reset</button>
+  </div>
+</div>
+    </mat-tab>
+
+  </mat-tab-group>

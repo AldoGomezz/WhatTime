@@ -21,10 +21,14 @@ export class CreatenotasService {
   {
     return this.http.get<Nota[]>(`${environment.apiNotaURL}/getnotebyuser?usuarioId=${id}`);
   }
+  getNotasporsuID(id:string):Observable<Nota>
+  {
+    return this.http.get<Nota>(`${environment.apiNotaURL}/getNota?id=${id}`);
+  }
 
   createNota(nota:Nota,id:string)
   {
-    //date=${fecha_Create}&dateTimeFinsih=${fecha_finish}&
+
     return this.http.post(`${environment.apiNotaURL}/create?id=${id}`,nota);
   }
 
@@ -37,6 +41,7 @@ export class CreatenotasService {
   {
     return this.http.get<Nota[]>(`${environment.apiNotaURL}/gnoteFCbtFC?fecha_Creacion=${fecha_Crea}&fecha_culminacion=${fecha_culmin}`);
   }
+
 
   getNotasFiltroNombre(nombre_nota:string,id:string):Observable<Nota[]>
   {
@@ -57,6 +62,12 @@ export class CreatenotasService {
   eliminarNota(id:number)
   {
     return this.http.delete(`${environment.apiNotaURL}/deletenote?noteId=${id}`);
+  }
+
+  updateStatus(status:string,id:string)
+  {
+    return this.http.put(`${environment.apiNotaURL}/updateStatus?noteId=${id}&status=${status}`,{status,id});
+
   }
 
 
