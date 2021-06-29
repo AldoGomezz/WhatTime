@@ -15,6 +15,7 @@ import {InfoDialogComponent} from "../info-dialog/info-dialog.component";
 export class LoginComponent implements OnInit {
 
   logo="./assets/img/logo.png"
+  logo2="./assets/img/logo2.png"
   public usuario_log=new UserLogin();
   public usuarioForm: FormGroup;
   @Input() dataentrante:any;

@@ -1,0 +1,35 @@
+.body{
+ background-color:#D5F7B6;
+}
+h1{
+  color: black;
+  text-align: center;
+  padding: 20px;
+  font-family: 'Neucha', cursive;
+  font-size: 5em;
+}
+.Caja{
+  max-height: 100px;
+  padding: 50px;
+  margin: auto;
+  max-width: 500px;
+}
+.usuarioForm{
+  text-align:center;
+  max-height: 350px;
+  padding: 50px;
+  margin: auto;
+  height: 100%;
+}
+.boton{
+  text-decoration: none;
+  padding: 5px;
+  color: #ffffff;
+  background-color: #1883ba;
+  border-radius: 5px;
+}
+.boton:hover{
+  color: #1883ba;
+  background-color: #D5F7B6;
+}
+
