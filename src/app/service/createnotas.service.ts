@@ -24,12 +24,18 @@ export class CreatenotasService {
 
   createNota(nota:Nota,id:string)
   {
+    //date=${fecha_Create}&dateTimeFinsih=${fecha_finish}&
     return this.http.post(`${environment.apiNotaURL}/create?id=${id}`,nota);
   }
 
   getNotasByImportancia(importancia:string,id:string):Observable<Nota[]>
   {
     return this.http.get<Nota[]>(`${environment.apiNotaURL}/gnoteByImport?importancia=${importancia}&usuarioID=${id}`);
+  }
+
+  getNotasByFC(fecha_Crea:string,fecha_culmin:string):Observable<Nota[]>
+  {
+    return this.http.get<Nota[]>(`${environment.apiNotaURL}/gnoteFCbtFC?fecha_Creacion=${fecha_Crea}&fecha_culminacion=${fecha_culmin}`);
   }
 
   getNotasFiltroNombre(nombre_nota:string,id:string):Observable<Nota[]>
@@ -52,5 +58,6 @@ export class CreatenotasService {
   {
     return this.http.delete(`${environment.apiNotaURL}/deletenote?noteId=${id}`);
   }
+
 
 }

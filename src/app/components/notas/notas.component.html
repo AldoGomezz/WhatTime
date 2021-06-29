@@ -142,6 +142,63 @@
       </mat-selection-list>
 
     </mat-tab>
+
+    <mat-tab label="Obtener Notas entre Fechas">
+      <mat-selection-list [multiple]="false">
+        <div class="mat-list-option-cover">
+          <form class="notaForm" [formGroup]="notasID" (ngSubmit)="getNotaByFCFC()">
+            <div>
+              <mat-form-field appearance="fill">
+                <mat-label>Ingresar Fecha</mat-label>
+                <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
+                  <input matStartDate formControlName="start" placeholder="Fecha de Inicio"  >
+                  <input matEndDate formControlName="end" placeholder="Fecha de Culminación" >
+                </mat-date-range-input>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-date-range-picker #picker></mat-date-range-picker>
+
+                <mat-error *ngIf="range.controls.start.hasError('matStartDateInvalid')">Invalid start date</mat-error>
+                <mat-error *ngIf="range.controls.end.hasError('matEndDateInvalid')">Invalid end date</mat-error>
+              </mat-form-field>
+
+            </div>
+          </form>
+
+          <button (click)="getNotaByFCFC()">Obtener Notas:</button>
+          <br/>
+          <br/>
+          <mat-list-option *ngFor="let nota of this.notasFC" >
+            <mat-icon matListIcon>folder</mat-icon>
+            <div class="d-flex justify-content-between">
+
+              <span class="nota-ID">
+                        {{ nota.id }}
+                    </span>
+
+              <span class="nota-name">
+                        {{ nota.name_nota }}
+                    </span>
+              <span class="nota-importancia">
+                        {{ nota.importancia }}
+                    </span>
+              <span class="nota-fecha-culminacion">
+                        {{ nota.fecha_culminacion }}
+                    </span>
+              <span class="nota_status">
+                        {{ nota.status }}
+                    </span>
+              <span class="nota-contenido">
+                    {{ nota.contenido.substring(0, 40) }}
+                {{ nota.contenido.length > 30 ? "..." : "" }}
+                </span>
+            </div>
+          </mat-list-option>
+        </div>
+      </mat-selection-list>
+
+
+    </mat-tab>
+
     <mat-tab label="Actualizar Nombre de la Nota">
       <form class="notaForm" [formGroup]="notasID" (ngSubmit)="actualizarNameNota()">
         <div>
@@ -190,6 +247,8 @@
 
       <button (click)="eliminarCuenta()">Eliminar</button>
     </mat-tab>
+
+
 
   </mat-tab-group>
 </div>

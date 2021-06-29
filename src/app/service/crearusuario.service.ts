@@ -33,4 +33,5 @@ export class CrearusuarioService {
   {
     return this.http.delete(`${environment.apiUsuarioUrl}/deleteuser?id=${id}`);
   }
+
 }

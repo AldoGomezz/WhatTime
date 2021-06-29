@@ -13,9 +13,16 @@ export class NotasComponent implements OnInit {
   notas:Array<any>=[];
   notasimport:Array<any>=[];
   notasNombre:Array<any>=[];
+  notasFC:Array<any>=[];
+
   dataUpdate:any;
   errormessage:any;
   public notasID:FormGroup;
+
+  range = new FormGroup({
+    start: new FormControl(),
+    end: new FormControl()
+  });
   constructor(private notaService:CreatenotasService,private fb:FormBuilder,public dialog: MatDialog) { }
 
   ngOnInit(): void
@@ -25,9 +32,7 @@ export class NotasComponent implements OnInit {
       importancia:['',Validators.required],
       nota_nombre:['',Validators.required],
       id_nota:['',Validators.required],
-      description:['',Validators.required],
-
-
+      description:['',Validators.required]
     })
   }
 
@@ -35,6 +40,12 @@ export class NotasComponent implements OnInit {
   {
    // this.notaService.getNotas().subscribe(notas=>this.notas=notas);
   }
+  getNotaByFCFC()
+  {
+    //(result:any)=>{console.log(result.data),this.notas=result.data}
+    this.notaService.getNotasByFC(this.range.get("start")?.value,this.range.get("end")?.value).subscribe((result:any)=>{this.notasFC=result.data})
+  }
+
   getNotasByID():void
   {
     if(this.notasID.get("id_usuario")?.value!='')

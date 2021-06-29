@@ -44,9 +44,15 @@ export class CreateUsuarioComponent implements OnInit {
     {
       this.crearusuario.createUsuario(this.usuario.nombre,this.usuario.correo,this.usuario.contrasena).subscribe((result:any)=>{
         console.log(result.data)
+        if(result.data==null)
+        {
+          const title="Fallo al Crear Usuario"
+          const info = "El correo ya existe"
+          this.openDialog(title, info)
+        }else{
         const title="Usuario Creado Satisfactoriamente"
         const info = "No compartas tu informacion con nadie,ninguno de nuestros tecnicos solicitara estos datos"
-        this.openDialog(title, info)
+        this.openDialog(title, info)}
       })
     }else
       {

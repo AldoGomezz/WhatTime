@@ -3,6 +3,8 @@ import {CreatenotasService} from "../../service/createnotas.service";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Nota} from "../../models/nota.model";
 import {LoginService} from "../../service/login.service";
+import {MatDialog} from "@angular/material/dialog";
+import {InfoDialogComponent} from "../info-dialog/info-dialog.component";
 
 @Component({
   selector: 'app-createnota',
@@ -12,8 +14,9 @@ import {LoginService} from "../../service/login.service";
 export class CreatenotaComponent implements OnInit {
   public notaForm:FormGroup;
   public nota=new Nota();
-  constructor(private notaService:CreatenotasService,private fb:FormBuilder, private loginService:LoginService) { }
+  constructor(private notaService:CreatenotasService,private fb:FormBuilder, private loginService:LoginService,public dialog: MatDialog) { }
   public data:any;
+  public errormessage:any;
 
   range = new FormGroup({
     start: new FormControl(),
@@ -50,11 +53,28 @@ export class CreatenotaComponent implements OnInit {
       this.nota.fecha_culminacion=this.range.get("end")?.value
 
   }
-
-
   createNota()
   {
     this.setNota()
-    this.notaService.createNota(this.nota,this.notaForm.get('id')?.value).subscribe((result:any)=>{console.log(result.data)})
+    /*if(this.notaForm.get('name_nota')?.value!='' && this.notaForm.get('importancia')?.value!='' && this.notaForm.get('contenido')?.value!='' &&
+      this.range.get("start")?.value!=''&&this.range.get("end")?.value!='')
+    {
+
+    }*/
+    this.notaService.createNota(this.nota,this.notaForm.get('id')?.value).subscribe((result:any)=>{console.log(result.data)},error => {this.errormessage=error;
+      const title="Fallo al Crear Nota"
+      const info = "Ingrese los datos correctamente"
+      this.openDialog(title, info)})
   }
+
+  openDialog(title: string, info: string): void {
+    const dialogRef = this.dialog.open(InfoDialogComponent, {
+      width: '350px',
+      data: {title: title, info: info}
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
+
 }
