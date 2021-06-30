@@ -1,7 +1,11 @@
+<body>
 <app-navbar></app-navbar>
-
 <mat-tab-group>
   <mat-tab label="Información Personal">
+    <h1>
+      Ingrese el Nombre del Usuario
+      <link href="https://fonts.googleapis.com/css2?family=Marcellus+SC&display=swap" rel="stylesheet">
+    </h1>
     <form class="usuarioForm" [formGroup]="user" (ngSubmit)="informacionUsuario()">
       <div>
         <mat-form-field class="ancho" appearance="fill">
@@ -9,9 +13,10 @@
           <input type="string"  formControlName="name_user" matInput>
         </mat-form-field>
         </div>
+      <a class="boton" button (click)="informacionUsuario()" type="submit" mat-button color="primary">Obtener Datos</a>
     </form>
     <div class="mat-list-option-cover">
-      <button (click)="informacionUsuario()" type="submit" mat-button color="primary">Obtener Datos</button>
+
       <div class="d-flex justify-content-between">
 
                     <span class="nota-name">
@@ -28,50 +33,71 @@
     </div>
   </mat-tab>
   <mat-tab label="Cambiar Contraseña">
+    <h1>
+      Ingrese el Nombre del Usuario
+      <link href="https://fonts.googleapis.com/css2?family=Marcellus+SC&display=swap" rel="stylesheet">
+    </h1>
     <form class="usuarioForm" [formGroup]="user" (ngSubmit)="actualizarContrasena()">
       <div>
         <mat-form-field class="ancho" appearance="fill">
-          <mat-label>Nombre de Usuario:</mat-label>
+          <mat-label>Nombre de Usuario</mat-label>
           <input type="string"  formControlName="name_user" matInput>
 
         </mat-form-field>
         <br/>
+        <h1>
+          Ingrese la nueva Contraseña
+          <link href="https://fonts.googleapis.com/css2?family=Marcellus+SC&display=swap" rel="stylesheet">
+        </h1>
         <mat-form-field class="ancho" appearance="fill">
           <mat-label>Nueva contraseña</mat-label>
           <input type="string"  formControlName="contrasena" matInput>
         </mat-form-field>
-        <button (click)="actualizarContrasena()" type="submit" mat-button color="primary">Actualizar</button>
       </div>
+      <a class="boton" button (click)="actualizarContrasena()" type="submit" mat-button color="primary">Actualizar</a>
     </form>
   </mat-tab>
   <mat-tab label="Cambiar Correo">
+    <h1>
+      Ingrese el nombre del Usuario
+      <link href="https://fonts.googleapis.com/css2?family=Marcellus+SC&display=swap" rel="stylesheet">
+    </h1>
     <form class="usuarioForm" [formGroup]="user" (ngSubmit)="actualizarCorreo()">
       <div>
         <mat-form-field class="ancho" appearance="fill">
-          <mat-label>Nombre de Usuario:</mat-label>
+          <mat-label>Nombre de Usuario</mat-label>
           <input type="string"  formControlName="name_user" matInput>
 
         </mat-form-field>
         <br/>
+        <h1>
+          Ingrese el Nuevo Correo
+          <link href="https://fonts.googleapis.com/css2?family=Marcellus+SC&display=swap" rel="stylesheet">
+        </h1>
         <mat-form-field class="ancho" appearance="fill">
-          <mat-label>Nueva correo</mat-label>
+          <mat-label>Nuevo correo</mat-label>
           <input type="string"  formControlName="correo" matInput>
         </mat-form-field>
-        <button (click)="actualizarCorreo()" type="submit" mat-button color="primary">Actualizar</button>
       </div>
+      <a class="boton" button (click)="actualizarCorreo()" type="submit" mat-button color="primary">Actualizar</a>
     </form>
   </mat-tab>
   <mat-tab label="Eliminar Cuenta">
+    <h1>
+      Ingrese el ID del Usuario
+      <link href="https://fonts.googleapis.com/css2?family=Marcellus+SC&display=swap" rel="stylesheet">
+    </h1>
     <form class="usuarioForm" [formGroup]="user" (ngSubmit)="eliminarCuenta()">
       <div>
         <mat-form-field class="ancho" appearance="fill">
-          <mat-label>Identificador de Usuario:</mat-label>
+          <mat-label>Identificador de Usuario</mat-label>
           <input type="string"  formControlName="id_usuario" matInput>
 
         </mat-form-field>
 
-        <button (click)="eliminarCuenta()" type="submit" mat-button color="primary">Eliminar</button>
       </div>
+      <a class="boton" button (click)="eliminarCuenta()" type="submit" mat-button color="primary">Eliminar</a>
     </form>
   </mat-tab>
 </mat-tab-group>
+</body>
