@@ -36,7 +36,11 @@ export class NotasComponent implements OnInit {
       description:['',Validators.required]
     })
   }
-
+  cleandata()
+  {
+    this.notas=[];
+    this.notasimport=[];
+  }
   getNotas():void
   {
    // this.notaService.getNotas().subscribe(notas=>this.notas=notas);

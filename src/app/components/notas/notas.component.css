@@ -8,7 +8,7 @@ h1{
 .notaForm{
   text-align: center;
   background-size: cover;
-  height: 500px;
+  min-height: 250px;
   margin-bottom: 50px;
 }
 .bnotas{
@@ -31,5 +31,6 @@ h1{
 body{
   background-size: cover;
   background-color: #D5F7B6;
+  height: auto;
 }
 

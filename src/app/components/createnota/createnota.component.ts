@@ -61,7 +61,13 @@ export class CreatenotaComponent implements OnInit {
     {
 
     }*/
-    this.notaService.createNota(this.nota,this.notaForm.get('id')?.value).subscribe((result:any)=>{console.log(result.data)},error => {this.errormessage=error;
+    this.notaService.createNota(this.nota,this.notaForm.get('id')?.value).subscribe((result:any)=>{console.log(result.data)
+    if(result.status=="Succes to create Nota")
+    {
+      const title="Exito al Crear Nota"
+      const info = "-"
+      this.openDialog(title, info)}
+    },error => {this.errormessage=error;
       const title="Fallo al Crear Nota"
       const info = "Ingrese los datos correctamente"
       this.openDialog(title, info)})

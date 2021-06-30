@@ -44,7 +44,13 @@ export class DetailUserComponent implements OnInit
   {
     if(this.user.get("name_user")?.value!='')
     {
-      this.createUsuario.InformacionUsuario(this.user.get("name_user")?.value).subscribe((result:any)=>{console.log('Recibiendo datods..',result.data),this.usuario=result.data});
+      this.createUsuario.InformacionUsuario(this.user.get("name_user")?.value).subscribe((result:any)=>{console.log('Recibiendo datods..',result.data),this.usuario=result.data;
+      if(result.data==null)
+      {
+        const title="Fallo al Obtener Informacion"
+        const info = "Verifique el nombre de usuario ingresado"
+        this.openDialog(title, info)
+      }});
     }else
     {
       const title="Fallo al Obtener Informacion"
@@ -60,6 +66,9 @@ export class DetailUserComponent implements OnInit
     if(this.username!=''&&this.password!='')
     {
       this.createUsuario.actualizarContraseña(this.username,this.password).subscribe(data=>this.datos=data);
+      const title="Exito al actualizar contraseña"
+      const info = "-"
+      this.openDialog(title, info)
 
     }else
     {
@@ -76,7 +85,9 @@ export class DetailUserComponent implements OnInit
     if(this.username!=''&&this.correo!='')
     {
       this.createUsuario.actualizarCorreo(this.username,this.correo).subscribe(data=>this.datos=data);
-
+      const title="Exito al actualizar correo"
+      const info = "*"
+      this.openDialog(title, info)
     }else
     {
       const title="Fallo al Actualizar Correo"
@@ -93,6 +104,7 @@ export class DetailUserComponent implements OnInit
         const title="Fallo al Eliminar Usuario"
         const info = "Usuario no existe"
         this.openDialog(title, info)} );
+
     }
     else
     {
