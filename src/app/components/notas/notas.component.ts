@@ -4,6 +4,7 @@ import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {InfoDialogComponent} from "../info-dialog/info-dialog.component";
 import {MatDialog} from "@angular/material/dialog";
 
+
 @Component({
   selector: 'app-notas',
   templateUrl: './notas.component.html',
@@ -42,8 +43,9 @@ export class NotasComponent implements OnInit {
   }
   getNotaByFCFC()
   {
-    //(result:any)=>{console.log(result.data),this.notas=result.data}
-    this.notaService.getNotasByFC(this.range.get("start")?.value,this.range.get("end")?.value).subscribe((result:any)=>{this.notasFC=result.data})
+
+    this.notaService.getNotasByFC(this.range.get("start")?.value,this.range.get("end")?.value).subscribe((result:any)=>{this.notasFC=result.data;
+   })
   }
 
   getNotasByID():void

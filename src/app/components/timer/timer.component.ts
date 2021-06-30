@@ -28,7 +28,7 @@ export class TimerComponent implements OnInit, OnDestroy {
   public pomoID:FormGroup;
 
   running = false;
-  value = [0,10, 0];
+  value = [25, 0];
   subscription: Subscription;
 
   constructor(public dialog: MatDialog,private notaService:CreatenotasService,private fb:FormBuilder, private pomoService:PomodoroService) { }

@@ -14,6 +14,7 @@
           </form>
           <button (click)="getNotasByID()">Obtener Notas:</button>
           <mat-list-option *ngFor="let nota of this.notas" >
+            <mat-icon matListIcon>note_add</mat-icon>
             <div class="d-flex justify-content-between">
            <span class="nota-ID">
                         {{ nota.id }}
@@ -63,6 +64,7 @@
 
           <button (click)="getNotasByImportancia()">Obtener Notas:</button>
           <mat-list-option *ngFor="let nota of this.notasimport" >
+            <mat-icon matListIcon>note_add</mat-icon>
             <div class="d-flex justify-content-between">
            <span class="nota-ID">
                         {{ nota.id }}
@@ -113,7 +115,7 @@
           <br/>
           <br/>
           <mat-list-option *ngFor="let nota of this.notasNombre" >
-            <mat-icon matListIcon>folder</mat-icon>
+            <mat-icon matListIcon>note_add</mat-icon>
             <div class="d-flex justify-content-between">
 
               <span class="nota-ID">
@@ -168,7 +170,7 @@
           <br/>
           <br/>
           <mat-list-option *ngFor="let nota of this.notasFC" >
-            <mat-icon matListIcon>folder</mat-icon>
+            <mat-icon matListIcon>note_add</mat-icon>
             <div class="d-flex justify-content-between">
 
               <span class="nota-ID">
