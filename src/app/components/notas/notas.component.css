@@ -1,0 +1,35 @@
+h1{
+  font-family: 'Marcellus SC', serif;
+  font-size: 1.5em;
+  padding: 20px;
+  text-align: center;
+  color:#1B53E3;
+}
+.notaForm{
+  text-align: center;
+  background-size: cover;
+  height: 500px;
+  margin-bottom: 50px;
+}
+.bnotas{
+  text-decoration:none;
+  font-weight: 600;
+  font-size: 20px;
+  color:#ffffff;
+  padding-top:15px;
+  padding-bottom:15px;
+  padding-left:40px;
+  padding-right:40px;
+  background-color:#254FE6;
+  border-width: 3px;
+  border-style: solid;
+}
+.bnotas:hover{
+  color: #254FE6;
+  background-color: #D5F7B6;
+}
+body{
+  background-size: cover;
+  background-color: #D5F7B6;
+}
+
