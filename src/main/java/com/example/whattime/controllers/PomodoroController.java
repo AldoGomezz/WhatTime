@@ -18,6 +18,7 @@ public class PomodoroController {
     private PomodoroService pomodoroService;
 
     @ResponseStatus(HttpStatus.OK)
+    @ApiOperation("Crea un Pomodoro")
     @PostMapping("/pomo/pomodoros")
     public WhatTimeResponse<PomodoroDto> createPomodoro(Long duracion,String nombre, Long notaId)
             throws WhatTimeExceptions {
@@ -38,6 +39,7 @@ public class PomodoroController {
     }
 
     @ResponseStatus(HttpStatus.OK)
+    @ApiOperation("Obtiene un Pomodoro por ID")
     @GetMapping("/pomo/getPomodoro")
     public WhatTimeResponse<PomodoroDto> getPomoID(Long id)throws
             WhatTimeExceptions {

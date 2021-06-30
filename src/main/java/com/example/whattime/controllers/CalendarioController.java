@@ -6,6 +6,7 @@ import com.example.whattime.DTO.NotaDto;
 import com.example.whattime.exceptions.WhatTimeExceptions;
 import com.example.whattime.responses.WhatTimeResponse;
 import com.example.whattime.services.CalendarioService;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +21,7 @@ public class CalendarioController {
     private CalendarioService calendarioService;
 
     @ResponseStatus(HttpStatus.OK)
+    @ApiOperation("Crea un calendario")
     @PostMapping("/calendarios")
     public WhatTimeResponse<CalendarioDto> createCalendario(@RequestBody CreateCalendarioDto createCalendarioDto, String name)
             throws WhatTimeExceptions{
@@ -27,6 +29,7 @@ public class CalendarioController {
                 calendarioService.createCalendario(createCalendarioDto,name));
     }
     @ResponseStatus(HttpStatus.OK)
+    @ApiOperation("Recibe las notas mediante el ID del Usuario")
     @GetMapping("/nota/getnotebyuser")
     public WhatTimeResponse<List<NotaDto>> getNotesByUserID(Long usuarioId)
             throws WhatTimeExceptions {
@@ -34,6 +37,7 @@ public class CalendarioController {
                 calendarioService.getNotesFromUser(usuarioId));
     }
     @ResponseStatus(HttpStatus.OK)
+    @ApiOperation("Borra la nota")
     @DeleteMapping("/nota/deletenote")
     public void deleteNote(Long noteId)
     {
