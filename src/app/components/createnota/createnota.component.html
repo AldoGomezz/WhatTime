@@ -1,54 +1,55 @@
-<app-navbar></app-navbar>
-<h1>Creacion de Notas</h1>
-<div class="col-sm-12 col-md-6 pTop50">
+<div class="body">
+ <app-navbar></app-navbar>
+  <h1>Creación de Notas
+    <link href="https://fonts.googleapis.com/css2?family=Neucha&display=swap" rel="stylesheet">
+  </h1>
+   <div class="caja">
+    <mat-card>
+      <form class="usuarioForm" [formGroup]="notaForm" (ngSubmit)="createNota()">
+        <div>
+          <mat-form-field class="ancho" appearance="fill">
+            <mat-label>ID Usuario:</mat-label>
+            <input type="string"  formControlName="id" matInput>
+          </mat-form-field>
 
+          <mat-form-field class="ancho" appearance="fill">
+            <mat-label>Nombre de la Nota:</mat-label>
+            <input type="string"  formControlName="name_nota" matInput>
+          </mat-form-field>
 
-  <mat-card>
-    <form class="usuarioForm" [formGroup]="notaForm" (ngSubmit)="createNota()">
-      <div>
-        <mat-form-field class="ancho" appearance="fill">
-          <mat-label>ID Usuario:</mat-label>
-          <input type="string"  formControlName="id" matInput>
-        </mat-form-field>
+          <br/>
+          <mat-form-field class="ancho" appearance="fill">
+            <mat-label>Importancia:</mat-label>
+            <input type="number" formControlName="importancia" min="1" max="3" step="1" matInput>
+            <mat-error> Ingrese un numero valido entre 1 - 3 </mat-error>
+          </mat-form-field>
 
-        <mat-form-field class="ancho" appearance="fill">
-          <mat-label>Nombre de la Nota:</mat-label>
-          <input type="string"  formControlName="name_nota" matInput>
-        </mat-form-field>
+          <br/>
+          <mat-form-field class="ancho" appearance="fill">
+            <mat-label>Contenido:</mat-label>
+            <input type="string" formControlName="contenido" matInput>
+          </mat-form-field>
 
-        <br/>
-        <mat-form-field class="ancho" appearance="fill">
-          <mat-label>Importancia:</mat-label>
-          <input type="number" formControlName="importancia" min="1" max="3" step="1" matInput>
-          <mat-error> Ingrese un numero valido entre 1 - 3 </mat-error>
-        </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Ingresar Fecha</mat-label>
+            <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
+              <input matStartDate formControlName="start" placeholder="Fecha de Inicio"  >
+              <input matEndDate formControlName="end" placeholder="Fecha de Culminación" >
+            </mat-date-range-input>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-date-range-picker #picker></mat-date-range-picker>
 
-        <br/>
-        <mat-form-field class="ancho" appearance="fill">
-          <mat-label>Contenido:</mat-label>
-          <input type="string" formControlName="contenido" matInput>
-        </mat-form-field>
+            <mat-error *ngIf="range.controls.start.hasError('matStartDateInvalid')">Invalid start date</mat-error>
+            <mat-error *ngIf="range.controls.end.hasError('matEndDateInvalid')">Invalid end date</mat-error>
+          </mat-form-field>
 
-        <mat-form-field appearance="fill">
-          <mat-label>Ingresar Fecha</mat-label>
-          <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
-            <input matStartDate formControlName="start" placeholder="Fecha de Inicio"  >
-            <input matEndDate formControlName="end" placeholder="Fecha de Culminación" >
-          </mat-date-range-input>
-          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-date-range-picker #picker></mat-date-range-picker>
-
-          <mat-error *ngIf="range.controls.start.hasError('matStartDateInvalid')">Invalid start date</mat-error>
-          <mat-error *ngIf="range.controls.end.hasError('matEndDateInvalid')">Invalid end date</mat-error>
-        </mat-form-field>
-
+        </div>
+      </form>
+      <div class="boton2">
+        <a class="boton" button (click)="createNota()" type="submit" mat-button color="primary">Crear Nota</a>
       </div>
-    </form>
-    <div class="text-right">
-      <button (click)="createNota()" type="submit" mat-button color="primary">Crear Nota</button>
-    </div>
-  </mat-card>
+    </mat-card>
 
 
+  </div>
 </div>
-
