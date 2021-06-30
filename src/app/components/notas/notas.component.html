@@ -1,7 +1,11 @@
-<div class="list">
+<body>
   <app-navbar></app-navbar>
   <mat-tab-group>
     <mat-tab label="Notas">
+      <h1>
+        Ingrese el ID del Usuario
+        <link href="https://fonts.googleapis.com/css2?family=Marcellus+SC&display=swap" rel="stylesheet">
+      </h1>
       <mat-selection-list [multiple]="false">
         <div class="mat-list-option-cover">
           <form class="notaForm" [formGroup]="notasID" (ngSubmit)="getNotasByID()">
@@ -11,8 +15,8 @@
                 <input type="string"  formControlName="id_usuario" matInput>
               </mat-form-field>
             </div>
+            <a class="bnotas" button (click)="getNotasByID()">Obtener Notas</a>
           </form>
-          <button (click)="getNotasByID()">Obtener Notas:</button>
           <mat-list-option *ngFor="let nota of this.notas" >
             <div class="d-flex justify-content-between">
            <span class="nota-ID">
@@ -43,7 +47,10 @@
     </mat-tab>
 
     <mat-tab label="Filtrar por Importancia">
-
+      <h1>
+        Ingrese el ID del Usuario
+        <link href="https://fonts.googleapis.com/css2?family=Marcellus+SC&display=swap" rel="stylesheet">
+      </h1>
       <mat-selection-list [multiple]="false">
         <div class="mat-list-option-cover">
           <form class="notaForm" [formGroup]="notasID" (ngSubmit)="getNotasByImportancia()">
@@ -53,15 +60,18 @@
                 <input type="string"  formControlName="id_usuario" matInput>
               </mat-form-field>
                 <br/>
+              <h1>
+                Ingrese la Importancia de la Nota
+                <link href="https://fonts.googleapis.com/css2?family=Marcellus+SC&display=swap" rel="stylesheet">
+              </h1>
               <mat-form-field class="ancho" appearance="fill">
                 <mat-label>Importancia</mat-label>
                 <input type="number"  formControlName="importancia" min="1" max="3" matInput>
                 <mat-error>Importancia valida entre 1-3</mat-error>
               </mat-form-field>
             </div>
+            <a class="bnotas" button (click)="getNotasByImportancia()">Obtener Notas</a>
           </form>
-
-          <button (click)="getNotasByImportancia()">Obtener Notas:</button>
           <mat-list-option *ngFor="let nota of this.notasimport" >
             <div class="d-flex justify-content-between">
            <span class="nota-ID">
@@ -92,7 +102,10 @@
     </mat-tab>
 
     <mat-tab label="Busqueda por Nombre">
-
+      <h1>
+        Ingrese el ID del Usuario
+        <link href="https://fonts.googleapis.com/css2?family=Marcellus+SC&display=swap" rel="stylesheet">
+      </h1>
       <mat-selection-list [multiple]="false">
         <div class="mat-list-option-cover">
           <form class="notaForm" [formGroup]="notasID" (ngSubmit)="getNotasByNotaName()">
@@ -102,14 +115,17 @@
                 <input type="string"  formControlName="id_usuario" matInput>
               </mat-form-field>
               <br/>
+              <h1>
+                Ingrese el Nombre de la Nota
+                <link href="https://fonts.googleapis.com/css2?family=Marcellus+SC&display=swap" rel="stylesheet">
+              </h1>
               <mat-form-field class="ancho" appearance="fill">
                 <mat-label>Nombre de la Nota</mat-label>
                 <input type="string"  formControlName="nota_nombre" matInput>
               </mat-form-field>
             </div>
+            <a class="bnotas" button (click)="getNotasByNotaName()">Obtener Notas</a>
           </form>
-
-          <button (click)="getNotasByNotaName()">Obtener Notas:</button>
           <br/>
           <br/>
           <mat-list-option *ngFor="let nota of this.notasNombre" >
@@ -144,6 +160,10 @@
     </mat-tab>
 
     <mat-tab label="Obtener Notas entre Fechas">
+      <h1>
+        Ingrese la fecha
+        <link href="https://fonts.googleapis.com/css2?family=Marcellus+SC&display=swap" rel="stylesheet">
+      </h1>
       <mat-selection-list [multiple]="false">
         <div class="mat-list-option-cover">
           <form class="notaForm" [formGroup]="notasID" (ngSubmit)="getNotaByFCFC()">
@@ -162,9 +182,8 @@
               </mat-form-field>
 
             </div>
+            <a class="bnotas" button (click)="getNotaByFCFC()">Obtener Notas</a>
           </form>
-
-          <button (click)="getNotaByFCFC()">Obtener Notas:</button>
           <br/>
           <br/>
           <mat-list-option *ngFor="let nota of this.notasFC" >
@@ -200,6 +219,10 @@
     </mat-tab>
 
     <mat-tab label="Actualizar Nombre de la Nota">
+      <h1>
+        Ingrese el ID de la Nota
+        <link href="https://fonts.googleapis.com/css2?family=Marcellus+SC&display=swap" rel="stylesheet">
+      </h1>
       <form class="notaForm" [formGroup]="notasID" (ngSubmit)="actualizarNameNota()">
         <div>
           <mat-form-field class="ancho" appearance="fill">
@@ -207,17 +230,24 @@
             <input type="string"  formControlName="id_nota" matInput>
           </mat-form-field>
           <br/>
+          <h1>
+            Ingrese el Nombre de la Nota
+            <link href="https://fonts.googleapis.com/css2?family=Marcellus+SC&display=swap" rel="stylesheet">
+          </h1>
           <mat-form-field class="ancho" appearance="fill">
             <mat-label>Nombre de la Nota</mat-label>
             <input type="string"  formControlName="nota_nombre" matInput>
           </mat-form-field>
         </div>
+        <a class="bnotas" button (click)="actualizarNameNota()">Actualizar</a>
       </form>
-
-      <button (click)="actualizarNameNota()">Actualizar</button>
     </mat-tab>
 
     <mat-tab label="Actualizar Descripcion">
+      <h1>
+        Ingrese el ID de la Nota
+        <link href="https://fonts.googleapis.com/css2?family=Marcellus+SC&display=swap" rel="stylesheet">
+      </h1>
       <form class="notaForm" [formGroup]="notasID" (ngSubmit)="actualizarDescriptionNota()">
         <div>
           <mat-form-field class="ancho" appearance="fill">
@@ -225,17 +255,24 @@
             <input type="string"  formControlName="id_nota" matInput>
           </mat-form-field>
           <br/>
+          <h1>
+            Actualice la Descripción de la nota
+            <link href="https://fonts.googleapis.com/css2?family=Marcellus+SC&display=swap" rel="stylesheet">
+          </h1>
           <mat-form-field class="ancho" appearance="fill">
             <mat-label>Descripcion Actualizada</mat-label>
             <input type="string"  formControlName="description" matInput>
           </mat-form-field>
         </div>
+        <a class="bnotas" button (click)="actualizarDescriptionNota()">Actualizar</a>
       </form>
-
-      <button (click)="actualizarDescriptionNota()">Actualizar</button>
     </mat-tab>
 
     <mat-tab label="Eliminar Nota">
+      <h1>
+        Ingrese el ID de la Nota a Eliminar
+        <link href="https://fonts.googleapis.com/css2?family=Marcellus+SC&display=swap" rel="stylesheet">
+      </h1>
       <form class="notaForm" [formGroup]="notasID" (ngSubmit)="eliminarCuenta()">
         <div>
           <mat-form-field class="ancho" appearance="fill">
@@ -243,16 +280,11 @@
             <input type="string"  formControlName="id_nota" matInput>
           </mat-form-field>
         </div>
+        <a class="bnotas" button (click)="eliminarCuenta()">Eliminar</a>
       </form>
-
-      <button (click)="eliminarCuenta()">Eliminar</button>
     </mat-tab>
-
-
-
   </mat-tab-group>
-</div>
-
+</body>
   <!--<mat-selection-list [multiple]="false">
     <div class="mat-list-option-cover">
       <button (click)="getNotasByID()">Obtener Notas por Usuario ID:</button>
