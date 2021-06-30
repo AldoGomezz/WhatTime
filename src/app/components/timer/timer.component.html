@@ -1,3 +1,4 @@
+<body>
 <app-navbar></app-navbar>
 <mat-tab-group>
   <!--
@@ -29,6 +30,10 @@
 
   <mat-tab label="Pomodoro">
     <mat-selection-list [multiple]="false">
+      <h2>
+        Pomodoro
+        <link href="https://fonts.googleapis.com/css2?family=Marcellus+SC&display=swap" rel="stylesheet">
+      </h2>
       <div class="mat-list-option-cover">
         <form class="pomodoroForm" [formGroup]="pomoID" (ngSubmit)="getNotaID()">
           <div>
@@ -41,10 +46,9 @@
               <input type="string"  formControlName="duracion" matInput>
             </mat-form-field>
           </div>
-
+          <a class="boton" button (click)="getNotaID()" type="submit" mat-button color="primary">Obtener Nota</a>
         </form>
         <div class="mat-list-option-cover">
-          <button (click)="getNotaID()" type="submit" mat-button color="primary">Obtener Nota</button>
           <div class="d-flex justify-content-between">
 
                     <span class="nota-name">
@@ -87,3 +91,4 @@
     </mat-tab>
 
   </mat-tab-group>
+</body>

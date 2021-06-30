@@ -22,14 +22,20 @@ h1{
   height: 100%;
 }
 .boton{
-  text-decoration: none;
-  padding: 5px;
-  color: #ffffff;
-  background-color: #1883ba;
-  border-radius: 5px;
+  text-decoration:none;
+  font-weight: 600;
+  font-size: 20px;
+  color:#ffffff;
+  padding-top:15px;
+  padding-bottom:15px;
+  padding-left:40px;
+  padding-right:40px;
+  background-color:#254FE6;
+  border-width: 3px;
+  border-style: solid;
 }
 .boton:hover{
-  color: #1883ba;
+  color: #254FE6;
   background-color: #D5F7B6;
 }
 

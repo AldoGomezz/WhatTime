@@ -1,8 +1,8 @@
 h1{
-  color: black;
+  color:#1B53E3;
   text-align: center;
   padding: 20px;
-  font-family: 'Neucha', cursive;
+  font-family: 'Marcellus SC', serif;
   font-size: 5em;
 }
 .caja{
@@ -40,3 +40,4 @@ h1{
 .boton2{
   text-align: end;
 }
+
