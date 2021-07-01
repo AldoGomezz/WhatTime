@@ -1,8 +1,10 @@
 package com.example.whattime.entities;
 
+import com.example.whattime.util.AlarmaStatus;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name="alarmas",
@@ -29,6 +31,14 @@ public class Alarma {
 
     @Column(name ="contenido_alarma", nullable = false, columnDefinition = "TEXT")
     private String contenido_alarma;
+
+    @Column(name = "fecha_alarma", nullable = false,columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date fecha_alarma;
+
+    @Column(name = "STATUS")
+    @Enumerated(value = EnumType.STRING)
+    private AlarmaStatus status;
 
     @OneToOne
     @JoinColumn(
